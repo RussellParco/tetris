@@ -1,0 +1,13 @@
+//
+// Created by Leo on 11/25/2019.
+//
+
+#ifndef COMMAND_ZCOMMAND_H
+#define COMMAND_ZCOMMAND_H
+
+class ZCommand : public commandDecorator {
+public:
+    void execute() override;
+};
+
+#endif //COMMAND_ZCOMMAND_H
