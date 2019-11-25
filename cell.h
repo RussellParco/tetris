@@ -1,4 +1,14 @@
 #ifndef CELL
 #define CELL
- //todo everything
+	class Cell{
+		char content;
+		*Block block;
+		public:
+		*Block getBlock();
+		void setBlock();
+		char getContent();
+		void setContent();
+
+	};
+
 #endif
