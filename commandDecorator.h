@@ -8,8 +8,9 @@
 #include "Command.h"
 
 class commandDecorator: public Command{
-Command command;
+Command *command;
 private:
+    ~commandDecorator(){};
     virtual void execute() = 0;
 };
 

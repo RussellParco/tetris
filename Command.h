@@ -9,8 +9,9 @@
 #include "textCommands.h"
 
 class Command {
-    Game game;
+    Game *game;
 public:
+    virtual ~Command();
     virtual void execute() = 0;
 };
 
