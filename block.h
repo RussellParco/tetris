@@ -1,33 +1,26 @@
 #ifndef BLOCK
 #define BLOCK 
-#include "board.h"
-
-
+#include "cell.h"
+#include "coord.h"
+#include <string>
 
 class Block {
 
-	vector<vector< Cell>> cells;
+	std::vector<Cell> cells(4);
 	int weight;
 	int level;
 	char type;
 
 	public:
-		rotate(int num);
-		drop();
-		right;
-		left;
-		int getScore();	
+	//	Block(char type, int weight = 0);
+		virtual void rotate(string type);
+		virtual void down();
+		virtual void right;
+		virtual void left;
+		virtual int getScore();	
 
 
 }; 
-
-//TODo EVERYTHING 
-
-
-
-
-
-
 
 
 #endif
