@@ -1,27 +1,30 @@
 #ifndef BOARD
 #define BOARD
 class Board{
-	 vector<vector <Cell>> theBoard;
-	 vector<Block> blocks;
+	 vector<vector <bool>> grid;
+	 bool **blocks;
 	 *Effect currentEffect;
 	 *Level level;
 	 int levelint;
 	 const int width;
 	 const int height;
-	 *ifstream sequencec;
+	 ifstream sequencec;
 	 bool random;
 	 int lastPieceCleared;
+	 int clearRow(int row);
+	 void dropRows(int row);
 	
 	public:
-	 void rotate(const int direction);
+	 void counterclockwise();
+	 void clockwise();
 	 void right();
 	 void left();
 	 void down();
 	 void drop();
 	 void levelup();
 	 void leveldown();
-	 void swapRand();
-	 void setSquence();
+	 void setRandom(bool set);
+	 void setSequence(string file);
 	 void restart();
 };
 #endif

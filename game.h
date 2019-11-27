@@ -2,16 +2,14 @@
 #define GAME
 #include <string>
 class Game{
-	Display * textDisplay;
-	Display * graphics;
-	players vector<Board>;
-	ifstream * sequence;
-	Player * turn;
+	unique_ptr<Display> textDisplay;
+	unique_ptr<Display> graphics;
+	unique_ptr<Board> players[2];
+	Player  *turn;
 	textCommands Commands;
 	int highScore;
 	public: 
 	Game();
-	~Game();
-	ExecuteCommnand(string command, Board board);
+	void play();
 };
 #endif
