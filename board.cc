@@ -10,7 +10,7 @@ Board::Board(int level = 0, int width, int length):
 	lastPieceCleared{0}{
 
 	if(levelint == 0){
-		level = new Level10();
+		level = new Level0();
 	}else if(levelint == 1){
 		level = new Level1();
 	}else if(levelint == 2){
@@ -130,7 +130,7 @@ void Board::left(){
 }
 
 void Board::down(){
-	Block *activeBlock = blocks.back();
+	Block *activeBlock = blocks.back(); 
         for(auto c : activeBlock->getcells()){
                 if(c.y  == height - 1 || !grid[c.x][c.y-1]){
                         return;
@@ -206,7 +206,7 @@ void Board::leveldown(){
 	if(level != 0){
                 delete level;
                 if(levelint == 1){
-                        level = new Level0();
+                        level = new Level0() ;
                 }else if(levelint == 2){
                         level = new Level1();
                 }else if(levelint == 3){
@@ -218,13 +218,14 @@ void Board::leveldown(){
         }
 }
 
-void Board::setRandom(bool set){
-	random = set;
+void Board::random(string file){
+	//TODO
 }
 
-void setSequence(string file){
-	sequence = ifstream(file);
+void Board::unRandom(){
+	//TODO
 }
+
 void Board::restart(){
 	score = 0;
 	for(int x = 0; x < width; x++){
@@ -237,7 +238,7 @@ void Board::restart(){
 }
 
 void Board::dropRows(int row){
-	if(row = = 0){
+	if(row == 0){
 		return;
 	}
 	std::swap(grid[row], grid[row - 1]);
@@ -248,14 +249,15 @@ void Board::dropRows(int row){
 int Board::clearRow(int row){
 	int blockscore;
 	for(auto b : blocks){
-		for(auto c : b->getcells()){
+		vector<Cell> cells = b->getcellS();
+		for(auto c : cells){
 			if(c.y == row){
-				if( b.remove(c)){
-					blockscore += b.getscore();
-					blocks.remove(b)
+				if( b.remove(cells.begin() - c)){
+					blockscore += b.getScore();
+					blocks.erase(blocks.begin()- b);
 				}
 				grid[c.x][c.y] = 0;
-				updateDisplays(' ', c.x, c.y);
+				updateDisplays(' ', c->getCoord());
 				
 			}
 

@@ -32,8 +32,8 @@ class Board{
 	 int drop();
 	 void levelup();
 	 void leveldown();
-	 void setRandom(bool set);
-	 void setSequence(string file);
+	 void Random(string file);
+	 void unRandom();
 	 void restart();
 	 void updateDisplays(char content, int row, int col);
 	 void updateDisplaysSwap(int row1, int row2);
