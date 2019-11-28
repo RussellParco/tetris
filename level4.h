@@ -3,5 +3,5 @@
 class Level4{
 	Block* createPiece(bool random, int lastBlockCleared );
 	
-}
+};
 #endif

@@ -15,8 +15,8 @@ class Block {
 	//	Block(char type, int weight = 0);
 		virtual void rotate(string type);
 		virtual void down();
-		virtual void right;
-		virtual void left;
+		virtual void right();
+		virtual void left();
 		virtual int getScore();	
 
 

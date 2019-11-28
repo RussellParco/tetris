@@ -3,5 +3,5 @@
 class Level3{
 	*Block createPiece(bool random, int lastBlockCleared )override;
 	
-}
+};
 #endif 

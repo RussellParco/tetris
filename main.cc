@@ -1,26 +1,34 @@
-int main(int arcsc, char* argsv[]){
+#include <string>
+#include "game.h"
+#include <sstream>
+
+using namespace std;
+
+int main(int argsc, char* argsv[]){
+	stringstream ss;
 	bool text = false;
 	int seed = 0;
 	string scriptfile1;
 	string scriptfile2;
 	int startlevel  = 0;
+
 	for(int i = 1; i < argsc; i++){
-		if(argsv[i] == "-text"){
+		if((string)argsv[i] == "-text"){
 			text = true;
 		}
-		else if(argsv[i] == "-seed"){
+		else if((string)argsv[i] == "-seed"){
 			ss << argsv[i+1];
 			ss >> seed;
 			i++;
 		}
-		else if(argsv[i] == "-scriptfile1"){
+		else if((string)argsv[i] == "-scriptfile1"){
                        	scriptfile1 = argsv[i+1];
                         i++;
                 }
- 		else if(argsv[i] == "-scriptfile2"){
+ 		else if((string)argsv[i] == "-scriptfile2"){
                         scriptfile2 = argsv[i+1];
                         i++;
-                }else if(argsv[i] == "-startlevel"){
+                }else if((string)argsv[i] == "-startlevel"){
                         ss << argsv[i+1];
                         ss >> startlevel;
                         i++;

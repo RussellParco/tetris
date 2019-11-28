@@ -5,7 +5,7 @@
 #ifndef COMMAND_COMMAND_H
 #define COMMAND_COMMAND_H
 
-#include "Game.h"
+#include "game.h"
 #include "textCommands.h"
 
 class Command {

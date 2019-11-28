@@ -2,10 +2,14 @@
 #define GAME
 #include <string>
 #include <memory>
+
+class Display;
+class Board;
+
 class Game{
-	unique_ptr<Display> textDisplay;
-	unique_ptr<Display> graphics;
-	unique_ptr<Board> players[2];
+	std::unique_ptr<Display> textDisplay;
+	std::unique_ptr<Display> graphics;
+	std::unique_ptr<Board> players[2];
 	int turn;
 	textCommands Commands;
 	int highScore;
@@ -27,8 +31,7 @@ class Game{
 	void O();
 	void S();
 	void Z();
-	void T();
-		
+	void T();	
 	
 };
 #endif
