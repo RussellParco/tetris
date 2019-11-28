@@ -84,6 +84,7 @@ void counterclockwise(){
 	if (cellsAvailable(this->cells, "counterclockwise", this->blocks)){
 		this->block.rotate("counterclockwise");
 	}
+
 }
 
 void clockwise(){
