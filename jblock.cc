@@ -1,7 +1,7 @@
 #include "jblock.h"
 #include <string>
 
-Jblock::Jblock(char type, int weight): type{type}, weight{weight} {
+Jblock::Jblock(char type, int weight): type{J}, weight{weight} {
 
 	for(int i =0; i <= 2; i++){
 		this->cells[i].current.x= i + 5;
@@ -9,13 +9,33 @@ Jblock::Jblock(char type, int weight): type{type}, weight{weight} {
 	}
 	this->cells[3].current.x= 5;
 	this->cells[3].current.y = 0;
+	for(int i =0; i <=3; i++){
+		this->cells[i].content = 'J';
+	}
+
 }
 
 void Jblock::rotate(string type){
-  float cx = this->cells[0].current.x;
-  float cy = this->cells[0].current.y;
-  float s = 1;
-  float c = 0;
+int top = this->ells[0].current.y;
+int left = this->cells[0].current.x;
+
+	for(int i=0; i <= 3; i++){
+		if(testCells[i].current.y >= top){
+			top = testCells[i].current.y;
+		}
+	}
+	for(int i=0; i <= 3; i++){
+		if(testCells[i].current.x <= left){
+			left = testCells[i].current.x;
+		}
+	}
+
+
+ 
+  int cx = 0;
+  int cy = 0;
+  int  s = 1;
+  int  c = 0;
         for(int i = 0; i<=3; i++){
          this->cells[i]current.x -= cx;
          this->cells[i]current.y -= cy;
@@ -31,18 +51,17 @@ void Jblock::rotate(string type){
 
 	}
 	else  {
-	float xnew = p.x * c - p.y * s;
-	float ynew = p.x * s + p.y * c;
+	int xnew = this->cells[i]current.x * c - this->cells[i].current.y * s;
+	int ynew = this->cells[i].current.x * s + this->cells[i].current.y * c;
 	  // translate point back:
-	 this->cells[i].current.x = xnew + cx;
-      	this->cells[i].current.y = ynew + cy;
+	 this->cells[i].current.x = xnew + left;
+      	this->cells[i].current.y = ynew + top;
 
 	}
           
         }
 
 }
-
 
 
 void Jblock::down(){
