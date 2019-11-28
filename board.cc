@@ -21,7 +21,7 @@ Board::Board(int level = 0, int width, int length): grid{false},
 
 
 
-bool cellsAvailable(std::vector<Cell> exCells, string type, std::vector<Block> blocks){
+bool cellsAvailable(std::vector<Cell> exCells, string type, std::vector<vector <bool>> grid){
 	std::vector<Cell> testCells(4);
 	for(int i =0; i <= 3; i++){
 		testCells[i].current.x = exCells[i].current.x;
@@ -63,31 +63,32 @@ bool cellsAvailable(std::vector<Cell> exCells, string type, std::vector<Block> b
 		testCells[i].current.y = ynew + top;
 	}
 
-	int i =0;
 	
-	while(blocks[i]){
-		for(int k =0; k <=3; k++){
-			for(int j=0; j <= 3; j++){
-				if ((blocks[i].cells[j].current.x == testCells[k].current.x)
-					&& (blocks[i].cells[j].current.y == testCells[k].current.y)){
-					return false;
-				}
-			}
+ 	int x = 0;
+	int y = 0;
+	for(int i = 0; i <= 3; i++ ){
+		x = testCells[i].current.x;
+		y = testCells[i].current.y;	
+		if(grid[x][y] == 1){
+			return false;
 		}
-		i++;
+	
 	}
 	return true;
+	
 }
 
 
 void counterclockwise(){
-	if (cellsAvailable(this->cells, "counterclockwise", this->blocks)){
+	Block recent = blocks.back();
+	if (cellsAvailable(recent->cells, "counterclockwise", this->grid)){
 		this->block.rotate("counterclockwise");
 	}
 }
 
 void clockwise(){
-	if (cellsAvailable(this->cells, clockwise, this->blocks)){
+	Block recent = blocks.back();
+	if (cellsAvailable(recent->cells, "clockwise", this->grid)){
 		this->block.rotate("clockwise");
 	}
 	
