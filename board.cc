@@ -18,9 +18,6 @@ Board::Board(int level = 0, int width, int length): grid{false},
 
 }
 
-
-
-
 bool cellsAvailable(std::vector<Cell> exCells, string type, std::vector<vector <bool>> grid){
 	std::vector<Cell> testCells(4);
 	for(int i =0; i <= 3; i++){
@@ -44,18 +41,16 @@ bool cellsAvailable(std::vector<Cell> exCells, string type, std::vector<vector <
 
 		int cx = 0;
 		int cy = 0;
-		int  s = 1;
-		int c = 0;
 	for(int i =0; i <=3 ; i++){
 		
 		if(type == "clockwise"){
-			int xnew = testCells[i].current.x * c - testCells.current.y * s;
-			int ynew = testCells[i].current.x * -1 * s + testCells.current.y * c;
+			int xnew = -1*testCells.current.y;
+			int ynew = testCells[i].current.x * -1;
 			
 		}
 		else{
-			int xnew = testCells[i].current.x * c - testCells[i].current.y * s;
-			int ynew = testCells[i].current.x * s + testCells[i].current.y * c;	
+			int xnew = -1 * testCells[i].current.y;
+			int ynew = testCells[i].current.x * s;	
 
 
 		}
@@ -66,14 +61,15 @@ bool cellsAvailable(std::vector<Cell> exCells, string type, std::vector<vector <
 	
  	int x = 0;
 	int y = 0;
+
 	for(int i = 0; i <= 3; i++ ){
 		x = testCells[i].current.x;
 		y = testCells[i].current.y;	
 		if(grid[x][y] == 1){
 			return false;
 		}
-	
 	}
+
 	return true;
 	
 }
@@ -105,6 +101,9 @@ void right(){
 	for(auto c: activeBlock->cells){
 		grid[c.x+1][c.y] = 1;
 		grid[c.x][c.y] = 0;
+		notifyObservers(' ', c.x, c.y, this);
+                notifyObservers(activeBlock.content(), c.x+1, c.y, this);
+
 	}
 	activeBlock->right();
 }
@@ -119,6 +118,9 @@ void left(){
 	for(auto c : activeBlock->cells){
 		grid[c.x-1][c.y] = 1;
 		grid[c.x][c.y] = 0;
+		updateDisplays(' ', c.x, c.y, this);
+                updateDsiplays(activeBlock->content(), c.x-1, c.y, this);
+
 	}
         activeBlock->left();
 }
@@ -133,6 +135,9 @@ void down(){
 	for(auto c : activeBlocks->cells){	      
 		grid[c.x][c.y-1] = 1;
 		grid[c.x][c.y] = 0;
+		updateDisplays(' ', c.x, c.y, this);
+                updateDisplays(activeBlock->content(), c.x, c.y-1, this);
+
 	}
         
         activeBlock->down();
@@ -149,6 +154,8 @@ int drop(){
 		for(auto c : activeBlocks->cells){
 			grid[c.x][c.y-1] = 1;
 			grid[c.x][c.y] = 0;
+			updateDisplays(' ', c.x, c.y, this);
+			updateDisplays(activeBlock.content(), c.x, c.y-1, this);
 		}
 
         	activeBlock->down();
@@ -166,7 +173,7 @@ int drop(){
 		if(clearRow){
 			score += clearRow(y);
 			dropRows(y);
-			rowsCleared ++;
+			rowsCleared++;
 		}
 	}
 
@@ -229,6 +236,7 @@ void dropRows(int row){
 		break;
 	}
 	std::swap(grid[row], grid[row - 1]);
+	updateDisplaysSwap(row, row-1, this);
 	dropRows(row-1);
 }
 
@@ -236,11 +244,14 @@ int clearRow(int row){
 	int blockscore;
 	for(auto b : blocks){
 		for(auto c : b->cells){
-			if(b.y == row){
+			if(c.y == row){
 				if( b.remove(c)){
 					blockscore += b.getscore();
-					blocks.remove(b);
+					blocks.remove(b)
 				}
+				grid[c.x][c.y] = 0;
+				updateDisplays(' ', c.x, c.y, this);
+				
 			}
 
 		}
