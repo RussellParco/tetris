@@ -1,14 +1,15 @@
 #ifndef CELL
 #define CELL
 #include "coord.h"
+#include "block.h"
 
 	class Cell{
 		Coord current;		
 		char content;
-		*Block block;
+		Block * block;
 		
 		public:
-			*Block getBlock();
+			Block * getBlock();
 			void setBlock();
 			char getContent();
 			void setContent();

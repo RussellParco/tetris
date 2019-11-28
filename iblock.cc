@@ -1,7 +1,7 @@
 #include "iblock.h"
 #include <string>
 
-Iblock::Iblock(char type, int weight): type{I}, weight{weight} {
+Iblock::Iblock(char type, int weight): type{'I'}, weight{weight} {
 
 	for(int i =0; i <= 3; i++){
 		this->cells[i].current.x= i + 5;
@@ -12,17 +12,17 @@ Iblock::Iblock(char type, int weight): type{I}, weight{weight} {
 
 
 void Iblock::rotate(string type){
-int top = this->ells[0].current.y;
+int top = this->cells[0].current.y;
 int left = this->cells[0].current.x;
 
 	for(int i=0; i <= 3; i++){
-		if(testCells[i].current.y >= top){
-			top = testCells[i].current.y;
+		if(this->cells[i].current.y >= top){
+			top = this->cells[i].current.y;
 		}
 	}
 	for(int i=0; i <= 3; i++){
-		if(testCells[i].current.x <= left){
-			left = testCells[i].current.x;
+		if(this->cells[i].current.x <= left){
+			left = this->cells[i].current.x;
 		}
 	}
 
