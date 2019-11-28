@@ -9,9 +9,8 @@
 
 class commandDecorator: public Command{
 Command *command;
-private:
-    ~commandDecorator(){};
-    virtual void execute() = 0;
+public:
+    ~commandDecorator() override{};
 };
 
 #endif //COMMAND_COMMANDDECORATOR_H

@@ -5,6 +5,8 @@
 #ifndef COMMAND_LEVELUPCOMMAND_H
 #define COMMAND_LEVELUPCOMMAND_H
 
+#include "commandDecorator.h"
+
 class levelupCommand : public commandDecorator {
 public:
     void execute() override;

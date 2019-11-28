@@ -5,6 +5,8 @@
 #ifndef COMMAND_ZCOMMAND_H
 #define COMMAND_ZCOMMAND_H
 
+#include "commandDecorator.h"
+
 class ZCommand : public commandDecorator {
 public:
     void execute() override;

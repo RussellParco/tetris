@@ -5,6 +5,8 @@
 #ifndef COMMAND_RESTARTCOMMAND_H
 #define COMMAND_RESTARTCOMMAND_H
 
+#include "commandDecorator.h"
+
 class restartCommand : public commandDecorator {
 public:
     void execute() override;
