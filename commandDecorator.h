@@ -8,8 +8,8 @@
 #include "Command.h"
 
 class commandDecorator: public Command{
-Command *command;
 public:
+Command *command;
     ~commandDecorator() override{};
 };
 

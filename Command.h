@@ -7,6 +7,7 @@
 
 class Game;
 class Command {
+protected:
     Game *game;
 public:
     Command(Game* game):game(game){};

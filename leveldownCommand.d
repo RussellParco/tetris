@@ -1,1 +1,2 @@
-leveldownCommand: leveldownCommand.cc leveldownCommand.h
+leveldownCommand: leveldownCommand.cc leveldownCommand.h \
+  commandDecorator.h Command.h

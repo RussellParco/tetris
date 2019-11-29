@@ -24,7 +24,7 @@ int PlayerDisplay::getLevel()const{
 	return level;
 }
 
-int PlayerDisplay::getScore(const{
+int PlayerDisplay::getScore()const{
         return score;
 }
 

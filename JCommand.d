@@ -1,1 +1,1 @@
-JCommand: JCommand.cc JCommand.h
+JCommand.o: JCommand.cc JCommand.h commandDecorator.h Command.h

@@ -1,1 +1,1 @@
-ICommand: ICommand.cc ICommand.h
+ICommand.o: ICommand.cc ICommand.h commandDecorator.h Command.h

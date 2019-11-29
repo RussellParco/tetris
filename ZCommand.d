@@ -1,1 +1,1 @@
-ZCommand: ZCommand.cc ZCommand.h
+ZCommand: ZCommand.cc ZCommand.h commandDecorator.h Command.h

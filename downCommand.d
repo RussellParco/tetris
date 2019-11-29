@@ -1,1 +1,1 @@
-downCommand: downCommand.cc downCommand.h
+downCommand: downCommand.cc downCommand.h commandDecorator.h Command.h

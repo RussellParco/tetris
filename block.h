@@ -7,9 +7,9 @@
 class Block {
 	protected:
 		std::vector<Cell> cells;
+		char type;
 		int weight;
 		int level;
-		char type;
 
 	public:
 		Block(char type, int weight, int level);

@@ -1,1 +1,0 @@
-graphicsdisplay: graphicsdisplay.cc

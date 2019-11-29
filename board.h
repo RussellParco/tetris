@@ -7,7 +7,7 @@
 #include "level.h"
 using namespace std;
 class Effect;
-class Coord;
+struct Coord;
 
 class Board{
 	 vector<vector <bool>> grid;
