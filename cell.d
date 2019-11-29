@@ -1,1 +1,1 @@
-cell: cell.cc
+cell: cell.cc cell.h coord.h

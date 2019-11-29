@@ -12,7 +12,7 @@ class Oblock: public Block{
 	void right() override;
 	void left() override;
 	int getScore() override;
-
+	std::vector<Cell> getCells() override;
 };
 
 

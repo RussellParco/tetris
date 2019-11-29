@@ -5,9 +5,10 @@
 
 class TextDisplay{
 
-	vector<char> theDisplay;
-		
+	char theDisplay[18 * 11];
+			
 	public:
+		TextDisplay;
 		void render() override;
 		void updateDisplay() override;
 

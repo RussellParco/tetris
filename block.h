@@ -3,10 +3,11 @@
 #include "cell.h"
 #include "coord.h"
 #include <string>
+#include <vector>
 
 class Block {
 
-	Cell cells[4];
+	std::vector<Cell> cells;
 	int weight;
 	int level;
 	char type;
@@ -18,7 +19,7 @@ class Block {
 		virtual void right();
 		virtual void left();
 		virtual int getScore();	
-
+		virtual std::vector<Cell> getCells();
 
 }; 
 
