@@ -27,8 +27,8 @@ int left = temp.x;
 
 
  
-  int cx = 0;
-  int cy = 0;
+ // int cx = 0;
+ // int cy = 0;
   int  s = 1;
   int  c = 0;
         for(int i = 0; i<=3; i++){
@@ -100,6 +100,17 @@ int Block::getScore(){
 	score = score * score;
 	return score;
 }
+
+
+bool Block::remove(int cellIndex){
+	cells.erase(cells.begin() + cellIndex);
+	if(cells.empty()){
+		return true;
+	}
+	return false;
+}
+
+
 
 Block::~Block(){}
 
