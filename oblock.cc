@@ -7,16 +7,16 @@ Oblock::Oblock(char type, int weight, int level): Block('O', weight, level) {
 		int ynew= 0;
 		Coord newCoord {xnew, ynew};
 		char c = 'O';
-		Cell newCell {newCoord, c};
-		cells[i] = newCell;	
+		cells.emplace_back(newCoord, c);
+		
 	}
 	for(int i =2; i <= 3; i++){
 		int xnew= i + 3;
 		int ynew= 1;
 		Coord newCoord {xnew, ynew};
 		char c = 'O';
-		Cell newCell {newCoord, c};
-		cells[i] = newCell;	
+		cells.emplace_back(newCoord, c);
+		
 	}
 
 

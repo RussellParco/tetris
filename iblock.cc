@@ -1,5 +1,6 @@
 #include "iblock.h"
 #include <string>
+using namespace std;
 
 Iblock::Iblock(char type, int weight, int level):Block('I' , weight, level) {
 	for(int i =0; i <= 3; i++){
@@ -8,8 +9,7 @@ Iblock::Iblock(char type, int weight, int level):Block('I' , weight, level) {
 		int ynew= 1;
 		char c = 'I';
 		Coord newCoord{xnew, ynew};
-		Cell newCell{newCoord, c};	
-		cells[i]= newCell;
+		cells.emplace_back(newCoord, c);		
 		
 	}
 }

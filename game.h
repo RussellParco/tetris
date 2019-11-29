@@ -2,15 +2,15 @@
 #define GAME
 #include <string>
 #include <memory>
-#include "textCommands.h" 
 #include "board.h"
 class Display;
+class textCommands;
 
 class Game{
 	std::unique_ptr<Display> textDisplay;
 	std::unique_ptr<Board> players[2];
 	int turn;
-	textCommands commands;
+	std::unique_ptr<textCommands> commands;
 	int highScore;
 	public: 
 	Game(bool text, int seed, string scriptfile1, 

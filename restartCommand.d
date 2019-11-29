@@ -1,1 +1,2 @@
-restartCommand: restartCommand.cc restartCommand.h
+restartCommand: restartCommand.cc restartCommand.h commandDecorator.h \
+  Command.h

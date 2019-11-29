@@ -7,14 +7,14 @@ Lblock::Lblock(char type, int weight, int level): Block('L', weight, level) {
 		int ynew= 1;
 		Coord newCoord{xnew, ynew};
 		char c = 'L';
-		Cell newCell {newCoord, c};
-		cells[i] = newCell;	
+		cells.emplace_back(newCoord, c);
+	
 	}
 	int x4= 7;
 	int y4 = 0;
 	Coord anotherCoord {x4, y4};
 	char l = 'L';
-	Cell anotherCell {anotherCoord, l};
-	cells[3]= anotherCell ;
+	cells.emplace_back(anotherCoord, l);
+	
 }
 

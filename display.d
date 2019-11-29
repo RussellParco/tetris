@@ -1,1 +1,1 @@
-display: display.cc
+display: display.cc display.h coord.h playerdisplay.h

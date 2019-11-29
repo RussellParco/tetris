@@ -1,1 +1,1 @@
-rightCommand: rightCommand.cc rightCommand.h
+rightCommand: rightCommand.cc rightCommand.h commandDecorator.h Command.h

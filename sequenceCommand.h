@@ -6,6 +6,7 @@
 #define COMMAND_SEQUENCECOMMAND_H
 
 #include "commandDecorator.h"
+#include <string>
 
 class sequenceCommand : public commandDecorator {
     std::string file;

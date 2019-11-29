@@ -10,9 +10,10 @@ class Game;
 
 class commandDecorator: public Command{
 protected:
-	Command *command;
+    Command *command;
 public:
-    ~commandDecorator() override{};
+    ~commandDecorator() override;
+
 };
 
 #endif //COMMAND_COMMANDDECORATOR_H

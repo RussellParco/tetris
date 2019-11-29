@@ -7,8 +7,8 @@ Sblock::Sblock(char type, int weight, int level): Block('S', weight, level) {
 		int ynew= 0;
 		Coord newCoord {xnew, ynew};
 		char c= 'S';
-		Cell newCell {newCoord, c};
-		cells[i] = newCell;	
+		cells.emplace_back(newCoord, c);
+		
 		
 	}
 	for(int i =2; i <= 3; i++){
@@ -16,8 +16,8 @@ Sblock::Sblock(char type, int weight, int level): Block('S', weight, level) {
 		int ynew= 1;
 		Coord newCoord {xnew, ynew};
 		char c= 'S';
-		Cell newCell {newCoord, c};
-		cells[i] = newCell;	
+		cells.emplace_back(newCoord, c);
+		
 		
 	}
 

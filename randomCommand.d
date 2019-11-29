@@ -1,1 +1,2 @@
-randomCommand: randomCommand.cc randomCommand.h
+randomCommand: randomCommand.cc randomCommand.h commandDecorator.h \
+  Command.h

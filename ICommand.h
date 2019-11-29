@@ -7,6 +7,8 @@
 
 #include "commandDecorator.h"
 
+class Game;
+
 class ICommand : public commandDecorator {
 public:
     void execute() override;

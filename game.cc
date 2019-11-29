@@ -3,8 +3,10 @@
 using namespace std;
 
 Game::Game(bool text, int seed, string scriptfile1, string scriptfile2, 
-	    int startlevel): commands{textCommands()}
+	    int startlevel)
 {
+	commmands = unique_ptr<textCommands>();
+
 	textDisplay = unique_ptr<TextDisplay>();
 	if(!text){
 		//graphics = unique_ptr<GraphicsDisplay>();
