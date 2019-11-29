@@ -169,6 +169,7 @@ int Board::drop(){
 		}
 
         	activeBlock->down();
+	}
 			
 	int rowsCleared = 0;
 	for(int y = 0; y < height; y++){
@@ -187,8 +188,8 @@ int Board::drop(){
 	}
 
 	score += (rowsCleared + levelint) * (rowsCleared + levelint);
-	blocks->emplace_back(level->createPiece(sequence,
-                                randomInd, lastPieceCleared);
+	blocks.emplace_back(level->createPiece(sequence,
+                                randomInd, lastPieceCleared));
 	return rowsCleared;
 }
 void Board::levelup(){

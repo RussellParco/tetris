@@ -30,7 +30,9 @@ void Game::play(){
 	Command *currCommand;
 	while(cin >> strCommand){
 		currCommand = commands->getCommand(strCommand);
+
 		currCommand->execute();
+		textDisplay->render();
 	}
 }
 
