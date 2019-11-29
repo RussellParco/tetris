@@ -6,6 +6,7 @@
 #define COMMAND_COMMAND_H
 
 #include "game.h"
+#include <string>
 
 class Command {
 protected:
