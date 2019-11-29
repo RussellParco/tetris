@@ -5,8 +5,10 @@
 #ifndef COMMAND_NORANDOMCOMMAND_H
 #define COMMAND_NORANDOMCOMMAND_H
 
+#include "commandDecorator.h"
+
 class norandomCommand : public commandDecorator {
-    string file;
+    std::string file;
 public:
     void execute() override;
 };

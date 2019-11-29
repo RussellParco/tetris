@@ -5,6 +5,8 @@
 #ifndef COMMAND_JCOMMAND_H
 #define COMMAND_JCOMMAND_H
 
+#include "commandDecorator.h"
+
 class JCommand : public commandDecorator {
 public:
     void execute() override;

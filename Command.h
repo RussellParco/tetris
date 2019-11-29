@@ -11,7 +11,8 @@
 class Command {
     Game *game;
 public:
-    virtual ~Command();
+    Command(Game* game):game(game){};
+    virtual ~Command(){};
     virtual void execute() = 0;
 };
 

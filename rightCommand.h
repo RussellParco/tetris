@@ -5,6 +5,8 @@
 #ifndef COMMAND_RIGHTCOMMAND_H
 #define COMMAND_RIGHTCOMMAND_H
 
+#include "commandDecorator.h"
+
 class rightCommand : public commandDecorator {
 public:
     void execute() override;

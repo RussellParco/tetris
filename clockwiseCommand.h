@@ -5,6 +5,8 @@
 #ifndef COMMAND_CLOCKWISECOMMAND_H
 #define COMMAND_CLOCKWISECOMMAND_H
 
+#include "commandDecorator.h"
+
 class clockwiseCommand : public commandDecorator {
 public:
     void execute() override;
