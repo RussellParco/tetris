@@ -1,7 +1,7 @@
 #include "playerdisplay.h" 
 
-PlayerDisplay::PlayerDisplay(int width, int height, int level):
-width{width}, height{height}, level{level}, score{0}
+PlayerDisplay::PlayerDisplay(int width,int height, int level):
+width{width}, level{level}, score{0}
 {
 	for(int i = 0; i < width*height; i++){
 		theDisplay.emplace_back(' ');

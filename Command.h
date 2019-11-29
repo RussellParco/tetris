@@ -13,7 +13,7 @@ class Command {
 protected:
     Game *game;
 public:
-    Command(Game* game):game(game){};
+//    Command(Game* game);
     virtual ~Command(){};
     virtual void execute() = 0;
 };

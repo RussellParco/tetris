@@ -11,6 +11,7 @@ class Game;
 
 class ICommand : public commandDecorator {
 public:
+	ICommand(Command * command);
     void execute() override;
 };
 

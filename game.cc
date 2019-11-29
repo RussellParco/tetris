@@ -1,11 +1,13 @@
 #include "game.h"
 #include "textdisplay.h"
+#include "textCommands.h"
+#include "Command.h"
 using namespace std;
 
 Game::Game(bool text, int seed, string scriptfile1, string scriptfile2, 
 	    int startlevel)
 {
-	commmands = unique_ptr<textCommands>();
+	commands = new textCommands(this);
 
 	textDisplay = unique_ptr<TextDisplay>();
 	if(!text){
@@ -24,7 +26,7 @@ void Game::play(){
 	string strCommand;
 	Command *currCommand;
 	while(cin >> strCommand){
-		currCommand = commands.getCommand(strCommand);
+		currCommand = commands->getCommand(strCommand);
 		currCommand->execute();
 	}
 }
@@ -99,5 +101,13 @@ void Game::T(){
         //players[turn]->T();
 }
 
-
-
+void Game::random(){
+//TODO
+}
+void Game::noRandom(std::string file)
+{
+//TODO
+}
+void Game::sequence(std::string file){
+//TODO
+}

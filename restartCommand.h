@@ -9,6 +9,7 @@
 
 class restartCommand : public commandDecorator {
 public:
+	restartCommand(Command * command);
     void execute() override;
 };
 

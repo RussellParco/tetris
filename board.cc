@@ -271,4 +271,7 @@ int Board::getScore(){
 	return score;
 }
 
+void Board::updateDisplays(char, Coord){}
+
+void Board::updateDisplaysSwap(int, int){}
 

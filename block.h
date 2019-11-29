@@ -12,7 +12,7 @@ class Block {
 		int level;
 
 	public:
-		Block(char type, int weight, int level);
+		Block(char type, int weight=0, int level = 0);
 		virtual void rotate(std::string type);
 		virtual void down();
 		virtual void right();

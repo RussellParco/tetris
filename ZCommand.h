@@ -9,6 +9,7 @@
 
 class ZCommand : public commandDecorator {
 public:
+	ZCommand(Command * command);
     void execute() override;
 };
 

@@ -35,7 +35,7 @@ int main(int argsc, char* argsv[]){
                         i++;
                 }
 	}
-	Game *game = new Game(text,seed, scriptfile1, scriptfile2);
+	Game *game = new Game(text,seed, scriptfile1, scriptfile2, startlevel);
 	game->play();
 	return 0;
 }

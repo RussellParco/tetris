@@ -9,6 +9,7 @@
 
 class counterclockCommand : public commandDecorator {
 public:
+	counterclockCommand(Command *command);
     void execute() override;
 };
 

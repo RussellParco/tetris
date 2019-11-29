@@ -9,6 +9,7 @@
 
 class downCommand : public commandDecorator {
 public:
+	downCommand(Command *command);
     void execute() override;
 };
 

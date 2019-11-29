@@ -3,6 +3,8 @@
 #include <string>
 #include <memory>
 #include "board.h"
+
+
 class Display;
 class textCommands;
 
@@ -10,7 +12,7 @@ class Game{
 	std::unique_ptr<Display> textDisplay;
 	std::unique_ptr<Board> players[2];
 	int turn;
-	std::unique_ptr<textCommands> commands;
+	textCommands* commands;
 	int highScore;
 	public: 
 	Game(bool text, int seed, string scriptfile1, 
@@ -31,7 +33,9 @@ class Game{
 	void O();
 	void S();
 	void Z();
-	void T();	
-	
+	void T();
+	void random();
+	void noRandom(std::string file);	
+	void sequence(std::string file);	
 };
 #endif

@@ -4,12 +4,11 @@
 #include"coord.h"
 class PlayerDisplay{
 	int width;
-	int height;
 	int level;
 	int score;
 	std::vector<char> theDisplay;
 	public:
-	PlayerDisplay(int width, int height, int level);
+	PlayerDisplay(int width,int height, int level);
 	void updateScore(int score);
 	void updateLevel(int level);
 	void update(char content, Coord c);

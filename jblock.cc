@@ -16,6 +16,5 @@ Jblock::Jblock(char type, int weight, int level):Block('J', weight, level) {
 	char j = 'J';
 	cells.emplace_back(anotherCoord, j);
 	
-
 }
 

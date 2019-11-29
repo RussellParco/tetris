@@ -9,6 +9,7 @@
 
 class rightCommand : public commandDecorator {
 public:
+    rightCommand(Command * command);
     void execute() override;
 };
 

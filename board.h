@@ -5,6 +5,7 @@
 #include <string>
 #include "block.h"
 #include "level.h"
+
 using namespace std;
 class Effect;
 struct Coord;
