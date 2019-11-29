@@ -1,1 +1,2 @@
-textdisplay: textdisplay.cc textdisplay.h display.h game.h
+textdisplay: textdisplay.cc textdisplay.h display.h coord.h \
+ playerdisplay.h

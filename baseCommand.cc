@@ -1,6 +1,6 @@
 #include "baseCommand.h"
 
-~baseCommand::baseCommand() {
+baseCommand::baseCommand() {
     delete game;
 }
 

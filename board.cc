@@ -270,3 +270,5 @@ int Board::clearRow(int row){
 int Board::getScore(){
 	return score;
 }
+
+

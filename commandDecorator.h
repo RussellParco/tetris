@@ -6,9 +6,11 @@
 #define COMMAND_COMMANDDECORATOR_H
 
 #include "Command.h"
+class Game;
 
 class commandDecorator: public Command{
-Command *command;
+protected:
+	Command *command;
 public:
     ~commandDecorator() override{};
 };

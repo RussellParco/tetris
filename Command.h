@@ -4,9 +4,10 @@
 
 #ifndef COMMAND_COMMAND_H
 #define COMMAND_COMMAND_H
-
 class Game;
+
 class Command {
+protected:
     Game *game;
 public:
     Command(Game* game):game(game){};
