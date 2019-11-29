@@ -1,5 +1,5 @@
 #include "commandDecorator.h"
 
-~commandDecorator::commandDecorator() {
+commandDecorator::~commandDecorator() {
     delete command;
 }

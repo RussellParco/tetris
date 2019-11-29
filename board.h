@@ -32,7 +32,7 @@ class Board{
 	 void updatesDisplaysScore(int score);
 	 void updateDisplaysLevel(int level);
 	public:
-	 Board(int level, int width, int length);
+	 Board(int level, int width, int height);
 	 void counterclockwise();
 	 void clockwise();
 	 void right();

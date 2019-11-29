@@ -2,5 +2,5 @@
 
 void counterclockCommand::execute() {
     command->execute();
-    game->counterclock();
+    game->counterclockwise();
 }
