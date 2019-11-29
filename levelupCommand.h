@@ -10,7 +10,7 @@
 class levelupCommand : public commandDecorator {
 public:
 	levelupCommand(Command * command);
-    void execute() override;
+    void execute(Game & game) override;
 };
 
 #endif //COMMAND_LEVELUPCOMMAND_H

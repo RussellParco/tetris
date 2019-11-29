@@ -12,7 +12,7 @@ class sequenceCommand : public commandDecorator {
     std::string file;
 public:
 	sequenceCommand(Command * command);
-    void execute() override;
+    void execute(Game & game) override;
 };
 
 #endif //COMMAND_SEQUENCECOMMAND_H

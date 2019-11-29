@@ -5,4 +5,4 @@ baseCommand::baseCommand(){
 
 baseCommand::~baseCommand(){}
 
-void baseCommand::execute() {}
+void baseCommand::execute(Game &game) {}

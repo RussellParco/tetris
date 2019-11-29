@@ -13,7 +13,7 @@ class Command {
 public:
 
     virtual ~Command()= default;
-    virtual void execute() = 0;
+    virtual void execute(Game &game) = 0;
 };
 
 #endif //COMMAND_COMMAND_H

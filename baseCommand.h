@@ -10,7 +10,7 @@ class baseCommand : public Command {
 public:
     baseCommand();
     ~baseCommand() override;
-    void execute() override;
+    void execute(Game &game) override;
 };
 
 #endif //COMMAND_BASECOMMAND_H

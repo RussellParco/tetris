@@ -7,7 +7,7 @@ using namespace std;
 Game::Game(bool text, int seed, string scriptfile1, string scriptfile2, 
 	    int startlevel):turn {0}, highScore{0}
 {
-	commands = new textCommands(this);
+	commands = new textCommands();
 
 	textDisplay = make_unique<TextDisplay>(11, 18);
 	if(!text){
@@ -29,7 +29,7 @@ void Game::play(){
 	while(cin >> strCommand){
 		std::cout << strCommand << std::endl;
 		currCommand = commands->getCommand(strCommand);
-		currCommand->execute();
+		currCommand->execute(*this);
 		textDisplay->render();
 	}
 }
@@ -38,9 +38,9 @@ void Game::right(){
 	players[turn]->right();
 }
 void Game::left(){
-	std::cout << this->turn  <<"hello" << std::endl;
+	std::cout << turn  <<"hello" << std::endl;
 
-	players[this->turn]->left();
+	players[turn]->left();
 }
 void Game::down(){
 	players[turn]->down();

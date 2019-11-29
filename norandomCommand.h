@@ -11,7 +11,7 @@ class norandomCommand : public commandDecorator {
     std::string file;
 public:
 	norandomCommand(Command * command);
-    void execute() override;
+    void execute(Game &game) override;
 };
 
 #endif //COMMAND_NORANDOMCOMMAND_H

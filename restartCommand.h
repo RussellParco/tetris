@@ -10,7 +10,7 @@
 class restartCommand : public commandDecorator {
 public:
 	restartCommand(Command * command);
-    void execute() override;
+    void execute(Game & game) override;
 };
 
 #endif //COMMAND_RESTARTCOMMAND_H

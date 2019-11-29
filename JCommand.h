@@ -10,7 +10,7 @@
 class JCommand : public commandDecorator {
 public:
 	JCommand(Command * command);
-    void execute() override;
+    void execute(Game & game) override;
 };
 
 #endif //COMMAND_JCOMMAND_H

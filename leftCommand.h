@@ -10,7 +10,7 @@
 class leftCommand : public commandDecorator {
 public:
     leftCommand(Command *command);
-    void execute() override;
+    void execute(Game & game) override;
 };
 
 #endif //COMMAND_LEFTCOMMAND_H

@@ -10,7 +10,7 @@
 class counterclockCommand : public commandDecorator {
 public:
 	counterclockCommand(Command *command);
-    void execute() override;
+    void execute(Game & game) override;
 };
 
 #endif //COMMAND_COUNTERCLOCKCOMMAND_H

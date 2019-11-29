@@ -6,10 +6,21 @@
 #include "level4.h"
 using namespace std;
 
-Board::Board(int level, int width, int heighti, string seq):
+Board::Board(int level, int width, int height, string seq):
 	levelint {level}, width{width}, height{height},	lastPieceCleared{0},
 	randomInd{false}
-{
+{ 
+	grid.resize(height);
+	for (int i = 0; i < height; ++i){
+    		grid[i].resize(width);		
+	}
+
+
+	for(int i =0; i < width; i++  ){
+		for(int j =0; j < height; j++){
+			grid[i][j] = 0;
+		}
+	}
 	sequence = ifstream{seq};
 
 	if(levelint == 0){
@@ -120,7 +131,7 @@ void Board::left(){
 	std::cout << "inside board" << std::endl;
 	Block* activeBlock = blocks.back();
         for(auto c : activeBlock->getCells()){
-                if(c.getCoord().x == 0 || !grid[c.getCoord().y-1][c.getCoord().x]){
+                if(c.getCoord().x == 0 || !grid[c.getCoord().y][c.getCoord().x-1]){
                         return;
                 
 		}
@@ -128,7 +139,7 @@ void Board::left(){
 	std::cout << "checkd edges" << std::endl;
 
 	for(auto c : activeBlock->getCells()){
-		grid[c.getCoord().y-1][c.getCoord().x] = 1;
+		grid[c.getCoord().y][c.getCoord().x-1] = 1;
 		grid[c.getCoord().y][c.getCoord().x] = 0;
 		updateDisplays(' ', c.getCoord());
                 updateDisplays(c.getContent(), c.getCoord());
