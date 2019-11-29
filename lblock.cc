@@ -1,16 +1,20 @@
 #include "lblock.h"
 #include <string>
 
-Lblock::Lblock(char type, int weight): type{L}, weight{weight} {
+Lblock::Lblock(char type, int weight, int level): Block('L', weight, level) {
 	for(int i =0; i <= 2; i++){
-		this->cells[i].current.x= i + 5;
-		this->cells[i].current.y= 1;	
+		int xnew= i + 5;
+		int ynew= 1;
+		Coord newCoord{xnew, ynew};
+		char c = 'L';
+		Cell newCell {newCoord, c};
+		cells[i] = newCell;	
 	}
-	this->cells[3].current.x= 7;
-	this->cells[3].current.y = 0;
-
-	for(int i =0; i <=3; i++){
-		this->cells[i].content = 'L';
-	}
+	int x4= 7;
+	int y4 = 0;
+	Coord anotherCoord {x4, y4};
+	char l = 'L';
+	Cell anotherCell {anotherCoord, l};
+	cells[3]= anotherCell ;
 }
 

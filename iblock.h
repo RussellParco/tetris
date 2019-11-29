@@ -5,15 +5,14 @@
 class Iblock: public Block{
 
 	public:
-	
-	Iblock(char type, int weight = 0);
-	void down() override;
-	void rotate(std::string type) override;
-	void right() override;
-	void left() override;
-	int getScore() override;
-	std::vector<Cell> getCells() override;
-}
+	Iblock(char type, int weight = 0, int level = 0);
+	void down();
+	void rotate(std::string type);
+	void right();
+	void left();
+	int getScore();
+	std::vector<Cell> getCells();
+};
 
 
 #endif 

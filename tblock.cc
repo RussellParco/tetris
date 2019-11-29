@@ -1,17 +1,22 @@
 #include "tblock.h"
 #include <string>
 
-Tblock::Tblock(char type, int weight): type{T}, weight{weight} {
+Tblock::Tblock(char type, int weight, int level):Block('T', weight, level) {
 	for(int i =0; i <= 2; i++){
-		this->cells[i].current.x= i + 4;
-		this->cells[i].current.y= 0;	
+		int xnew= i + 4;
+		int ynew= 0;
+		Coord newCoord {xnew, ynew};
+		char c ='T';
+		Cell newCell {newCoord, c};
+		cells[i] = newCell;	
 	}
-	this->cells[3].current.x= 4;
-	this->cells[3],.current.y = 1;
+	int x4= 4;
+	int y4 = 1;
+	Coord anotherCoord {x4, y4};
+	char d = 'T';
+	Cell anotherCell {anotherCoord, d};
+	cells[3]= anotherCell;
 
-	for(int i =0; i <=3; i++){
-		this->cells[i].content = 'T';
-	}
 }
 
 
