@@ -1,5 +1,6 @@
 #include <string>
 #include "game.h"
+#include "textCommands.h"
 #include <sstream>
 
 using namespace std;

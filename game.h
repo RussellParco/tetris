@@ -2,9 +2,9 @@
 #define GAME
 #include <string>
 #include <memory>
-#include "textCommands.h" 
 #include "board.h"
 class Display;
+class textCommands;
 
 class Game{
 	std::unique_ptr<Display> textDisplay;

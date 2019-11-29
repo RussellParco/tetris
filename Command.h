@@ -5,8 +5,11 @@
 #ifndef COMMAND_COMMAND_H
 #define COMMAND_COMMAND_H
 
-class Game;
+#include "game.h"
+#include <string>
+
 class Command {
+protected:
     Game *game;
 public:
     Command(Game* game):game(game){};
