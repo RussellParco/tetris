@@ -2,7 +2,8 @@
 
 leftCommand::leftCommand(Command *command): commandDecorator{command} {}
 
-void leftCommand::execute() {
-    command->execute();
-    game->left();
+void leftCommand::execute(Game & game){
+    command->execute(game);
+    game.left();
+
 }

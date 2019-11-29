@@ -2,7 +2,7 @@
 restartCommand::restartCommand(Command *command): commandDecorator{command} {}
 
 
-void restartCommand::execute() {
-    command->execute();
-    game->restart();
+void restartCommand::execute(Game &game) {
+    command->execute(game);
+    game.restart();
 }

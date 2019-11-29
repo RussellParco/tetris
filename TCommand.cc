@@ -2,7 +2,7 @@
 TCommand::TCommand(Command *command): commandDecorator{command} {}
 
 
-void TCommand::execute() {
-    command->execute();
-    game->T();
+void TCommand::execute(Game &game) {
+    command->execute(game);
+    game.T();
 }

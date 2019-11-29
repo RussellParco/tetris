@@ -2,7 +2,7 @@
 JCommand::JCommand(Command *command): commandDecorator{command} {}
 
 
-void JCommand::execute() {
-    command->execute();
-    game->J();
+void JCommand::execute(Game & game) {
+    command.execute(game);
+    game.J(game);
 }

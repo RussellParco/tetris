@@ -2,7 +2,7 @@
 downCommand::downCommand(Command *command): commandDecorator{command} {}
 
 
-void downCommand::execute() {
-    command->execute();
-    game->down();
+void downCommand::execute(Game & game) {
+    command->execute(game);
+    game.down();
 }

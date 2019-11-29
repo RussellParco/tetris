@@ -2,7 +2,7 @@
 sequenceCommand::sequenceCommand(Command *command): commandDecorator{command} {}
 
 
-void sequenceCommand::execute() {
-    command->execute();
-    game->sequence(file);
+void sequenceCommand::execute(Game &game) {
+    command->execute(game);
+    game.sequence(file);
 }

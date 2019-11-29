@@ -8,7 +8,7 @@
 
 class baseCommand : public Command {
 public:
-    baseCommand(Game *game);
+    baseCommand();
     ~baseCommand() override;
     void execute() override;
 };

@@ -10,8 +10,6 @@
 
 
 class Command {
-protected:
-    Game *game;
 public:
 
     virtual ~Command()= default;

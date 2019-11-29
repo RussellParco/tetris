@@ -2,7 +2,7 @@
 ZCommand::ZCommand(Command *command): commandDecorator{command} {}
 
 
-void ZCommand::execute() {
-    command->execute();
-    game->Z();
+void ZCommand::execute(Game &game) {
+    command->execute(game);
+    game.Z();
 }

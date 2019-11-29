@@ -2,7 +2,7 @@
 norandomCommand::norandomCommand(Command *command): commandDecorator{command} {}
 
 
-void norandomCommand::execute() {
-    command->execute();
-    game->noRandom(file);
+void norandomCommand::execute(Game &game) {
+    command->execute(game);
+    game.noRandom(file);
 }

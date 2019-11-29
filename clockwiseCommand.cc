@@ -2,7 +2,7 @@
 clockwiseCommand::clockwiseCommand(Command *command): commandDecorator{command} {}
 
 
-void clockwiseCommand::execute() {
-    command->execute();
-    game->clockwise();
+void clockwiseCommand::execute(Game & game) {
+    command->execute(game);
+    game.clockwise();
 }

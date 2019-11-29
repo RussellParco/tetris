@@ -35,7 +35,7 @@ class textCommands {
     vector<string> names;
     vector<Command*> commands;
 public:
-    textCommands(Game *game);
+    textCommands();
     //void loadCommands (const string &filename);
     //void saveCommands (const string &filename);
     Command* getCommand (const string &name);//returns a Command object given the name of the command

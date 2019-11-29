@@ -117,19 +117,25 @@ void Board::right(){
 }
 
 void Board::left(){
+	std::cout << "inside board" << std::endl;
 	Block* activeBlock = blocks.back();
         for(auto c : activeBlock->getCells()){
-                if(c.getCoord().x == 0 || !grid[c.getCoord().x-1][c.getCoord().y]){
+                if(c.getCoord().x == 0 || !grid[c.getCoord().y-1][c.getCoord().x]){
                         return;
-                }
-        }
+                
+		}
+	}
+	std::cout << "checkd edges" << std::endl;
+
 	for(auto c : activeBlock->getCells()){
-		grid[c.getCoord().x-1][c.getCoord().y] = 1;
-		grid[c.getCoord().x][c.getCoord().y] = 0;
+		grid[c.getCoord().y-1][c.getCoord().x] = 1;
+		grid[c.getCoord().y][c.getCoord().x] = 0;
 		updateDisplays(' ', c.getCoord());
                 updateDisplays(c.getContent(), c.getCoord());
 
 	}
+	std::cout << "update grid" << std::endl;
+
         activeBlock->left();
 }
 

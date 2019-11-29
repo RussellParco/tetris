@@ -2,7 +2,7 @@
 OCommand::OCommand(Command *command): commandDecorator{command} {}
 
 
-void OCommand::execute() {
-    command->execute();
-    game->O();
+void OCommand::execute(Game &game) {
+    command->execute(game);
+    game.O();
 }

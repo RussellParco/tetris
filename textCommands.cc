@@ -1,6 +1,6 @@
 #include "textCommands.h"
 #include <algorithm>
-textCommands::textCommands(Game *game) {//for now, default constructor
+textCommands::textCommands() {//for now, default constructor
     vector<string> nam{"left", "right", "down", "clockwise",
                     "counterclockwise", "drop", "levelup",
                     "leveldown",
@@ -10,17 +10,17 @@ textCommands::textCommands(Game *game) {//for now, default constructor
                     "I","J","L","O","S","Z","T",
                     "restart"};
     names = nam;
-    vector<Command*> com{new leftCommand(new baseCommand(game)), new rightCommand(new baseCommand(game)), 
-			new downCommand(new baseCommand(game)), new clockwiseCommand(new baseCommand(game)),
-			new counterclockCommand(new baseCommand(game)), new dropCommand(new baseCommand(game)), 
-			new levelupCommand(new baseCommand(game)), new leveldownCommand(new baseCommand(game)),
+    vector<Command*> com{new leftCommand(new baseCommand()), new rightCommand(new baseCommand()), 
+			new downCommand(new baseCommand()), new clockwiseCommand(new baseCommand()),
+			new counterclockCommand(new baseCommand()), new dropCommand(new baseCommand()), 
+			new levelupCommand(new baseCommand()), new leveldownCommand(new baseCommand()),
                          //new norandomCommand(new baseCommand()),
-                         new randomCommand(new baseCommand(game)),
+                         new randomCommand(new baseCommand()),
                          //new sequenceCommand(new baseCommand()),
-                         new ICommand(new baseCommand(game)), new JCommand(new baseCommand(game)), 
-			new LCommand(new baseCommand(game)), new OCommand(new baseCommand(game)), 
-			new SCommand(new baseCommand(game)), new ZCommand(new baseCommand(game)), 
-			new TCommand(new baseCommand(game)), new restartCommand(new baseCommand(game))};
+                         new ICommand(new baseCommand()), new JCommand(new baseCommand()), 
+			new LCommand(new baseCommand()), new OCommand(new baseCommand()), 
+			new SCommand(new baseCommand()), new ZCommand(new baseCommand()), 
+			new TCommand(new baseCommand()), new restartCommand(new baseCommand())};
     commands = com;
 }
 

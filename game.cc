@@ -5,7 +5,7 @@
 using namespace std;
 
 Game::Game(bool text, int seed, string scriptfile1, string scriptfile2, 
-	    int startlevel)
+	    int startlevel):turn {0}, highScore{0}
 {
 	commands = new textCommands(this);
 
@@ -19,9 +19,7 @@ Game::Game(bool text, int seed, string scriptfile1, string scriptfile2,
 	players[0] = make_unique<Board>(startlevel, 11, 18, scriptfile1);
 	players[0]->attach(textDisplay->addPlayer(startlevel));
 	players[1] = make_unique<Board>(startlevel, 11, 18, scriptfile2);
-	players[1]->attach(textDisplay->addPlayer(startlevel));	
-	turn = 0;
-	highScore = 0;
+	players[1]->attach(textDisplay->addPlayer(startlevel));
 	textDisplay -> render();
 }
 
@@ -29,8 +27,8 @@ void Game::play(){
 	string strCommand;
 	Command *currCommand;
 	while(cin >> strCommand){
+		std::cout << strCommand << std::endl;
 		currCommand = commands->getCommand(strCommand);
-
 		currCommand->execute();
 		textDisplay->render();
 	}
@@ -40,7 +38,9 @@ void Game::right(){
 	players[turn]->right();
 }
 void Game::left(){
-	players[turn]->left();
+	std::cout << this->turn  <<"hello" << std::endl;
+
+	players[this->turn]->left();
 }
 void Game::down(){
 	players[turn]->down();

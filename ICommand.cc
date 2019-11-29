@@ -2,7 +2,7 @@
 ICommand::ICommand(Command *command): commandDecorator{command} {}
 
 
-void ICommand::execute() {
-    command->execute();
-    game->I();
+void ICommand::execute(Game & game) {
+    command->execute(game);
+    game.I();
 }

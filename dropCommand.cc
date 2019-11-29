@@ -2,7 +2,7 @@
 dropCommand::dropCommand(Command *command): commandDecorator{command} {}
 
 
-void dropCommand::execute() {
-    command->execute();
-    game->drop();
+void dropCommand::execute(Game & game) {
+    command->execute(game);
+    game.drop(game);
 }

@@ -2,7 +2,7 @@
 leveldownCommand::leveldownCommand(Command *command): commandDecorator{command} {}
 
 
-void leveldownCommand::execute() {
-    command->execute();
-    game->leveldown();
+void leveldownCommand::execute(Game & game) {
+    command->execute(game);
+    game.leveldown();
 }
