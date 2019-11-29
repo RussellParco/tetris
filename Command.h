@@ -5,9 +5,7 @@
 #ifndef COMMAND_COMMAND_H
 #define COMMAND_COMMAND_H
 
-#include "game.h"
-#include "textCommands.h"
-
+class Game;
 class Command {
     Game *game;
 public:

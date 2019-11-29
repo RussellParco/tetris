@@ -2,6 +2,7 @@
 #define GAME
 #include <string>
 #include <memory>
+#include "textCommands.h" 
 
 class Display;
 class Board;
