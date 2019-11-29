@@ -102,7 +102,7 @@ int Block::getScore(){
 }
 
 
-bool remove(int cellIndex){
+bool Block::remove(int cellIndex){
 	cells.erase(cells.begin() + cellIndex);
 	if(cells.empty()){
 		return true;
