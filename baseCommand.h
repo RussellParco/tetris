@@ -9,7 +9,7 @@
 
 class baseCommand : public Command {
 public:
-    ~baseCommand() override{};
+    ~baseCommand() override;
     void execute() override;
 };
 
