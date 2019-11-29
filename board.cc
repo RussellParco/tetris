@@ -267,8 +267,22 @@ int Board::clearRow(int row){
 	}
 	return blockscore;
 }
+
 int Board::getScore(){
 	return score;
 }
-
-
+void Board::updateDisplays(char content, Coord c){
+	for (auto &ob : displays) ob->update(content, c);
+}
+void Board::updateDisplaysSwap(int row1, int row2){
+	for (auto &ob : displays) ob->swapRow(row1, row2);
+}
+void Board::updateDisplaysLevel(int level){
+	for (auto &ob : displays) ob->updateLevel(level);
+}
+void Board::updateDisplaysScore(int score){
+	 for (auto &ob : displays) ob->updateScore(score);
+}
+void Board::attach(PlayerDisplay p*){
+	displays.emplace_back(p);
+}

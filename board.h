@@ -5,6 +5,7 @@
 #include <string>
 #include "block.h"
 #include "level.h"
+#include "playerdisplay.h"
 using namespace std;
 class Effect;
 struct Coord;
@@ -23,7 +24,13 @@ class Board{
 	 void dropRows(int row);
 	 int score;
 	 bool randomInd;
- 	 bool cellsAvailable(std::vector<Cell> exCells, string type, std::vector<vector <bool>> grid);	 
+	 vector<PlayerDisplay*> displays;
+ 	 bool cellsAvailable(std::vector<Cell> exCells, string type,
+			 std::vector<vector <bool>> grid);	
+	 void updateDisplays(char content, Coord c);
+	 void updateDisplaysSwap(int row1, int row2);
+	 void updatesDisplaysScore(int score);
+	 void updateDisplaysLevel(int level);
 	public:
 	 Board(int level, int width, int length);
 	 void counterclockwise();
@@ -37,8 +44,7 @@ class Board{
 	 void random(string file);
 	 void unRandom();
 	 void restart();
-	 void updateDisplays(char content, Coord c);
-	 void updateDisplaysSwap(int row1, int row2);
+	 void attach(PlayerDisplay p*);
 	 int getScore();
 };
 #endif
