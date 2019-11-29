@@ -6,7 +6,7 @@
 #include "level4.h"
 using namespace std;
 
-Board::Board(int level, int width, int length):
+Board::Board(int level, int width, int height):
 	levelint {level}, width{width}, height{height},	lastPieceCleared{0},
 	randomInd{false}
 {
@@ -249,7 +249,7 @@ void Board::dropRows(int row){
 }
 
 int Board::clearRow(int row){
-	int blockscore;
+	int blockscore = 0;
 	for(auto b = blocks.begin(); b != blocks.end();  ++b ){
 		vector<Cell> cells = (*b)->getCells();
 		for(auto c = cells.begin(); c != cells.end();  ++c ){
