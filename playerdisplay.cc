@@ -28,3 +28,8 @@ int PlayerDisplay::getScore()const{
         return score;
 }
 
+void PlayerDisplay::swapRow(int row1, int row2){
+	for(int i = 0; i < width; i++){
+		std::swap(theDisplay[row1*width + i], theDisplay[row2*width + i]);
+	}
+}

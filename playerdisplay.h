@@ -1,6 +1,7 @@
 #ifndef PLAYERDISPLAY
 #define PLAYERDISPLAY
 #include <vector>
+#include <utility>
 #include"coord.h"
 class PlayerDisplay{
 	int width;
@@ -16,6 +17,7 @@ class PlayerDisplay{
 	char getCell(int row,int col)const;
 	int getLevel()const;
 	int getScore()const;
+	void swapRow(int row1, int row2){ 
 };
 #endif
 

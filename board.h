@@ -29,7 +29,7 @@ class Board{
 			 std::vector<vector <bool>> grid);	
 	 void updateDisplays(char content, Coord c);
 	 void updateDisplaysSwap(int row1, int row2);
-	 void updatesDisplaysScore(int score);
+	 void updateDisplaysScore(int score);
 	 void updateDisplaysLevel(int level);
 	public:
 	 Board(int level, int width, int height);
@@ -44,7 +44,7 @@ class Board{
 	 void random(string file);
 	 void unRandom();
 	 void restart();
-	 void attach(PlayerDisplay p*);
+	 void attach(PlayerDisplay *p);
 	 int getScore();
 };
 #endif

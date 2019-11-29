@@ -283,6 +283,6 @@ void Board::updateDisplaysLevel(int level){
 void Board::updateDisplaysScore(int score){
 	 for (auto &ob : displays) ob->updateScore(score);
 }
-void Board::attach(PlayerDisplay p*){
+void Board::attach(PlayerDisplay *p){
 	displays.emplace_back(p);
 }

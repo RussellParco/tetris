@@ -15,9 +15,13 @@ Game::Game(bool text, int seed, string scriptfile1, string scriptfile2,
 	}
 
 	players[0] = unique_ptr<Board>();
+	players[0].attach(textDisplay.addPlayer(startlevel));
 	players[1] = unique_ptr<Board>();
+	players[1].attach(textDisplay.addPlayer(startlevel));
+	
 	turn = 0;
 	highScore = 0;
+	cout << textDisplay;
 }
 
 void Game::play(){
