@@ -1,4 +1,5 @@
 #include "textdisplay.h"
+<<<<<<< HEAD
 using namespace std;
 
 TextDisplay::TextDisplay(int width, int height):gridSize{n}{
@@ -49,3 +50,4 @@ void TextDisplay::updateScores(int scores[]){
 void TextDisplay::update(char content, int x, int y, int player){
 	theDisplay[player][x][y] = content;
 }
+

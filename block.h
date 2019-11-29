@@ -6,7 +6,7 @@
 #include <vector>
 class Block {
 
-	Cell cells[4];
+	std::vector<Cell> cells;
 	int weight;
 	int level;
 	char type;
@@ -19,7 +19,7 @@ class Block {
 		virtual void left();
 		virtual int getScore();	
 		virtual bool remove(int cellindex);
-		const std::vector<Cell> getcells();
+		virtual std::vector<Cell> getCells();
 
 }; 
 

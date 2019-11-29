@@ -13,7 +13,7 @@ void Cell::setContent(char letter){
 	
 }
 
-const Coord Cell:: getCoord(){
+Coord Cell::getCoord(){
 	Coord temp;	
 	temp.x = this->current.x;
 	temp.y = this->current.y;
