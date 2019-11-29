@@ -10,7 +10,7 @@
 class SCommand : public commandDecorator {
 public:
 	SCommand(Command * command);
-    void execute() override;
+    void execute(Game & game) override;
 };
 
 #endif //COMMAND_SCOMMAND_H

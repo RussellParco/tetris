@@ -12,7 +12,7 @@ class Game;
 class ICommand : public commandDecorator {
 public:
 	ICommand(Command * command);
-    	void execute() override;
+    	void execute(Game & game) override;
 };
 
 #endif //COMMAND_ICOMMAND_H

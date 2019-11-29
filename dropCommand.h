@@ -10,7 +10,8 @@
 class dropCommand : public commandDecorator {
 public:
 	dropCommand(Command * command);
-    void execute() override;
+
+    void execute(Game & game) override;
 };
 
 #endif //COMMAND_DROPCOMMAND_H

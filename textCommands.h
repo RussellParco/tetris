@@ -11,6 +11,7 @@
 #include "rightCommand.h"
 #include "downCommand.h"
 #include "clockwiseCommand.h"
+	std::vector<Cell> getCells();
 #include "counterclockCommand.h"
 #include "dropCommand.h"
 #include "levelupCommand.h"

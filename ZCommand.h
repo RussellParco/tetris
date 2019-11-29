@@ -10,7 +10,7 @@
 class ZCommand : public commandDecorator {
 public:
 	ZCommand(Command * command);
-    void execute() override;
+    void execute(Game & game) override;
 };
 
 #endif //COMMAND_ZCOMMAND_H

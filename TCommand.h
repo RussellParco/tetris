@@ -10,7 +10,7 @@
 class TCommand : public commandDecorator {
 public:
 	TCommand(Command * command);
-    void execute() override;
+    void execute(Game & game) override;
 };
 
 #endif //COMMAND_TCOMMAND_H

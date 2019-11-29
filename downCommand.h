@@ -10,7 +10,7 @@
 class downCommand : public commandDecorator {
 public:
 	downCommand(Command *command);
-    void execute() override;
+    void execute(Game & game) override;
 };
 
 #endif //COMMAND_DOWNCOMMAND_H

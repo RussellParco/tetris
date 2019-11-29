@@ -10,7 +10,7 @@
 class LCommand : public commandDecorator {
 public:
 	LCommand(Command * command);
-    void execute() override;
+    void execute(Game & game ) override;
 };
 
 #endif //COMMAND_LCOMMAND_H
