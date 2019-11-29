@@ -9,7 +9,7 @@ class Cell{
 	Cell(Coord current, char content);
 	const char getContent();
 	void setContent(char letter);
-	const Coord getCoord();
+	Coord getCoord();
 	void setCoord(Coord temp);
 			
 	};

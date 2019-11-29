@@ -1,14 +1,15 @@
 #include "game.h"
+#include "textdisplay.h"
 using namespace std;
 
 Game::Game(bool text, int seed, string scriptfile1, string scriptfile2, 
-	    int startlevel): commands{textCommands}
+	    int startlevel): commands{textCommands()}
 {
 	textDisplay = unique_ptr<TextDisplay>();
 	if(!text){
-		graphics = unique_ptr<GraphicsDisplay>();
+		//graphics = unique_ptr<GraphicsDisplay>();
 	}else{
-		graphics = nullptr;
+		//graphics = nullptr;
 	}
 
 	players[0] = unique_ptr<Board>();
@@ -19,10 +20,10 @@ Game::Game(bool text, int seed, string scriptfile1, string scriptfile2,
 
 void Game::play(){
 	string strCommand;
-	Commnad *currCommand;
+	Command *currCommand;
 	while(cin >> strCommand){
-		currComand = commands.getCommand(strCommand);
-		currCommand->executeCommad();
+		currCommand = commands.getCommand(strCommand);
+		currCommand->execute();
 	}
 }
 
@@ -35,7 +36,7 @@ void Game::left(){
 void Game::down(){
 	players[turn]->down();
 }
-void Game::drop{
+void Game::drop(){
 	if(players[turn]->drop() >= 2){
 		cout << "Choose an Effect for your Opponent" << endl;
 		cout << "* Heavy" << endl << "* Blind" << endl << "* Force";
@@ -43,7 +44,7 @@ void Game::drop{
 		cin >> newEffect;	
 		cin << players[turn + 1]->addEffect(newEffect);
 	*/}
-	if(turn->getScore() > highScore){
+	if(players[turn]->getScore() > highScore){
 		highScore = players[turn]->getScore();
 	}
 	turn++;
@@ -69,31 +70,31 @@ void Game::restart(){
 	players[0]->clockwise();
 	players[1]->restart();
 	textDisplay = unique_ptr<TextDisplay>();
-	if(graphics){
-		graphics = unique_ptr<GraphicsDisplay>();
-	}
+	//if(graphics){
+	//	graphics = unique_ptr<GraphicsDisplay>();
+	//}
 	turn = 0;
 }
 void Game::I(){
-	players[turn]->I();
+	//players[turn]->I();
 }
 void Game::J(){
-        players[turn]->J();
+        //players[turn]->J();
 }
 void Game::L(){
-        players[turn]->L();
+        //players[turn]->L();
 }
 void Game::O(){
-        players[turn]->O();
+        //players[turn]->O();
 }
 void Game::S(){
-        players[turn]->S();
+        //players[turn]->S();
 }
 void Game::Z(){
-        players[turn]->Z();
+        //players[turn]->Z();
 }
 void Game::T(){
-        players[turn]->T();
+        //players[turn]->T();
 }
 
 

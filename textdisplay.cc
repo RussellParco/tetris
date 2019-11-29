@@ -1,24 +1,16 @@
 #include "textdisplay.h"
-<<<<<<< HEAD
+
 using namespace std;
 
-TextDisplay::TextDisplay(int width, int height):gridSize{n}{
-	theDisplay.resize(n);
-
-	for(int r = 0; r < n; r++){
-		for(int c = 0; c < n; c++){
-			theDisplay[r].push_back(' ');
-		}
-	}
-}
+TextDisplay::TextDisplay(int width, int height):Display(width, height){}
 
 std::ostream &operator<<(std::ostream &out, const TextDisplay &td){
 	//print levels
-	out << "Level:\t"<< level[0] << "\t\tLevel:\t" << level[1] << endl;
+	out << "Level:\t"<< td.theDisplay[0].getLevel() << "\t\tLevel:\t" << td.theDisplay[1].getLevel() << endl;
 	//print socres
-	out << "Score:\t"<< score[0] << "\t\tScore:\t" << score[1] << endl;
+	out << "Score:\t"<< td.theDisplay[0].getScore() << "\t\tScore:\t" << td.theDisplay[1].getScore() << endl;
 	for(int i = 0; i < 2; i++){
-		for(int w = 0; w < td.width; c++){
+		for(int w = 0; w < td.width; w++){
 			out << "-";
 		}
 		out << "\t\t" << endl;
@@ -27,11 +19,11 @@ std::ostream &operator<<(std::ostream &out, const TextDisplay &td){
 
 	for(int r = 0; r < td.height; r++){
 		for(int c = 0; c < td.width; c++){
-			out << td.theDisplay[0][r][c];
+			out << td.theDisplay[0].getCell(r, c);
 		}
-		out << "\t\t"
+		out << "\t\t";
 		for(int c = 0; c < td.width; c++){
-                        out << td.theDisplay[1][r][c];
+                        out << td.theDisplay[1].getCell(r,c);
                 }
 
 		out << std::endl;
@@ -39,15 +31,4 @@ std::ostream &operator<<(std::ostream &out, const TextDisplay &td){
 	return out;
 }
 
-void TextDisplay::updateLevels(int levels[]){
-        this->level = level;
-}
-
-void TextDisplay::updateScores(int scores[]){
-	this->score = scores;
-}
-
-void TextDisplay::update(char content, int x, int y, int player){
-	theDisplay[player][x][y] = content;
-}
 

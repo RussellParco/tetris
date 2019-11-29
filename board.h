@@ -22,6 +22,7 @@ class Board{
 	 int clearRow(int row);
 	 void dropRows(int row);
 	 int score;
+	 bool randomInd;
  	 bool cellsAvailable(std::vector<Cell> exCells, string type, std::vector<vector <bool>> grid);	 
 	public:
 	 Board(int level, int width, int length);
@@ -38,5 +39,6 @@ class Board{
 	 void restart();
 	 void updateDisplays(char content, Coord c);
 	 void updateDisplaysSwap(int row1, int row2);
+	 int getScore();
 };
 #endif

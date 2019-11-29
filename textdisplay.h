@@ -1,17 +1,12 @@
 #ifndef TEXTDISPLAY
 #define TEXTDISPLAY
 #include "display.h"
+#include "coord.h"
+#include <iostream>
 
+class TextDisplay : public Display{
+	TextDisplay(int height, int width);
 
-class TextDisplay{
-
-	char theDisplay[18 * 11];
-			
-	public:
-		TextDisplay;
-		void render() override;
-		void updateDisplay() override;
-
+friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
 };
-
 #endif 

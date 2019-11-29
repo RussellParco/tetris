@@ -1,16 +1,21 @@
 #ifndef DISPLAY
-#define	DISPLAY
-#include "game.h"
-
+#define DISPLAY
+#include "display.h"
+#include "coord.h"
+#include <vector>
+#include "playerdisplay.h"
 
 class Display{
-	public:
-		virtual render() = 0;
-		virtual updateDisplay(char content, int x, int y, Board const * src) = 0;
-		virtual updateRows(int row1, int row2, Board const * src) = 0;
+
+	protected:
+		std::vector<PlayerDisplay> theDisplay;
+		int height;
+		int width;	
+		public:
+
+		Display(int height, int width);
+		PlayerDisplay* addPlayer(int level);
+
 };
-
-
-
 
 #endif 

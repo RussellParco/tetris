@@ -3,19 +3,18 @@
 #include <string>
 #include <memory>
 #include "textCommands.h" 
-
+#include "board.h"
 class Display;
-class Board;
 
 class Game{
 	std::unique_ptr<Display> textDisplay;
-	std::unique_ptr<Display> graphics;
 	std::unique_ptr<Board> players[2];
 	int turn;
-	textCommands Commands;
+	textCommands commands;
 	int highScore;
 	public: 
-	Game();
+	Game(bool text, int seed, string scriptfile1, 
+		std::string scriptfile2, int startlevel);
 	void play();
 	void left();
 	void right();
