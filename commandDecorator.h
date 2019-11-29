@@ -8,7 +8,8 @@
 #include "Command.h"
 
 class commandDecorator: public Command{
-Command *command;
+protected:
+    Command *command;
 public:
     ~commandDecorator() override;
 };
