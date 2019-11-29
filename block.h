@@ -3,7 +3,7 @@
 #include "cell.h"
 #include "coord.h"
 #include <string>
-
+#include <vector>
 class Block {
 
 	Cell cells[4];
@@ -18,7 +18,8 @@ class Block {
 		virtual void right();
 		virtual void left();
 		virtual int getScore();	
-		virtual void remove(int cellindex);
+		virtual bool remove(int cellindex);
+		const std::vector<Cell> getcells();
 
 }; 
 

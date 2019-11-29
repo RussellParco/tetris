@@ -1,7 +1,14 @@
 #ifndef LEVEL
 #define LEVEL
+
+#include <fstream>
+using namespace std;
+
+class Block;
+
 class Level{
-	virtual Block* createPiece(ifstream& sequence, bool random, int lastBlockCleared )=0;
-	virtual ~Block() = 0;	
+	public:
+	virtual Block* createPiece(const ifstream& sequence, bool random, int lastBlockCleared )=0;
+	virtual ~Level() = 0;	
 };
 #endif 

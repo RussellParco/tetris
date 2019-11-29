@@ -4,26 +4,27 @@
 #include <fstream>
 #include <string>
 #include "block.h"
+#include "level.h"
 using namespace std;
 class Effect;
-class Level;
+class Coord;
 
 class Board{
 	 vector<vector <bool>> grid;
-	 vector<Block> blocks;
+	 vector<Block*> blocks;
 	 Effect *currentEffect;
 	 Level *level;
 	 int levelint;
 	 const int width;
 	 const int height;
 	 ifstream sequence;
-	 bool random;
 	 int lastPieceCleared;
 	 int clearRow(int row);
 	 void dropRows(int row);
 	 int score;
  	 bool cellsAvailable(std::vector<Cell> exCells, string type, std::vector<vector <bool>> grid);	 
 	public:
+	 Board(int level, int width, int length);
 	 void counterclockwise();
 	 void clockwise();
 	 void right();
@@ -32,10 +33,10 @@ class Board{
 	 int drop();
 	 void levelup();
 	 void leveldown();
-	 void Random(string file);
+	 void random(string file);
 	 void unRandom();
 	 void restart();
-	 void updateDisplays(char content, int row, int col);
+	 void updateDisplays(char content, Coord c);
 	 void updateDisplaysSwap(int row1, int row2);
 };
 #endif
