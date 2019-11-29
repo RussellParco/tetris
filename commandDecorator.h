@@ -12,6 +12,7 @@ class commandDecorator: public Command{
 protected:
     Command *command;
 public:
+     commandDecorator(Command * command);
     ~commandDecorator() override;
 
 };

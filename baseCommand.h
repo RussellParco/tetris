@@ -1,6 +1,5 @@
 //
-// Created by Leo on 11/25/2019.
-//
+// Created by Leo on 11/25/2019//
 
 #ifndef COMMAND_BASECOMMAND_H
 #define COMMAND_BASECOMMAND_H
@@ -9,6 +8,7 @@
 
 class baseCommand : public Command {
 public:
+    baseCommand(Game *game);
     ~baseCommand() override;
     void execute() override;
 };

@@ -8,6 +8,8 @@ class Block;
 
 class Level0 : public Level{
 	public:
-	Block* createPiece(const ifstream& sequence, bool random, int lastBlockCleared)override;	
+	Level0();
+	Block* createPiece(ifstream & sequence, bool random, int lastBlockCleared)override;
+	~Level0();	
 };
 #endif

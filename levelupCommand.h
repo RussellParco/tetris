@@ -9,6 +9,7 @@
 
 class levelupCommand : public commandDecorator {
 public:
+	levelupCommand(Command * command);
     void execute() override;
 };
 

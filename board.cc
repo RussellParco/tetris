@@ -6,10 +6,11 @@
 #include "level4.h"
 using namespace std;
 
-Board::Board(int level, int width, int height):
+Board::Board(int level, int width, int heighti, string seq):
 	levelint {level}, width{width}, height{height},	lastPieceCleared{0},
 	randomInd{false}
 {
+	sequence = ifstream{seq};
 
 	if(levelint == 0){
 		this->level = new Level0();
@@ -22,7 +23,10 @@ Board::Board(int level, int width, int height):
 	}else{
 		this->level = new Level4();
 	}
+	blocks.emplace_back(this->level->createPiece(sequence, 
+				randomInd, lastPieceCleared));
 
+	vector<Cell> newCells = blocks.back()->getCells();
 }
 
 bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<vector <bool>> grid){
@@ -165,8 +169,7 @@ int Board::drop(){
 		}
 
         	activeBlock->down();
-	}
-	
+			
 	int rowsCleared = 0;
 	for(int y = 0; y < height; y++){
 		bool clearRow = true;
@@ -184,6 +187,8 @@ int Board::drop(){
 	}
 
 	score += (rowsCleared + levelint) * (rowsCleared + levelint);
+	blocks->emplace_back(level->createPiece(sequence,
+                                randomInd, lastPieceCleared);
 	return rowsCleared;
 }
 void Board::levelup(){
@@ -220,11 +225,11 @@ void Board::leveldown(){
         }
 }
 
-void Board::random(string file){
+void Board::random(){
 	//TODO
 }
 
-void Board::unRandom(){
+void Board::unRandom(string file){
 	//TODO
 }
 
@@ -285,4 +290,11 @@ void Board::updateDisplaysScore(int score){
 }
 void Board::attach(PlayerDisplay *p){
 	displays.emplace_back(p);
+	for(auto b: blocks){
+		vector<Cell> cells = b->getCells();
+		for(auto c : cells){
+			p->update(c.getContent(), c.getCoord());
+		}
+	}
 }
+

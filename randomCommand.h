@@ -9,6 +9,7 @@
 
 class randomCommand : public commandDecorator {
 public:
+	randomCommand(Command * command);
     void execute() override;
 };
 

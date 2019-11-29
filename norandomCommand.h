@@ -10,6 +10,7 @@
 class norandomCommand : public commandDecorator {
     std::string file;
 public:
+	norandomCommand(Command * command);
     void execute() override;
 };
 

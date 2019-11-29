@@ -12,9 +12,10 @@ class Display{
 		int height;
 		int width;	
 		public:
-
 		Display(int height, int width);
 		PlayerDisplay* addPlayer(int level);
+		virtual void render() = 0;
+		virtual ~Display() = default;
 
 };
 

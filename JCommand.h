@@ -9,6 +9,7 @@
 
 class JCommand : public commandDecorator {
 public:
+	JCommand(Command * command);
     void execute() override;
 };
 

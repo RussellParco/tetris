@@ -9,6 +9,7 @@
 
 class OCommand : public commandDecorator {
 public:
+	OCommand(Command * command);
     void execute() override;
 };
 

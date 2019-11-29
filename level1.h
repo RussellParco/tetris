@@ -8,6 +8,8 @@ using namespace std;
 
 class Level1 : public Level{
 	public:
-        Block* createPiece(const ifstream& sequence, bool random, int lastBlockCleared)override;
+	Level1();
+        Block* createPiece(ifstream& sequence, bool random, int lastBlockCleared)override;
+	~Level1();
 };
 #endif

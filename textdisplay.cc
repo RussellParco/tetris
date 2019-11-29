@@ -13,10 +13,10 @@ std::ostream &operator<<(std::ostream &out, const TextDisplay &td){
 		for(int w = 0; w < td.width; w++){
 			out << "-";
 		}
-		out << "\t\t" << endl;
+		out << "\t\t";
 	}
 	
-
+	out << endl;
 	for(int r = 0; r < td.height; r++){
 		for(int c = 0; c < td.width; c++){
 			out << td.theDisplay[0].getCell(r, c);
@@ -26,9 +26,18 @@ std::ostream &operator<<(std::ostream &out, const TextDisplay &td){
                         out << td.theDisplay[1].getCell(r,c);
                 }
 
-		out << std::endl;
+		out<< r<< endl;
 	}
+	for(int i = 0; i < 2; i++){
+		for(int w = 0; w < td.width; w++){
+			out << "-";
+		}
+		out << "\t\t";
+	}
+	out << endl;
 	return out;
 }
 
-
+void TextDisplay::render(){
+	cout << *this;
+}

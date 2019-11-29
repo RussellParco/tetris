@@ -9,6 +9,7 @@
 
 class dropCommand : public commandDecorator {
 public:
+	dropCommand(Command * command);
     void execute() override;
 };
 

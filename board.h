@@ -6,6 +6,7 @@
 #include "block.h"
 #include "level.h"
 #include "playerdisplay.h"
+
 using namespace std;
 class Effect;
 struct Coord;
@@ -32,7 +33,7 @@ class Board{
 	 void updateDisplaysScore(int score);
 	 void updateDisplaysLevel(int level);
 	public:
-	 Board(int level, int width, int height);
+	 Board(int level, int width, int height, string seq);
 	 void counterclockwise();
 	 void clockwise();
 	 void right();
@@ -41,10 +42,11 @@ class Board{
 	 int drop();
 	 void levelup();
 	 void leveldown();
-	 void random(string file);
-	 void unRandom();
+	 void random();
+	 void unRandom(string file);
 	 void restart();
 	 void attach(PlayerDisplay *p);
 	 int getScore();
+
 };
 #endif

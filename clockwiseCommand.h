@@ -9,6 +9,7 @@
 
 class clockwiseCommand : public commandDecorator {
 public:
+	clockwiseCommand(Command * command);
     void execute() override;
 };
 

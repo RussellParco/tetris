@@ -5,7 +5,8 @@ using namespace std;
 
 class Level3 : public Level{
  public:
-        Block* createPiece(const ifstream& sequence, bool random, int lastBlockCleared)override;	
-	
+        Level3();
+	Block* createPiece(ifstream& sequence, bool random, int lastBlockCleared)override;	
+	~Level3();	
 };
 #endif 

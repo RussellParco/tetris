@@ -10,7 +10,7 @@ Tblock::Tblock(char type, int weight, int level):Block('T', weight, level) {
 		cells.emplace_back(newCoord, c);
 			
 	}
-	int x4= 4;
+	int x4= 5;
 	int y4 = 1;
 	Coord anotherCoord {x4, y4};
 	char d = 'T';

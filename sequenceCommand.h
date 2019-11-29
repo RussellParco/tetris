@@ -11,6 +11,7 @@
 class sequenceCommand : public commandDecorator {
     std::string file;
 public:
+	sequenceCommand(Command * command);
     void execute() override;
 };
 
