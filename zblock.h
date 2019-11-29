@@ -6,14 +6,13 @@ class Zblock: public Block{
 
 	public:
 	
-	Zblock(char type, int weight = 0);
-	void rotate(string type) override;
-	void down() override;
-	
-	void right() override;
-	void left() override;
-	int getScore() override;
-	std::vector<Cell> getCells() override;
+	Zblock(char type, int weight = 0, int level = 0);
+	void rotate(std::string type);
+	void down();
+	void right();
+	void left();
+	int getScore();
+	std::vector<Cell> getCells();
 };
 
 

@@ -1,6 +1,9 @@
 #include "block.h"
 using namespace std;
 
+
+Block::Block(char type, int weight, int level): type{type}, weight{weight}, level{level} {}
+
 vector<Cell> Block::getCells(){
 	return cells;
 }
@@ -98,6 +101,5 @@ int Block::getScore(){
 	return score;
 }
 
-
-
+Block::~Block(){}
 

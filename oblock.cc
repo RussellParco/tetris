@@ -1,19 +1,25 @@
 #include "oblock.h"
 #include <string>
 
-Oblock::Oblock(char type, int weight): type{O}, weight{weight} {
+Oblock::Oblock(char type, int weight, int level): Block('O', weight, level) {
 	for(int i =0; i <= 1; i++){
-		this->cells[i].current.x= i + 5;
-		this->cells[i].current.y= 0;	
+		int xnew= i + 5;
+		int ynew= 0;
+		Coord newCoord {xnew, ynew};
+		char c = 'O';
+		Cell newCell {newCoord, c};
+		cells[i] = newCell;	
 	}
-	this->cells[2].current.x= 5;
-	this->cells[2].current.y = 1;
-	this->cells[3].current.x= 6
-	this->cells[3].current.y= 1;
- 
-	for(int i =0; i <=3; i++){
-		this->cells[i].content = 'O';
+	for(int i =2; i <= 3; i++){
+		int xnew= i + 3;
+		int ynew= 1;
+		Coord newCoord {xnew, ynew};
+		char c = 'O';
+		Cell newCell {newCoord, c};
+		cells[i] = newCell;	
 	}
+
+
 }
 
 

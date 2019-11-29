@@ -1,18 +1,22 @@
 #include "zblock.h"
 #include <string>
 
-Zblock::Zblock(char type, int weight): type{Z}, weight{weight} {
+Zblock::Zblock(char type, int weight, int level): Block('Z', weight, level) {
 	for(int i =0; i <= 1; i++){
-		this->cells[i].current.x= i + 4;
-		this->cells[i].current.y= 0;	
+		int xnew= i + 4;
+		int ynew= 0;
+		Coord newCoord {xnew, ynew};
+		char c= 'Z';
+		Cell newCell {newCoord, c};
+		cells[i] = newCell;	
 	}
-	this->cells[2].current.x= 5;
-	this->cells[2].current.y = 1;
-	this->cells[3].current.x= 6
-	this->cells[3].current.y= 1;
-
-	for(int i =0; i <=3; i++){
-		this->cells[i].content = 'Z';
+	for(int i =2; i <= 3; i++){
+		int xnew= i + 3;
+		int ynew= 1;
+		Coord newCoord {xnew, ynew};
+		char c= 'Z';
+		Cell newCell {newCoord, c};
+		cells[i] = newCell;	
 	}
 }
 

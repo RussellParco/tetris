@@ -1,19 +1,26 @@
 #include "sblock.h"
 #include <string>
 
-Sblock::Sblock(char type, int weight): type{S}, weight{weight} {
+Sblock::Sblock(char type, int weight, int level): Block('S', weight, level) {
 	for(int i =0; i <= 1; i++){
-		this->cells[i].current.x= i + 5;
-		this->cells[i].current.y= 0;	
+		int xnew= i + 5;
+		int ynew= 0;
+		Coord newCoord {xnew, ynew};
+		char c= 'S';
+		Cell newCell {newCoord, c};
+		cells[i] = newCell;	
+		
 	}
-	this->cells[2].current.x= 4;
-	this->cells[2].current.y = 1;
-	this->cells[3].current.x= 5;
-	this->cells[3].current.y= 1;
+	for(int i =2; i <= 3; i++){
+		int xnew= i + 2;
+		int ynew= 1;
+		Coord newCoord {xnew, ynew};
+		char c= 'S';
+		Cell newCell {newCoord, c};
+		cells[i] = newCell;	
+		
+	}
 
-	for(int i =0; i <=3; i++){
-		this->cells[i].content = 'S';
-	}
 }
 
 

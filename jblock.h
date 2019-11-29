@@ -6,14 +6,14 @@ class Jblock: public Block{
 
 	public:
 	
-	Jblock(char type, int weight = 0);
-	void down() override;
-	void rotate(string type) override;
-	void right() override;
-	void left() override;
-	int getScore() override;
-	std::vector<Cell> getCells() override;
-}
+	Jblock(char type, int weight = 0, int level = 0);
+	void down();
+	void rotate(std::string type);
+	void right();
+	void left();
+	int getScore();
+	std::vector<Cell> getCells();
+};
 
 
 #endif 
