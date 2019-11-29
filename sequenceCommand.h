@@ -5,8 +5,10 @@
 #ifndef COMMAND_SEQUENCECOMMAND_H
 #define COMMAND_SEQUENCECOMMAND_H
 
+#include "commandDecorator.h"
+
 class sequenceCommand : public commandDecorator {
-    string file;
+    std::string file;
 public:
     void execute() override;
 };

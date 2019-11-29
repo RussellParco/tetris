@@ -5,6 +5,8 @@
 #ifndef COMMAND_DROPCOMMAND_H
 #define COMMAND_DROPCOMMAND_H
 
+#include "commandDecorator.h"
+
 class dropCommand : public commandDecorator {
 public:
     void execute() override;

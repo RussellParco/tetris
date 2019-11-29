@@ -6,7 +6,7 @@
 #define TEXTCOMMANDS_H
 
 //#include <fstream>
-#include "Command.h"
+#include "baseCommand.h"
 #include "leftCommand.h"
 #include "rightCommand.h"
 #include "downCommand.h"
@@ -26,8 +26,7 @@
 #include "ZCommand.h"
 #include "TCommand.h"
 #include "restartCommand.h"
-
-
+#include <vector>
 
 
 using namespace std;
@@ -39,7 +38,7 @@ public:
     textCommands();
     //void loadCommands (const string &filename);
     //void saveCommands (const string &filename);
-    Command* getCommand (const string &name);
+    Command* getCommand (const string &name);//returns a Command object given the name of the command
     //void addCommand (string name, Command *command);
 };
 
