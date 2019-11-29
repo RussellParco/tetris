@@ -5,6 +5,8 @@
 #ifndef COMMAND_TCOMMAND_H
 #define COMMAND_TCOMMAND_H
 
+#include "commandDecorator.h"
+
 class TCommand : public commandDecorator {
 public:
     void execute() override;

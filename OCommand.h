@@ -5,6 +5,8 @@
 #ifndef COMMAND_OCOMMAND_H
 #define COMMAND_OCOMMAND_H
 
+#include "commandDecorator.h"
+
 class OCommand : public commandDecorator {
 public:
     void execute() override;

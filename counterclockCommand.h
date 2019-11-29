@@ -5,6 +5,8 @@
 #ifndef COMMAND_COUNTERCLOCKCOMMAND_H
 #define COMMAND_COUNTERCLOCKCOMMAND_H
 
+#include "commandDecorator.h"
+
 class counterclockCommand : public commandDecorator {
 public:
     void execute() override;

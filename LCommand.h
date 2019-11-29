@@ -5,6 +5,8 @@
 #ifndef COMMAND_LCOMMAND_H
 #define COMMAND_LCOMMAND_H
 
+#include "commandDecorator.h"
+
 class LCommand : public commandDecorator {
 public:
     void execute() override;
