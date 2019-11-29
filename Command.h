@@ -5,7 +5,8 @@
 #ifndef COMMAND_COMMAND_H
 #define COMMAND_COMMAND_H
 
-class Game;
+#include "game.h"
+
 class Command {
 protected:
     Game *game;
