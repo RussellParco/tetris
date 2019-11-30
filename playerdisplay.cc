@@ -1,9 +1,10 @@
+
 #include "playerdisplay.h" 
 
 PlayerDisplay::PlayerDisplay(int width,int height, int level):
 width{width}, level{level}, score{0}
 {
-	std::cout << width<< "," << height << std::endl;
+	std::cout << "inside constructor"<< "," << height << std::endl;
 	for(int i = 0; i < width*height; i++){
 		theDisplay.emplace_back(' ');
 	}
@@ -15,11 +16,12 @@ void PlayerDisplay::updateLevel(int level){
 	this->level =level;
 }
 void PlayerDisplay::update(char content, Coord c){
-std::cout << "inside update" << width << ","<< theDisplay.size()<< ","<< c.x << ","<< c.y<< std::endl;
+std::cout << "inside update"<< " , " << width << ","<< theDisplay.size()<< ","<< c.x << ","<< c.y<< std::endl;
 	
-	theDisplay[c.y*width + c.x] = content;
+	theDisplay[(c.y * width) + c.x ] = content;
+	//theDisplay[0] = content;
 
-	std::cout << "inside update" << std::endl;
+	std::cout << "inside update past theDisplay" << std::endl;
 }
 char PlayerDisplay::getCell(int row, int col)const{
 	return theDisplay[row *width + col];

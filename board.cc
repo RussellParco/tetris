@@ -38,6 +38,7 @@ Board::Board(int level, int width, int height, string seq):
 				randomInd, lastPieceCleared));
 
 	vector<Cell> newCells = blocks.back()->getCells();
+	
 }
 
 bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<vector <bool>> grid){
@@ -310,6 +311,7 @@ int Board::getScore(){
 }
 void Board::updateDisplays(char content, Coord c){
 //	std::cout << "inside updateDisplays" << std::endl;
+	std::cout << displays.size()<<std::endl;
 	for (auto &ob : displays) ob->update(content, c);
 	
 	std::cout << "inside updateDisplays" << std::endl;
