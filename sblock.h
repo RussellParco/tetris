@@ -6,7 +6,7 @@ class Sblock: public Block{
 
 	public:
 	
-	Sblock(char type, int weight =0, int level = 0);
+	Sblock(char type,int width= 3, int height = 2, int weight =0, int level = 0);
 };
 
 

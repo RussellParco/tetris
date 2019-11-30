@@ -8,11 +8,12 @@ class Block {
 	protected:
 		std::vector<Cell> cells;
 		char type;
+		int width;
+		int height;	
 		int weight;
 		int level;
-
 	public:
-		Block(char type, int weight=0, int level = 0);
+		Block(char type,int width, int height, int weight=0, int level = 0);
 		virtual void rotate(std::string type);
 		virtual void down();
 		virtual void right();

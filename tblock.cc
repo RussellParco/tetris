@@ -1,7 +1,7 @@
 #include "tblock.h"
 #include <string>
 
-Tblock::Tblock(char type, int weight, int level):Block('T', weight, level) {
+Tblock::Tblock(char type,int width,int height, int weight, int level):Block('T', 3,2, weight, level) {
 	for(int i =0; i <= 2; i++){
 		int xnew= i + 4;
 		int ynew= 0;

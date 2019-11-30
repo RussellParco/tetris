@@ -1,7 +1,7 @@
 #include "zblock.h"
 #include <string>
 
-Zblock::Zblock(char type, int weight, int level): Block('Z', weight, level) {
+Zblock::Zblock(char type,int width,int height, int weight, int level): Block('Z',3,2, weight, level) {
 	for(int i =0; i <= 1; i++){
 		int xnew= i + 4;
 		int ynew= 0;

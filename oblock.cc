@@ -1,7 +1,7 @@
 #include "oblock.h"
 #include <string>
 
-Oblock::Oblock(char type, int weight, int level): Block('O', weight, level) {
+Oblock::Oblock(char type,int width, int height , int weight, int level): Block('O',2,2, weight, level) {
 	for(int i =0; i <= 1; i++){
 		int xnew= i + 5;
 		int ynew= 0;

@@ -47,13 +47,13 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
 		testCells[i].setCoord({exCells[i].getCoord().x, exCells[i].getCoord().y}); 
 		
 	}
-	int top = testCells[0].getCoord().y;
+	int bottom = testCells[0].getCoord().y;
 	int left = testCells[0].getCoord().x;
 
 		for(int i=0; i <= 3; i++){
 	
-		if(testCells[i].getCoord().y >= top){
-				top = testCells[i].getCoord().y;
+			if(testCells[i].getCoord().y <= bottom){
+				bottom = testCells[i].getCoord().y;
 			}
 		}
 		for(int i=0; i <= 3; i++){
@@ -63,20 +63,26 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
 		}
 
 	for(int i =0; i <=3 ; i++){
-		int xnew;
-                int ynew; 		
+		int xnew = testCells[i].getCoord().x - left;
+                int ynew = testCells[i].getCoord().y - bottom;
+ 		
 		if(type == "clockwise"){
-			xnew = -1*testCells[i].getCoord().y;
-			ynew = testCells[i].getCoord().x * -1;
-			
+			int temp = xnew;
+		
+			xnew =  ynew;
+			ynew = -1 * temp;
+			ynew += (width - 1);
 		}
 		else{
-			xnew = -1 * testCells[i].getCoord().y;
-			ynew = testCells[i].getCoord().x;	
+			int temp = xnew;
+			xnew = -1 * ynew;
+			ynew = temp;
+			xnew += (height -1);	
 
 
 		}
-		testCells[i].setCoord({xnew + left, ynew + top});
+		
+		testCells[i].setCoord({xnew + left, ynew + bottom});
 	}
 
 	
@@ -97,7 +103,7 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
 
 void Board::counterclockwise(){
 	Block *recent = blocks.back();
-	if (cellsAvailable(recent->getCells(), "counterclockwise", this->grid)){
+//	if (cellsAvailable(recent->getCells(), "counterclockwise", this->grid)){
 		for(auto c : recent->getCells()){
 			updateDisplays(' ', c.getCoord());
 		}
@@ -106,13 +112,13 @@ void Board::counterclockwise(){
                         updateDisplays(c.getContent(), c.getCoord());
                 }
 
-	}
+//	}
 
 }
 
 void Board::clockwise(){
 	Block *recent = blocks.back();
-	if (cellsAvailable(recent->getCells(), "clockwise", this->grid)){
+//	if (cellsAvailable(recent->getCells(), "clockwise", this->grid)){
 		for(auto c : recent->getCells()){
                         updateDisplays(' ', c.getCoord());
                 }
@@ -121,7 +127,7 @@ void Board::clockwise(){
                         updateDisplays(c.getContent(), c.getCoord());
                 }
 
-	}
+	//}
 }
 
 void Board::right(){

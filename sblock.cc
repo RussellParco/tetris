@@ -1,7 +1,7 @@
 #include "sblock.h"
 #include <string>
 
-Sblock::Sblock(char type, int weight, int level): Block('S', weight, level) {
+Sblock::Sblock(char type,int width, int height, int weight, int level): Block('S',3,2, weight, level) {
 	for(int i =0; i <= 1; i++){
 		int xnew= i + 5;
 		int ynew= 0;

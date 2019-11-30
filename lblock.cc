@@ -1,7 +1,7 @@
 #include "lblock.h"
 #include <string>
 
-Lblock::Lblock(char type, int weight, int level): Block('L', weight, level) {
+Lblock::Lblock(char type,int width, int height, int weight, int level): Block('L',3,2, weight, level) {
 	for(int i =0; i <= 2; i++){
 		int xnew= i + 5;
 		int ynew= 1;

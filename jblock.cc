@@ -1,7 +1,7 @@
 #include "jblock.h"
 #include <string>
 
-Jblock::Jblock(char type, int weight, int level):Block('J', weight, level) {
+Jblock::Jblock(char type,int width, int height, int weight, int level):Block('J',3, 2, weight, level) {
 	for(int i =0; i <= 2; i++){
 		
 		int xnew = i + 5;
