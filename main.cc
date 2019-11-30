@@ -9,8 +9,8 @@ int main(int argsc, char* argsv[]){
 	stringstream ss;
 	bool text = false;
 	int seed = 0;
-	string scriptfile1;
-	string scriptfile2;
+	string scriptfile1 = "biquadris_sequence1.txt";
+	string scriptfile2 = "biquadris_sequence2.txt";
 	int startlevel  = 0;
 
 	for(int i = 1; i < argsc; i++){

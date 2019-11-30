@@ -7,8 +7,8 @@
 using namespace std;
 
 Board::Board(int level, int width, int height, string seq):
-	levelint {level}, width{width}, height{height},	lastPieceCleared{0},
-	randomInd{false}
+	levelint {level}, width{width}, height{height}, 
+	sequence{ifstream(seq)}, lastPieceCleared{0}, randomInd{false}
 { 
 	grid.resize(height);
 	for (int i = 0; i < height; ++i){
@@ -86,7 +86,7 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
 	for(int i = 0; i <= 3; i++ ){
 		x = testCells[i].getCoord().x;
 		y = testCells[i].getCoord().y;	
-		if(grid[y][x] == 1 || x < 0 || x >= width || y < 0 || y >= height){
+		if(x < 0 || x >= width || y < 0 || y >= height || grid[y][x]){
 			return false;
 		}
 	}
@@ -208,6 +208,9 @@ int Board::drop(){
 	score += (rowsCleared + levelint) * (rowsCleared + levelint);
 	blocks.emplace_back(level->createPiece(sequence,
                                 randomInd, lastPieceCleared));
+	for(auto c : blocks.back()->getCells()){
+        	updateDisplays(c.getContent(), c.getCoord());
+        }
 	return rowsCleared;
 }
 void Board::levelup(){
@@ -256,7 +259,7 @@ void Board::restart(){
 	score = 0;
 	for(int x = 0; x < width; x++){
 		for(int y = 0; y < height; y++){
-		//	grid[x][y] = 0;
+			grid[x][y] = 0;
 		}
 	}
 
@@ -282,7 +285,7 @@ int Board::clearRow(int row){
 					blockscore += (*b)->getScore();
 					blocks.erase(blocks.begin()+distance(blocks.begin(),b));
 				}
-			//	grid[(*c).getCoord().x][(*c).getCoord().y] = 0;
+				grid[(*c).getCoord().x][(*c).getCoord().y] = 0;
 				updateDisplays(' ', (*c).getCoord());
 				
 			}
@@ -295,8 +298,7 @@ int Board::clearRow(int row){
 int Board::getScore(){
 	return score;
 }
-void Board::updateDisplays(char content, Coord c){
-	std::cout << displays.size()<<std::endl;
+void Board::updateDisplays(char content, Coord c){	
 	for (auto &ob : displays) ob->update(content, c);
 	
 }
