@@ -98,7 +98,14 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
 void Board::counterclockwise(){
 	Block *recent = blocks.back();
 	if (cellsAvailable(recent->getCells(), "counterclockwise", this->grid)){
-		recent->rotate("counterclockwise");
+		for(auto c : recent->getCells()){
+			updateDisplays(' ', c.getCoord());
+		}
+		recent->rotate("counterclockwise");	
+		for(auto c : recent->getCells()){
+                        updateDisplays(c.getContent(), c.getCoord());
+                }
+
 	}
 
 }
@@ -106,7 +113,14 @@ void Board::counterclockwise(){
 void Board::clockwise(){
 	Block *recent = blocks.back();
 	if (cellsAvailable(recent->getCells(), "clockwise", this->grid)){
-		recent->rotate("clockwise");
+		for(auto c : recent->getCells()){
+                        updateDisplays(' ', c.getCoord());
+                }
+                recent->rotate("clockwise");
+                for(auto c : recent->getCells()){
+                        updateDisplays(c.getContent(), c.getCoord());
+                }
+
 	}
 }
 
