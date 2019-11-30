@@ -2,7 +2,8 @@
 #define PLAYERDISPLAY
 #include <vector>
 #include <utility>
-#include"coord.h"
+#include "coord.h"
+#include <iostream>
 class PlayerDisplay{
 	int width;
 	int level;
