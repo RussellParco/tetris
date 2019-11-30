@@ -26,9 +26,15 @@ textCommands::textCommands() {//for now, default constructor
 
 Command* textCommands::getCommand (const string &name){ //doesn't work with norandom or sequence for now
     vector<string>::iterator nameIt = find(names.begin(), names.end(), name);
-    int index = distance(names.begin(), nameIt);
-    return commands[index];
+    if(nameIt == names.end()){
+	return nullptr;
+	}
+
+	int index = distance(names.begin(), nameIt);
+	    return commands[index];
 }
+
+
 
 //maybe for commandDecorator make a function addFileName(string file)
 //implemented for sequence and norandom, dummy function for everything else

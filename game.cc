@@ -29,6 +29,9 @@ void Game::play(){
 	while(cin >> strCommand){
 
 		currCommand = commands->getCommand(strCommand);
+		if(currCommand == nullptr){
+		continue;
+		}
 		currCommand->execute(*this);
 		textDisplay->render();
 	}
