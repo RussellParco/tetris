@@ -27,7 +27,7 @@ void Game::play(){
 	string strCommand;
 	Command *currCommand;
 	while(cin >> strCommand){
-		std::cout << strCommand << std::endl;
+
 		currCommand = commands->getCommand(strCommand);
 		currCommand->execute(*this);
 		textDisplay->render();
@@ -38,8 +38,6 @@ void Game::right(){
 	players[turn]->right();
 }
 void Game::left(){
-	std::cout << turn  <<"hello" << std::endl;
-
 	players[turn]->left();
 }
 void Game::down(){

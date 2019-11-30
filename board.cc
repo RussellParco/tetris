@@ -18,7 +18,7 @@ Board::Board(int level, int width, int height, string seq):
 
 	for(int i =0; i < width; i++  ){
 		for(int j =0; j < height; j++){
-			//grid[i][j] = 0;
+			grid[i][j] = 0;
 		}
 	}
 	sequence = ifstream{seq};
@@ -83,16 +83,15 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
  	int x = 0;
 	int y = 0;
 
-/*	for(int i = 0; i <= 3; i++ ){
+	for(int i = 0; i <= 3; i++ ){
 		x = testCells[i].getCoord().x;
 		y = testCells[i].getCoord().y;	
-		if(grid[x][y] == 1){
+		if(grid[y][x] == 1 || x < 0 || x >= width || y < 0 || y >= height){
 			return false;
 		}
 	}
 
-	return true;
-*/	
+	return true;	
 }
 
 
@@ -112,97 +111,84 @@ void Board::clockwise(){
 }
 
 void Board::right(){
-	std::cout << "inside board on right" << std ::endl;
+	
 	Block* activeBlock = blocks.back();
 	for(auto c : activeBlock->getCells()){
-		if(c.getCoord().x  == width-1){ 
-//|| !grid[c.getCoord().y][c.getCoord().x + 1]){
+		if(c.getCoord().x  == width-1 || grid[c.getCoord().y][c.getCoord().x + 1]){
 			return;
 		}
 	}
-	std::cout << "checked edges" << std::endl;
 	for(auto c: activeBlock->getCells()){
-		//std::cout <<"inside for loop" << std:: endl;
-		//grid[c.getCoord().y][c.getCoord().x+1] = 1;
-		
-		//std::cout <<"inside for loop" << std:: endl;
-	//	grid[c.getCoord().y][c.getCoord().x] = 0;
-	
-		//std::cout <<"inside for looppp" << std:: endl;
 		updateDisplays(' ', c.getCoord());
-        		        
-		std::cout <<"inside for loop" << std:: endl;
-		updateDisplays(c.getContent(), c.getCoord());
-
 	}
-	std::cout << "made grid changes"<< std::endl;
 	activeBlock->right();
+        for(auto c : activeBlock->getCells()){
+                updateDisplays(c.getContent(), c.getCoord());
+        }
+
 }
 
 void Board::left(){
-	std::cout << "inside board" << std::endl;
 	Block* activeBlock = blocks.back();
         for(auto c : activeBlock->getCells()){
-                if(c.getCoord().x == 0 ){
-//	|| !grid[c.getCoord().y][c.getCoord().x-1]){
-                        return;
+                if(c.getCoord().x == 0 || grid[c.getCoord().y][c.getCoord().x-1]){
+                        
+			return;
                 
 		}
 	}
-	std::cout << "checkd edges" << std::endl;
-
 	for(auto c : activeBlock->getCells()){
-//		grid[c.getCoord().y][c.getCoord().x-1] = 1;
-//		grid[c.getCoord().y][c.getCoord().x] = 0;
 		updateDisplays(' ', c.getCoord());
-                updateDisplays(c.getContent(), c.getCoord());
-
 	}
-	std::cout << "update grid" << std::endl;
-
-        activeBlock->left();
+	activeBlock->left();
+	for(auto c : activeBlock->getCells()){
+		updateDisplays(c.getContent(), c.getCoord());
+        }
 }
 
 void Board::down(){
 	Block *activeBlock = blocks.back(); 
         for(auto c : activeBlock->getCells()){
-                if(c.getCoord().y  == height - 1){ 
-//	|| !grid[c.getCoord().x][c.getCoord().y-1]){
+                if(c.getCoord().y  == height - 1 || grid[c.getCoord().y+1][c.getCoord().x]){
                         return;
                 }
 	}
 	for(auto c : activeBlock->getCells()){	      
-//		grid[c.getCoord().x][c.getCoord().y-1] = 1;
-//		grid[c.getCoord().x][c.getCoord().y] = 0;
 		updateDisplays(' ', c.getCoord());
-                updateDisplays(c.getContent(), {c.getCoord().x, c.getCoord().y-1});
-
 	}
         
         activeBlock->down();
+	for(auto c : activeBlock->getCells()){
+                updateDisplays(c.getContent(), c.getCoord());
+        }
+
 
 }
 int Board::drop(){
 	bool dropInd = true;
 	Block* activeBlock = blocks.back();
-        while(dropInd){
+        for(auto c : activeBlock->getCells()){
+                updateDisplays(' ', c.getCoord());
+        }
+
+	while(dropInd){
 		for(auto c : activeBlock->getCells()){
-        		if((c.getCoord().x  == width-1) || 
-	 (!grid[c.getCoord().x][c.getCoord().y-1])){
+        		if((c.getCoord().y  == height-1) || 
+					grid[c.getCoord().y+1][c.getCoord().x]){
 				dropInd = false;
 				break;
                 	}
         	}
-		for(auto c : activeBlock->getCells()){
-			grid[c.getCoord().x][c.getCoord().y-1] = 1;
-			grid[c.getCoord().x][c.getCoord().y] = 0;
-			updateDisplays(' ', c.getCoord());
-			updateDisplays(c.getContent(), {c.getCoord().x, c.getCoord().y-1});
+		if(dropInd){
+        		activeBlock->down();
 		}
-
-        	activeBlock->down();
 	}
-			
+
+	for(auto c : activeBlock->getCells()){
+                grid[c.getCoord().y][c.getCoord().x] = 1;
+		updateDisplays(c.getContent(), c.getCoord());
+        }	
+
 	int rowsCleared = 0;
 	for(int y = 0; y < height; y++){
 		bool clearRow = true;
@@ -310,11 +296,9 @@ int Board::getScore(){
 	return score;
 }
 void Board::updateDisplays(char content, Coord c){
-//	std::cout << "inside updateDisplays" << std::endl;
 	std::cout << displays.size()<<std::endl;
 	for (auto &ob : displays) ob->update(content, c);
 	
-	std::cout << "inside updateDisplays" << std::endl;
 }
 void Board::updateDisplaysSwap(int row1, int row2){
 	for (auto &ob : displays) ob->swapRow(row1, row2);

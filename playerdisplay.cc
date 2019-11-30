@@ -4,9 +4,9 @@
 PlayerDisplay::PlayerDisplay(int width,int height, int level):
 width{width}, level{level}, score{0}
 {
-	std::cout << "inside constructor"<< "," << height << std::endl;
+	theDisplay.resize(width*height);
 	for(int i = 0; i < width*height; i++){
-		theDisplay.emplace_back(' ');
+		theDisplay[i] = (' ');
 	}
 }
 void PlayerDisplay::updateScore(int score){
@@ -16,12 +16,7 @@ void PlayerDisplay::updateLevel(int level){
 	this->level =level;
 }
 void PlayerDisplay::update(char content, Coord c){
-std::cout << "inside update"<< " , " << width << ","<< theDisplay.size()<< ","<< c.x << ","<< c.y<< std::endl;
-	
 	theDisplay[(c.y * width) + c.x ] = content;
-	//theDisplay[0] = content;
-
-	std::cout << "inside update past theDisplay" << std::endl;
 }
 char PlayerDisplay::getCell(int row, int col)const{
 	return theDisplay[row *width + col];
@@ -39,4 +34,9 @@ void PlayerDisplay::swapRow(int row1, int row2){
 	for(int i = 0; i < width; i++){
 		std::swap(theDisplay[row1*width + i], theDisplay[row2*width + i]);
 	}
+}
+
+PlayerDisplay::~PlayerDisplay(){
+
+	std::cout << "DELETING";
 }
