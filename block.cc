@@ -31,6 +31,7 @@ int left = temp.x;
  // int cy = 0;
  // int  s = 1;
   //int  c = 0;
+
 	int xnew=0;
 	int ynew=0;
         for(int i = 0; i<=3; i++){

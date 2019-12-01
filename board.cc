@@ -81,8 +81,11 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
 
 
 		}
-		
-		testCells[i].setCoord({xnew + left, ynew + bottom});
+		xnew = xnew + left;
+		ynew = ynew + bottom;
+		Coord newCoord {xnew, ynew};
+	
+		testCells[i].setCoord(newCoord);
 	}
 
 	
@@ -118,7 +121,7 @@ void Board::counterclockwise(){
 
 void Board::clockwise(){
 	Block *recent = blocks.back();
-//	if (cellsAvailable(recent->getCells(), "clockwise", this->grid)){
+	if (cellsAvailable(recent->getCells(), "clockwise", this->grid)){
 		for(auto c : recent->getCells()){
                         updateDisplays(' ', c.getCoord());
                 }
@@ -127,7 +130,7 @@ void Board::clockwise(){
                         updateDisplays(c.getContent(), c.getCoord());
                 }
 
-	//}
+	}
 }
 
 void Board::right(){
