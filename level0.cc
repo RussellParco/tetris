@@ -5,6 +5,12 @@ Level0::Level0(){}
 Block * Level0::createPiece(std::ifstream & sequence, bool random, int lastBlockCreated){
 		char nextBlock;
 		sequence >> nextBlock;
+		if(sequence.eof()){
+			sequence.clear();
+			sequence.seekg(0, sequence.beg);
+			sequence >> nextBlock;
+		}
+
 		if (nextBlock == 'I'){
 			return new Iblock(nextBlock); 
 		}
@@ -29,6 +35,7 @@ Block * Level0::createPiece(std::ifstream & sequence, bool random, int lastBlock
 		else{
 			return new Tblock(nextBlock); 
 		}
+
 }
 
 Level0::~Level0(){}

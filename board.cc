@@ -217,9 +217,8 @@ void Board::down(){
 	for(auto c : activeBlock->getCells()){
                 updateDisplays(c.getContent(), c.getCoord());
         }
-
-
 }
+
 int Board::drop(){
 	bool dropInd = true;
 	Block* activeBlock = blocks.back();
@@ -249,7 +248,7 @@ int Board::drop(){
 	for(int y = 0; y < height; y++){
 		bool clearRow = true;
 		for(int x = 0; x < width; x++){
-			if(!grid[x][y]){
+			if(!grid[y][x]){
 				clearRow = false;
 				break;
 			}
@@ -262,13 +261,11 @@ int Board::drop(){
 	}
 
 	score += (rowsCleared + levelint) * (rowsCleared + levelint);
-	blocks.emplace_back(level->createPiece(sequence,
-                                randomInd, lastPieceCleared));
-	for(auto c : blocks.back()->getCells()){
-        	updateDisplays(c.getContent(), c.getCoord());
-        }
-	return rowsCleared;
+	updateDisplaysScore(score);
+
+      	return rowsCleared;
 }
+
 void Board::levelup(){
 	if(levelint != 4){
 		delete level;
@@ -333,17 +330,18 @@ void Board::dropRows(int row){
 
 int Board::clearRow(int row){
 	int blockscore = 0;
-	for(auto b = blocks.begin(); b != blocks.end();  ++b ){
+	for(auto b = blocks.begin(); b != blocks.end(); ++b){
 		vector<Cell> cells = (*b)->getCells();
 		for(auto c = cells.begin(); c != cells.end();  ++c ){
+			 
 			if((*c).getCoord().y == row){
-				if( (*b)->remove((int)distance(cells.begin(),c))){
+				if( (*b)->remove((int)distance(cells.begin(), c))){
 					blockscore += (*b)->getScore();
-					blocks.erase(blocks.begin()+distance(blocks.begin(),b));
+					b = blocks.erase(b);
+					b = --b;
 				}
-				grid[(*c).getCoord().x][(*c).getCoord().y] = 0;
-				updateDisplays(' ', (*c).getCoord());
-				
+				grid[(*c).getCoord().y][(*c).getCoord().x] = 0;
+				updateDisplays(' ', (*c).getCoord());	
 			}
 
 		}
@@ -354,19 +352,24 @@ int Board::clearRow(int row){
 int Board::getScore(){
 	return score;
 }
+
 void Board::updateDisplays(char content, Coord c){	
 	for (auto &ob : displays) ob->update(content, c);
 	
 }
+
 void Board::updateDisplaysSwap(int row1, int row2){
 	for (auto &ob : displays) ob->swapRow(row1, row2);
 }
+
 void Board::updateDisplaysLevel(int level){
 	for (auto &ob : displays) ob->updateLevel(level);
 }
+
 void Board::updateDisplaysScore(int score){
 	 for (auto &ob : displays) ob->updateScore(score);
 }
+
 void Board::attach(PlayerDisplay *p){
 	displays.emplace_back(p);
 	for(auto b: blocks){
@@ -376,4 +379,16 @@ void Board::attach(PlayerDisplay *p){
 		}
 	}
 }
-
+bool Board::nextBlock(){
+	blocks.emplace_back(level->createPiece(sequence,
+                                randomInd, lastPieceCleared));
+	for(auto c : blocks.back()->getCells()){
+        	if(grid[c.getCoord().y][c.getCoord().x]){
+			return false;
+		}
+        }
+	for(auto c : blocks.back()->getCells()){
+        	updateDisplays(c.getContent(), c.getCoord());
+        }
+	return true;
+}
