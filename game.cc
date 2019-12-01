@@ -39,10 +39,19 @@ void Game::play(){
 
 void Game::right(){
 	players[turn]->right();
+	if(!(players[turn]->heavy())){
+		players[turn]->drop();	
+ 	}
+	
 }
 void Game::left(){
 	players[turn]->left();
+	if(!(players[turn]->heavy())){
+		players[turn]->drop();	
+ 	}
+
 }
+
 void Game::down(){
 	players[turn]->down();
 }

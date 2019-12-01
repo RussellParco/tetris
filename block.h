@@ -22,6 +22,8 @@ class Block {
 		virtual bool remove(int cellindex);
 		virtual std::vector<Cell> getCells();
 		virtual ~Block();
+		virtual int getWeight();
+		virtual void setWeight(int addWeight);
 		virtual int getHeight();
 		virtual int  getWidth();
 }; 

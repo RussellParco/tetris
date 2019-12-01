@@ -47,6 +47,6 @@ class Board{
 	 void restart();
 	 void attach(PlayerDisplay *p);
 	 int getScore();
-
+	 bool heavy();
 };
 #endif
