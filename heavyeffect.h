@@ -5,8 +5,10 @@
 
 class HeavyEffect:public EffectDecorator{
 	public:	
-	flip(Effect *component);
-	void applyEffect(&Board board) override; 
+	HeavyEffect(Effect * component);
+	void applyEffect(Board & board) override; 
+
+
 
 };
 
