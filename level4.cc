@@ -34,6 +34,13 @@ Block* Level4::createPiece(ifstream& sequence, bool random, int lastBlockCleared
 	else{
 		char nextBlock;
 		sequence >> nextBlock;
+		
+		if(sequence.eof()){
+            		sequence.clear();
+               		sequence.seekg(0, sequence.beg);
+             		sequence >> nextBlock;
+      		}
+
 		if (nextBlock == 'I'){
 			newBlocks.emplace_back(new Iblock(nextBlock, 1, 4)); 
 		}
@@ -64,6 +71,6 @@ Block* Level4::createPiece(ifstream& sequence, bool random, int lastBlockCleared
 
 }
 
-Level4::Level4(){}
+Level4::Level4(int seed):seed{seed}{}
 
 Level4::~Level4(){}

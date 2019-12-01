@@ -1,7 +1,7 @@
 #include <string>
 #include "game.h"
-#include "textCommands.h"
-#include <sstream>
+#include <sstreama
+#include <memory>
 
 using namespace std;
 
@@ -35,7 +35,7 @@ int main(int argsc, char* argsv[]){
                         i++;
                 }
 	}
-	Game *game = new Game(text,seed, scriptfile1, scriptfile2, startlevel);
+	unique_pointer<Game> game = make_unique<Game>(text,seed, scriptfile1, scriptfile2, startlevel);
 	game->play();
 	return 0;
 }

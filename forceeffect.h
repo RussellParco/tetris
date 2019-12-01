@@ -7,7 +7,7 @@
 class ForceEffect:public EffectDecorator{
 	public:
 		ForceEffect(Effect *component);
-		void applyEffect(&Board) override;
+		void applyEffect(Board & board) override;
 
 };
 

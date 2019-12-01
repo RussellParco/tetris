@@ -25,15 +25,16 @@ class Board{
 	 void dropRows(int row);
 	 int score;
 	 bool randomInd;
+	 int seed;
 	 vector<PlayerDisplay*> displays;
  	 bool cellsAvailable(std::vector<Cell> exCells, string type,
-			 std::vector<vector <bool>> grid);	
+			 std::vector<vector <bool>> grid, int blockWidth, int blockHeight);	
 	 void updateDisplays(char content, Coord c);
 	 void updateDisplaysSwap(int row1, int row2);
 	 void updateDisplaysScore(int score);
 	 void updateDisplaysLevel(int level);
 	public:
-	 Board(int level, int width, int height, string seq);
+	 Board(int level, int width, int height, string seq, int seed);
 	 void counterclockwise();
 	 void clockwise();
 	 void right();
@@ -47,6 +48,7 @@ class Board{
 	 void restart();
 	 void attach(PlayerDisplay *p);
 	 int getScore();
+	 bool nextBlock();
 
 };
 #endif

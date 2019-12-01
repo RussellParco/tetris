@@ -1,6 +1,6 @@
 #include "level2.h"
 #include <cstdlib>
-Block* Level2::createPiece(ifstream& sequence, bool random, int lastBlockCleared){
+std::vector<Block*> Level2::createPiece(ifstream& sequence, bool random, int lastBlockCleared){
 	vector <Block*> newBlocks; 
 	if(random){
 		srand(seed);
@@ -31,6 +31,13 @@ Block* Level2::createPiece(ifstream& sequence, bool random, int lastBlockCleared
 	else{
 		char nextBlock;
 		sequence >> nextBlock;
+		
+		if(sequence.eof()){
+            		sequence.clear();
+               		sequence.seekg(0, sequence.beg);
+             		sequence >> nextBlock;
+      		}
+
 		if (nextBlock == 'I'){
 			newBlocks.emplace_back(new Iblock(nextBlock, 0, 2)); 
 		}
@@ -60,6 +67,6 @@ Block* Level2::createPiece(ifstream& sequence, bool random, int lastBlockCleared
 
 }
 
-Level2::Level2(){}
+Level2::Level2(int seed):seed{seed}{}
 
 Level2::~Level2(){}

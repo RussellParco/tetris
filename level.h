@@ -1,5 +1,7 @@
 #ifndef LEVEL
 #define LEVEL
+#include "forceblock.h"
+#include "block.h"
 #include "iblock.h"
 #include "lblock.h"
 #include "jblock.h"
@@ -8,16 +10,14 @@
 #include "zblock.h"
 #include "tblock.h"
 #include <iostream>
-
-
+#include <vector>
 #include <fstream>
-using namespace std;
 
-class Block;
+using namespace std;
 
 class Level{
 	public:
-	virtual Block* createPiece(ifstream& sequence, bool random, int lastBlockCleared )=0;
+	virtual vector<Block*> createPiece(ifstream& sequence, bool random, int lastBlockCleared )=0;
 	virtual ~Level() = default ;	
 };
 #endif 

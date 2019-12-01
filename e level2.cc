@@ -7,7 +7,7 @@ using namespace std;
 class Level2 : public Level{
 	public:
 	Level2(int seed);
-	vector<Block*> createPiece(ifstream& sequence, bool random, int lastBlockCleared)override;
+        Block* createPiece(ifstream& sequence, bool random, int lastBlockCleared)override;
 	~Level2();
 };
 #endif

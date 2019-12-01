@@ -7,7 +7,7 @@
 class BlindEffect:public EffectDecorator{
 	public:
 		BlindEffect(Effect *component);
-		void applyEffect(&Board) override;
+		void applyEffect(Board & board) override;
 
 };
 

@@ -9,7 +9,7 @@ class Block;
 class Level0 : public Level{
 	public:
 	Level0();
-	Block* createPiece(ifstream & sequence, bool random, int lastBlockCleared)override;
+	std::vector<Block*> createPiece(ifstream & sequence, bool random, int lastBlockCleared)override;
 	~Level0();	
 };
 #endif

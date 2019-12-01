@@ -3,10 +3,11 @@
 #include "effect.h"
 
 
-class BasicEffect{
+class BasicEffect: public Effect{
 
 	public:
-		applyEffect(&Board board);
+	BasicEffect();
+	void applyEffect(Board &  board);
 
 
 };

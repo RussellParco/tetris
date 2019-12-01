@@ -2,7 +2,7 @@
 using namespace std;
 
 
-Block::Block(char type, int weight, int level): type{type}, weight{weight}, level{level} {}
+Block::Block(char type,int width, int height, int weight, int level): type{type}, width{width}, height{height}, weight{weight}, level{level}{}
 
 vector<Cell> Block::getCells(){
 	return cells;
@@ -11,12 +11,12 @@ vector<Cell> Block::getCells(){
 
 void Block::rotate(string type){
 Coord temp = cells[0].getCoord();
-int top = temp.y;
+int bottom = temp.y;
 int left = temp.x;
 
 	for(int i=0; i <= 3; i++){
-		if(cells[i].getCoord().y >= top){
-			top = cells[i].getCoord().y;
+		if(cells[i].getCoord().y <= bottom){
+			bottom = cells[i].getCoord().y;
 		}
 	}
 	for(int i=0; i <= 3; i++){
@@ -29,33 +29,52 @@ int left = temp.x;
  
  // int cx = 0;
  // int cy = 0;
-  int  s = 1;
-  int  c = 0;
+ // int  s = 1;
+  //int  c = 0;
+
+	int xnew=0;
+	int ynew=0;
         for(int i = 0; i<=3; i++){
-
+		xnew = cells[i].getCoord().x - left;
+		ynew = cells[i].getCoord().y - bottom;	
+		//int xnew = cells[i].getCoord().x - left;
+	//	int ynew = cells[i].getCoord().y - top;
         // rotate point
-	if(type == "clockwise"){
-         int xnew = cells[i].getCoord().x * c - cells[i].getCoord().y * s;
-         int ynew = cells[i].getCoord().x * -1 * s + cells[i].getCoord().y * c;
-
+		
+		if(type == "clockwise"){
+ 	
+			int temp = xnew;
+			 xnew =  -1 * ynew;
+			 ynew = temp;
+			 xnew += (height - 1);
+	        
+		
 		  // translate point back:
-       	 	 ynew = ynew + top;
-		Coord newCoord {xnew, ynew};
-		cells[i].setCoord(newCoord);
+       	 //	 ynew = ynew + top;
+	//	Coord newCoord {xnew, ynew};
+	//	cells[i].setCoord(newCoord);
 
-	}
-	else  {
-	int xnew = cells[i].getCoord().x * c - cells[i].getCoord().y * s;
-	int ynew = cells[i].getCoord().x * s + cells[i].getCoord().y * c;
+		}
+		else  {
+         		int temp = xnew;
+			xnew = ynew;
+         		ynew = -1 * temp;
+			ynew += (width - 1);
+	
+		}
 	  // translate point back:
-	xnew = xnew + left;
-	Coord newCoord {xnew, ynew};
-	cells[i].setCoord(newCoord);
-	}
-          
-        }
+	
 
+		xnew = xnew + left;
+		ynew = ynew + bottom;
+		Coord newCoord {xnew, ynew};
+		cells[i].setCoord(newCoord);          
 }
+		int set = width;
+		width = height;
+		height = set; 
+}
+
 
 void Block::down(){
  	for(int i =0; i <= 3; i++){
@@ -113,4 +132,13 @@ bool Block::remove(int cellIndex){
 
 
 Block::~Block(){}
+
+int Block::getHeight(){
+	return height;
+}
+
+int Block::getWidth(){
+	return width;	
+}
+
 

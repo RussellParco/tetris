@@ -6,7 +6,7 @@ class Tblock: public Block{
 
 	public:
 	
-	Tblock(char type, int weight = 0, int level = 0);
+	Tblock(char type,int weight = 0, int level = 0);
 };
 
 

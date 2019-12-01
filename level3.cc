@@ -31,6 +31,13 @@ Block* Level3::createPiece(ifstream& sequence, bool random, int lastBlockCleared
 	else{
 		char nextBlock;
 		sequence >> nextBlock;
+		
+		if(sequence.eof()){
+            		sequence.clear();
+               		sequence.seekg(0, sequence.beg);
+             		sequence >> nextBlock;
+      		}
+
 		if (nextBlock == 'I'){
 			newBlocks.emplace_back(new Iblock(nextBlock, 1, 3)); 
 		}
@@ -58,6 +65,6 @@ Block* Level3::createPiece(ifstream& sequence, bool random, int lastBlockCleared
 	}
 }
 
-Level3::Level3(){}
+Level3::Level3(int seed):seed{seed}{}
 
 Level3::~Level3(){}
