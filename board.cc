@@ -41,10 +41,14 @@ Board::Board(int level, int width, int height, string seq):
 	
 }
 
-bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<vector <bool>> grid){
+bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<vector <bool>> grid,int blockWidth, int blockHeight){
+//	std::cout << "inside cellsava" << std::endl;
 	vector<Cell> testCells(4);
 	for(int i =0; i <= 3; i++){
-		testCells[i].setCoord({exCells[i].getCoord().x, exCells[i].getCoord().y}); 
+		int x = exCells[i].getCoord().x;
+		int y = exCells[i].getCoord().y;
+		Coord newCoord {x,y};
+		testCells[i].setCoord(newCoord); 
 		
 	}
 	int bottom = testCells[0].getCoord().y;
@@ -63,21 +67,39 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
 		}
 
 	for(int i =0; i <=3 ; i++){
+	
+//		std::cout <<"initial coord"<< testCells[i].getCoord().x<< ","<< testCells[i].getCoord().y << std::endl;
 		int xnew = testCells[i].getCoord().x - left;
                 int ynew = testCells[i].getCoord().y - bottom;
- 		
+ 			
+//		std::cout<< "after translation" << xnew << ","<<ynew << std::endl;
 		if(type == "clockwise"){
+//			std::cout << "inside clockwise" <<std::endl;
+			
+//		std::cout <<"before" << xnew << ","<<ynew << std::endl;
 			int temp = xnew;
+			
+//		std::cout << "xnew" << xnew<<"ynew" <<ynew<< "temp"<< temp<< std::endl;
+			xnew = -1 * ynew;
+	
+//		std::cout << "xnew" << xnew<<"ynew" <<ynew<< "temp"<< temp<< std::endl;
+		ynew = temp;
 		
-			xnew =  ynew;
-			ynew = -1 * temp;
-			ynew += (width - 1);
+//		std::cout << "xnew" << xnew<<"ynew" <<ynew<< "temp"<< temp<< std::endl;
+		xnew += (blockHeight - 1);	
+//		std::cout << "height" << height<< std::endl;			
+//		std::cout <<"last"<< xnew << ","<<ynew << std::endl;
+	
+
 		}
 		else{
 			int temp = xnew;
-			xnew = -1 * ynew;
-			ynew = temp;
-			xnew += (height -1);	
+			xnew =  ynew;
+			ynew = -1 * temp;
+			ynew += (blockWidth - 1);
+		
+
+//		std::cout << xnew << ","<<ynew << std::endl;
 
 
 		}
@@ -86,6 +108,7 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
 		Coord newCoord {xnew, ynew};
 	
 		testCells[i].setCoord(newCoord);
+//		std::cout << "over here" << std::endl;
 	}
 
 	
@@ -93,35 +116,45 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
 	int y = 0;
 
 	for(int i = 0; i <= 3; i++ ){
+		
+//		std::cout << "inside for loop for bounds" << std::endl;
 		x = testCells[i].getCoord().x;
 		y = testCells[i].getCoord().y;	
 		if(x < 0 || x >= width || y < 0 || y >= height || grid[y][x]){
+		
+//			std::cout << "passed if statement" << std::endl;
 			return false;
 		}
 	}
 
+//		std::cout << "outside for loop for bounds" << std::endl;
 	return true;	
 }
 
 
 void Board::counterclockwise(){
 	Block *recent = blocks.back();
-//	if (cellsAvailable(recent->getCells(), "counterclockwise", this->grid)){
+	int height= recent->getHeight();
+	int width = recent->getWidth();
+	if (cellsAvailable(recent->getCells(), "counterclockwise", this->grid, width, height)){
 		for(auto c : recent->getCells()){
 			updateDisplays(' ', c.getCoord());
 		}
+		
 		recent->rotate("counterclockwise");	
 		for(auto c : recent->getCells()){
                         updateDisplays(c.getContent(), c.getCoord());
                 }
 
-//	}
+	}
 
 }
 
 void Board::clockwise(){
-	Block *recent = blocks.back();
-	if (cellsAvailable(recent->getCells(), "clockwise", this->grid)){
+	Block *recent = blocks.back();	
+	int height= recent->getHeight();
+	int width = recent->getWidth();
+ 	if (cellsAvailable(recent->getCells(), "clockwise", this->grid, width, height)){
 		for(auto c : recent->getCells()){
                         updateDisplays(' ', c.getCoord());
                 }

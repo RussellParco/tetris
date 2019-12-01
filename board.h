@@ -27,7 +27,7 @@ class Board{
 	 bool randomInd;
 	 vector<PlayerDisplay*> displays;
  	 bool cellsAvailable(std::vector<Cell> exCells, string type,
-			 std::vector<vector <bool>> grid);	
+			 std::vector<vector <bool>> grid, int blockWidth, int blockHeight);	
 	 void updateDisplays(char content, Coord c);
 	 void updateDisplaysSwap(int row1, int row2);
 	 void updateDisplaysScore(int score);

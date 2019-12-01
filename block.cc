@@ -42,10 +42,12 @@ int left = temp.x;
         // rotate point
 		
 		if(type == "clockwise"){
-         		int temp = xnew;
-			xnew = ynew;
-         		ynew = -1 * temp;
-			ynew += (width - 1);
+ 	
+			int temp = xnew;
+			 xnew =  -1 * ynew;
+			 ynew = temp;
+			 xnew += (height - 1);
+	        
 		
 		  // translate point back:
        	 //	 ynew = ynew + top;
@@ -54,10 +56,11 @@ int left = temp.x;
 
 		}
 		else  {
-			int temp = xnew;
-			 xnew =  -1 * ynew;
-			 ynew = temp;
-			 xnew += (height - 1);
+         		int temp = xnew;
+			xnew = ynew;
+         		ynew = -1 * temp;
+			ynew += (width - 1);
+	
 		}
 	  // translate point back:
 	
@@ -129,4 +132,13 @@ bool Block::remove(int cellIndex){
 
 
 Block::~Block(){}
+
+int Block::getHeight(){
+	return height;
+}
+
+int Block::getWidth(){
+	return width;	
+}
+
 
