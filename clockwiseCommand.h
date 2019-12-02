@@ -10,7 +10,7 @@
 class clockwiseCommand : public commandDecorator {
 public:
 	clockwiseCommand(Command * command);
-    void execute(Game & game) override;
+    void execute(Game &game) override;
 };
 
 #endif //COMMAND_CLOCKWISECOMMAND_H

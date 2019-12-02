@@ -33,16 +33,20 @@ void Game::play(){
 		continue;
 		}
 		currCommand->execute(*this);
+		delete currCommand;
 	}
 }
 
-void Game::right(){
-	players[turn]->right();
+void Game::right(int &prefix){
+	for (int i = 0; i < prefix; i++) {
+		players[turn]->right();
+	}
 	textDisplay->render();
 }
-
-void Game::left(){
-	players[turn]->left();
+void Game::left(int &prefix){
+	for (int i = 0; i < prefix; i++) {
+		players[turn]->left();
+	}
 	textDisplay->render();
 }
 
@@ -140,5 +144,7 @@ void Game::noRandom(std::string file)
 //TODO
 }
 void Game::sequence(std::string file){
-//TODO
+	Command* seq = commands->createSequence(file, new baseCommand());
+	seq->execute(*this);
+	delete seq;
 }
