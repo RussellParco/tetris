@@ -178,12 +178,12 @@ void Game::T(){
 }
 
 void Game::random(){
-//TODO
+	players[turn]->random();
 
 }
 void Game::noRandom(std::string file)
 {
-//TODO
+	players[turn]->noRandom(file);
 }
 void Game::sequence(std::string file){
 	Command* seq = commands->createSequence(file, new baseCommand());
