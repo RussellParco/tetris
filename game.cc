@@ -2,6 +2,11 @@
 #include "textdisplay.h"
 #include "textCommands.h"
 #include "Command.h"
+#include "heavyeffect.h"
+#include "forceeffect.h"
+#include "blindeffect.h"
+
+
 using namespace std;
 
 Game::Game(bool text, string scriptfile1, string scriptfile2, 
@@ -39,10 +44,17 @@ void Game::play(){
 void Game::right(){
 	players[turn]->right();
 	textDisplay->render();
+	if(!(players[turn]->heavy())){
+		drop();	
+ 	}
+	textDisplay->render();	
 }
 
 void Game::left(){
 	players[turn]->left();
+	if(!(players[turn]->heavy())){
+		drop();	
+ 	}
 	textDisplay->render();
 }
 
@@ -51,28 +63,49 @@ void Game::down(){
 	textDisplay->render();
 }
 void Game::drop(){
-	int cleared = players[turn]->drop();
 	if(!players[turn]->nextBlock()){
 		std::cout << "Player " << turn+1 << " Loses!";
 		return;
 	}
-	if(cleared >= 2){
+
+	//Remove Current Effect	
+	if(players[turn]->isBlind()){
+		players[turn]->setBlind(false);
+	} 
+	delete currEffect;
+	currEffect = new BasicEffect();
+ 
+	//Set Effect for next player
+	if(players[turn]->drop() >= 2){
 		cout << "Choose an Effect for your Opponent" << endl;
-		cout << "* Heavy" << endl << "* Blind" << endl << "* Force";
-	/*	string newEffect;
+		cout << "* heavy" << endl << "* blind" << endl << "* force";
+		string newEffect;
 		cin >> newEffect;	
-		cin << players[turn + 1]->addEffect(newEffect);
-	*/}
+
+		if(newEffect == "blind"){
+ 	               currEffect = new BlindEffect(currEffect);
+        	}
+        	else if (newEffect == "heavy"){
+                	currEffect = new HeavyEffect(currEffect);
+        	}
+        	else if(newEffect == "force"){
+                	currEffect = new ForceEffect(currEffect);
+        	} 
+	}
+			
+	//set score
 	if(players[turn]->getScore() > highScore){
 		highScore = players[turn]->getScore();
 	}
+	
+	//change turn
 	turn++;
 	if(turn == 2){
 		turn = 0;
 	}
+
 	textDisplay->render();
-
-
+	currEffect->applyEffect(*players[turn]);
 }
 void Game::clockwise(){
 	players[turn]->clockwise();
@@ -105,6 +138,7 @@ void Game::restart(){
 
 	
 }
+
 void Game::I(){
 	//players[turn]->I();
 	//textDisplay->render();

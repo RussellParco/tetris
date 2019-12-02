@@ -64,15 +64,14 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
 			}
 		}
 
-	for(int i =0; i <=3 ; i++){
-	
-
+	for(int i =0; i <=3 ; i++){	
 		int xnew = testCells[i].getCoord().x - left;
                 int ynew = testCells[i].getCoord().y - bottom;
  			
 		if(type == "clockwise"){
 			int temp = xnew;
 			xnew = -1 * ynew;
+		
 		ynew = temp;
 		xnew += (blockHeight - 1);	
 		}
@@ -177,6 +176,32 @@ void Board::left(){
 		updateDisplays(c.getContent(), c.getCoord());
         }
 }
+
+bool Board::heavy(){
+	Block *activeBlock = blocks.back();
+	vector<Cell> cells = activeBlock->getCells();
+	int weight = activeBlock->getWeight();
+	for(int i = 0; i < weight; i++){
+		Block *activeBlock = blocks.back();
+		for(auto c : activeBlock->getCells()){
+			if(c.getCoord().y  == height - 1 || 
+					grid[c.getCoord().y+1][c.getCoord().x]){
+				return false;
+			}
+		}
+		for(auto c : activeBlock->getCells()){
+			updateDisplays(' ', c.getCoord());
+		}
+
+		activeBlock->down();
+		for(auto c : activeBlock->getCells()){
+			updateDisplays(c.getContent(), c.getCoord());
+		}
+	}
+	return true;
+}
+
+
 
 void Board::down(){
 	Block *activeBlock = blocks.back(); 
@@ -337,9 +362,17 @@ int Board::getScore(){
 	return score;
 }
 
-void Board::updateDisplays(char content, Coord c){	
-	for (auto &ob : displays) ob->update(content, c);	
-}
+void Board::updateDisplays(char content, Coord c){
+	if(blindDisplay){
+		int cx= c.x;
+		int cy= c.y;
+		if((cx >= 2 && cx <= 8) && (cy >= 2 && cy <= 11)){
+			for(auto &ob : displays) ob->update('?', c);	
+		}
+	}else{		
+		for (auto &ob : displays) ob->update(content, c);
+	}
+} 
 
 void Board::updateDisplaysSwap(int row1, int row2){
 	for (auto &ob : displays) ob->swapRow(row1, row2);
@@ -400,4 +433,21 @@ Board::~Board(){
 	}
 	delete level;
 
+}
+
+void Board::setBlind(bool isBlind){
+        blindDisplay = isBlind;
+}
+bool Board::isBlind(){
+        return blindDisplay;
+}
+void Board::I(){return ;}
+void Board::J(){return ;}
+void Board::L(){return ;}
+void Board::O(){return ;}
+void Board::S(){return ;}
+void Board::Z(){return ;}
+void Board::T(){return ;}
+Block* Board::getActive(){
+	return blocks.back();
 }

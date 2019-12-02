@@ -1,8 +1,6 @@
 #ifndef FORCEEFFECT
 #define FORCEEFFECT
-#include "effect.h"
-#include "basiceffect.h"
-
+#include "effectdecorator.h"
 
 class ForceEffect:public EffectDecorator{
 	public:

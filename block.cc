@@ -120,6 +120,13 @@ bool Block::remove(int cellIndex){
 
 Block::~Block(){}
 
+int Block::getWeight(){
+	return weight;
+}
+void Block::setWeight(int addWeight){
+	weight += addWeight;	
+}
+
 int Block::getHeight(){
 	return height;
 }

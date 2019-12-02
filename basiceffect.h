@@ -4,9 +4,9 @@
 
 
 class BasicEffect: public Effect{
-
+	
 	public:
-	BasicEffect();
+	BasicEffect(); 
 	void applyEffect(Board &  board);
 
 

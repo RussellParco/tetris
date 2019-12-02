@@ -7,8 +7,8 @@ class EffectDecorator: public Effect{
 	protected:	
 		Effect *component;
 	public:
-	Decorator(Effect *component);
-	virtual ~Decorator;
+	EffectDecorator(Effect *component);
+	virtual ~EffectDecorator();
 };
 
 

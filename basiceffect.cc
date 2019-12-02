@@ -1,7 +1,7 @@
-#include "basiceffect.cc"
+#include "basiceffect.h"
 
 
-void BasicEffect::BasicEffect():{}
+BasicEffect::BasicEffect(){}
 
 
-void BasicEffect::applyEffect(&Board board){}
+void BasicEffect::applyEffect(Board & board){}

@@ -1,6 +1,8 @@
-#include "blindeffect.cc"
+#include "blindeffect.h"
 
-BlindEffect::BlindEffect(Effect * component): Decorator{component} {}
+BlindEffect::BlindEffect(Effect * component): EffectDecorator{component} {}
 
-void BlindEffect::applyEffect(Board & board){}
-
+void BlindEffect::applyEffect(Board & board){
+	board.setBlind(true);
+ 	 
+}
