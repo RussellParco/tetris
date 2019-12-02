@@ -26,7 +26,7 @@ std::ostream &operator<<(std::ostream &out, const TextDisplay &td){
                         out << td.theDisplay[1]->getCell(r,c);
                 }
 
-		out<< r<< endl;
+		out << endl;
 	}
 	for(int i = 0; i < 2; i++){
 		for(int w = 0; w < td.width; w++){

@@ -6,7 +6,7 @@ using namespace std;
 
 class Level2 : public Level{
 	public:
-	Level2(int seed);
+	Level2();
 	vector<Block*> createPiece(ifstream& sequence, bool random, int lastBlockCleared)override;
 	~Level2();
 };

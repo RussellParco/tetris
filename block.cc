@@ -25,21 +25,11 @@ int left = temp.x;
 		}
 	}
 
-
- 
- // int cx = 0;
- // int cy = 0;
- // int  s = 1;
-  //int  c = 0;
-
 	int xnew=0;
 	int ynew=0;
         for(int i = 0; i<=3; i++){
 		xnew = cells[i].getCoord().x - left;
 		ynew = cells[i].getCoord().y - bottom;	
-		//int xnew = cells[i].getCoord().x - left;
-	//	int ynew = cells[i].getCoord().y - top;
-        // rotate point
 		
 		if(type == "clockwise"){
  	
@@ -50,9 +40,6 @@ int left = temp.x;
 	        
 		
 		  // translate point back:
-       	 //	 ynew = ynew + top;
-	//	Coord newCoord {xnew, ynew};
-	//	cells[i].setCoord(newCoord);
 
 		}
 		else  {
@@ -77,15 +64,14 @@ int left = temp.x;
 
 
 void Block::down(){
- 	for(int i =0; i <= 3; i++){
+ 	for(auto &c : cells){
 		int xnew =0;
 		int ynew = 0;
-		ynew = cells[i].getCoord().y + 1;
-		xnew = cells[i].getCoord().x;
+		ynew = c.getCoord().y + 1;
+		xnew = c.getCoord().x;
 		Coord newCoord {xnew, ynew};
-		cells[i].setCoord(newCoord);
-			
-}
+		c.setCoord(newCoord);	
+	}
 
 }
 
@@ -122,6 +108,7 @@ int Block::getScore(){
 
 
 bool Block::remove(int cellIndex){
+	
 	cells.erase(cells.begin() + cellIndex);
 	if(cells.empty()){
 		return true;
@@ -140,5 +127,3 @@ int Block::getHeight(){
 int Block::getWidth(){
 	return width;	
 }
-
-

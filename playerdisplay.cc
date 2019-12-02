@@ -2,7 +2,7 @@
 #include "playerdisplay.h" 
 
 PlayerDisplay::PlayerDisplay(int width,int height, int level):
-width{width}, level{level}, score{0}
+width{width}, height{height}, level{level}, score{0}
 {
 	theDisplay.resize(width*height);
 	for(int i = 0; i < width*height; i++){
@@ -35,8 +35,9 @@ void PlayerDisplay::swapRow(int row1, int row2){
 		std::swap(theDisplay[row1*width + i], theDisplay[row2*width + i]);
 	}
 }
-
-PlayerDisplay::~PlayerDisplay(){
-
-	std::cout << "DELETING";
+void PlayerDisplay::restart(){
+	for(int i = 0; i < width*height; i++){
+                theDisplay[i] = (' ');
+        }
 }
+PlayerDisplay::~PlayerDisplay(){}

@@ -6,10 +6,9 @@ class Block;
 using namespace std;
 
 
-class Level1 : public Level{
-	int seed;
+class Level1 : public Level{	
 	public:
-	Level1(int seed);
+	Level1();
 	std::vector <Block*> createPiece(ifstream& sequence, bool random, int lastBlockCleared)override;
 	~Level1();
 };

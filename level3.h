@@ -4,8 +4,8 @@
 using namespace std;
 
 class Level3 : public Level{
- public:
-        Level3(int seed);
+	public:
+        Level3();
 	vector<Block*> createPiece(ifstream& sequence, bool random, int lastBlockCleared)override;	
 	~Level3();	
 };

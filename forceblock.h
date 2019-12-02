@@ -2,11 +2,11 @@
 #define FORCEBLOCK
 #include "block.h"
 
-class ForceBlock: public Block{
+class Forceblock: public Block{
 
 	public:
 	
-	ForceBlock(int weight = 0, int level = 0);
+	Forceblock(int weight = 0, int level = 0);
 };
 
 

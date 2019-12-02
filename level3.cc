@@ -1,31 +1,30 @@
 #include "level3.h"
 
-Block* Level3::createPiece(ifstream& sequence, bool random, int lastBlockCleared){
+std::vector<Block*> Level3::createPiece(ifstream& sequence, bool random, int lastBlockCleared){
 	vector <Block*> newBlocks; 
 	if(random){
-		srand(seed);
 		int randNum = rand();
 	       		
-		if(randNum < 2*RAND_MAX/9){
-			newBlocks.emplace_back(new SBlock('S', 1, 3);
+		if(randNum < RAND_MAX/9 *2){
+			newBlocks.emplace_back(new Sblock('S', 1, 3));
 		}
-		else if(randNum < 4*RAND_MAX/9){
-			newBlocks.emplace_back(new ZBlock('Z', 1, 3);
+		else if(randNum < RAND_MAX/9 * 4){
+			newBlocks.emplace_back(new Zblock('Z', 1, 3));
 		}
-		else if(randNum < 5*RAND_MAX/9){
-			newBlocks.emplace_back(new IBlock('I', 1, 3));
+		else if(randNum < RAND_MAX/9 * 5){
+			newBlocks.emplace_back(new Iblock('I', 1, 3));
         	}	
-		else if(randNum < 6*RAND_MAX/9){
-			newBlocks.emplace_back(new JBlock('J', 1, 3));
+		else if(randNum < RAND_MAX/9 * 6){
+			newBlocks.emplace_back(new Jblock('J', 1, 3));
         	}
-       	 	else if(randNum < 7*RAND_MAX/9){
-			newBlocks.emplace_back(new LBlock('L', 1, 3));
+       	 	else if(randNum < RAND_MAX/9 * 7){
+			newBlocks.emplace_back(new Lblock('L', 1, 3));
         	}
-        	else if(randNum < 8*RAND_MAX/9){
-			newBlocks.emplace_back(new OBlock('O', 1, 3));
+        	else if(randNum < RAND_MAX/9 * 8){
+			newBlocks.emplace_back(new Oblock('O', 1, 3));
         	}
 		else{
-			newBlocks.emplace_back(new TBlock('T', 1, 3));
+			newBlocks.emplace_back(new Tblock('T', 1, 3));
 		}
 	}
 	else{
@@ -63,8 +62,10 @@ Block* Level3::createPiece(ifstream& sequence, bool random, int lastBlockCleared
 			newBlocks.emplace_back(new Tblock(nextBlock, 1, 3)); 
 		}
 	}
+	return newBlocks;
+
 }
 
-Level3::Level3(int seed):seed{seed}{}
+Level3::Level3(){}
 
 Level3::~Level3(){}

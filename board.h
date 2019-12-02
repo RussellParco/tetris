@@ -14,7 +14,6 @@ struct Coord;
 class Board{
 	 vector<vector <bool>> grid;
 	 vector<Block*> blocks;
-	 Effect *currentEffect;
 	 Level *level;
 	 int levelint;
 	 const int width;
@@ -25,7 +24,6 @@ class Board{
 	 void dropRows(int row);
 	 int score;
 	 bool randomInd;
-	 int seed;
 	 vector<PlayerDisplay*> displays;
  	 bool cellsAvailable(std::vector<Cell> exCells, string type,
 			 std::vector<vector <bool>> grid, int blockWidth, int blockHeight);	
@@ -34,7 +32,8 @@ class Board{
 	 void updateDisplaysScore(int score);
 	 void updateDisplaysLevel(int level);
 	public:
-	 Board(int level, int width, int height, string seq, int seed);
+	 Board(int level, int width, int height, string seq);
+	 ~Board();
 	 void counterclockwise();
 	 void clockwise();
 	 void right();

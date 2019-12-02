@@ -1,13 +1,13 @@
-	#include "game.h"
+#include "game.h"
 #include "textdisplay.h"
 #include "textCommands.h"
 #include "Command.h"
 using namespace std;
 
-Game::Game(bool text, int seed, string scriptfile1, string scriptfile2, 
-	    int startlevel1, int startlevel2):turn {0}, highScore{0}
+Game::Game(bool text, string scriptfile1, string scriptfile2, 
+	    int startlevel):turn {0}, highScore{0}
 {
-	commands = new textCommands();
+	commands = make_unique<textCommands>();
 
 	textDisplay = make_unique<TextDisplay>(11, 18);
 	if(!text){
@@ -16,9 +16,9 @@ Game::Game(bool text, int seed, string scriptfile1, string scriptfile2,
 		//graphics = nullptr;
 	}
 
-	players[0] = make_unique<Board>(startlevel, 11, 18, scriptfile1, seed);
+	players[0] = make_unique<Board>(startlevel, 11, 18, scriptfile1);
 	players[0]->attach(textDisplay->addPlayer(startlevel));
-	players[1] = make_unique<Board>(startlevel, 11, 18, scriptfile2, seed);
+	players[1] = make_unique<Board>(startlevel, 11, 18, scriptfile2);
 	players[1]->attach(textDisplay->addPlayer(startlevel));
 	textDisplay -> render();
 }
@@ -92,15 +92,18 @@ void Game::levelup(){
 	textDisplay->render();
 }
 void Game::restart(){
-	players[0]->clockwise();
+
+        textDisplay->restart();
+        //if(graphics){
+        //      graphics->restart();
+        //}
+        turn = 0; 
+	
+ 	players[0]->restart();
 	players[1]->restart();
-	textDisplay = unique_ptr<TextDisplay>();
-	//if(graphics){
-	//	graphics = unique_ptr<GraphicsDisplay>();
-	//}
-	turn = 0;
 	textDisplay->render();
 
+	
 }
 void Game::I(){
 	//players[turn]->I();
@@ -142,3 +145,6 @@ void Game::noRandom(std::string file)
 void Game::sequence(std::string file){
 //TODO
 }
+
+Game::~Game(){}
+

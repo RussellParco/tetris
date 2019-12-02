@@ -6,9 +6,10 @@
 #include "level4.h"
 using namespace std;
 
-Board::Board(int level, int width, int height, string seq, int seed):
-	levelint {level}, width{width}, height{height}, sequence{ifstream(seq)}
-	,lastPieceCleared{0}, randomInd{false}, seed{seed}
+Board::Board(int level, int width, int height, string seq):
+	levelint {level}, width{width}, height{height},
+	sequence{ifstream(seq)},lastPieceCleared{1}, 
+	randomInd{false}
 { 
 	grid.resize(height);
 	for (int i = 0; i < height; ++i){
@@ -26,13 +27,13 @@ Board::Board(int level, int width, int height, string seq, int seed):
 	if(levelint == 0){
 		this->level = new Level0();
 	}else if(levelint == 1){
-		this->level = new Level1(seed);
+		this->level = new Level1();
 	}else if(levelint == 2){
-		this->level = new Level2(seed);
+		this->level = new Level2();
         }else if (levelint == 3){
-		this->level = new Level3(seed);
+		this->level = new Level3();
 	}else{
-		this->level = new Level4(seed);
+		this->level = new Level4();
 	}
 	vector<Block*> newBlocks= this->level->createPiece(sequence, randomInd, 
 			lastPieceCleared);
@@ -112,12 +113,12 @@ void Board::counterclockwise(){
 	int height= recent->getHeight();
 	int width = recent->getWidth();
 	if (cellsAvailable(recent->getCells(), "counterclockwise", this->grid, width, height)){
-		for(auto c : recent->getCells()){
+		for(auto &c : recent->getCells()){
 			updateDisplays(' ', c.getCoord());
 		}
 		
 		recent->rotate("counterclockwise");	
-		for(auto c : recent->getCells()){
+		for(auto &c : recent->getCells()){
                         updateDisplays(c.getContent(), c.getCoord());
                 }
 
@@ -130,11 +131,11 @@ void Board::clockwise(){
 	int height= recent->getHeight();
 	int width = recent->getWidth();
  	if (cellsAvailable(recent->getCells(), "clockwise", this->grid, width, height)){
-		for(auto c : recent->getCells()){
+		for(auto &c : recent->getCells()){
                         updateDisplays(' ', c.getCoord());
                 }
                 recent->rotate("clockwise");
-                for(auto c : recent->getCells()){
+                for(auto &c : recent->getCells()){
                         updateDisplays(c.getContent(), c.getCoord());
                 }
 
@@ -144,16 +145,16 @@ void Board::clockwise(){
 void Board::right(){
 	
 	Block* activeBlock = blocks.back();
-	for(auto c : activeBlock->getCells()){
+	for(auto &c : activeBlock->getCells()){
 		if(c.getCoord().x  == width-1 || grid[c.getCoord().y][c.getCoord().x + 1]){
 			return;
 		}
 	}
-	for(auto c: activeBlock->getCells()){
+	for(auto &c: activeBlock->getCells()){
 		updateDisplays(' ', c.getCoord());
 	}
 	activeBlock->right();
-        for(auto c : activeBlock->getCells()){
+        for(auto &c : activeBlock->getCells()){
                 updateDisplays(c.getContent(), c.getCoord());
         }
 
@@ -161,35 +162,35 @@ void Board::right(){
 
 void Board::left(){
 	Block* activeBlock = blocks.back();
-        for(auto c : activeBlock->getCells()){
+        for(auto &c : activeBlock->getCells()){
                 if(c.getCoord().x == 0 || grid[c.getCoord().y][c.getCoord().x-1]){
                         
 			return;
                 
 		}
 	}
-	for(auto c : activeBlock->getCells()){
+	for(auto &c : activeBlock->getCells()){
 		updateDisplays(' ', c.getCoord());
 	}
 	activeBlock->left();
-	for(auto c : activeBlock->getCells()){
+	for(auto &c : activeBlock->getCells()){
 		updateDisplays(c.getContent(), c.getCoord());
         }
 }
 
 void Board::down(){
 	Block *activeBlock = blocks.back(); 
-        for(auto c : activeBlock->getCells()){
+        for(auto &c : activeBlock->getCells()){
                 if(c.getCoord().y  == height - 1 || grid[c.getCoord().y+1][c.getCoord().x]){
                         return;
                 }
 	}
-	for(auto c : activeBlock->getCells()){	      
+	for(auto &c : activeBlock->getCells()){	      
 		updateDisplays(' ', c.getCoord());
 	}
         
         activeBlock->down();
-	for(auto c : activeBlock->getCells()){
+	for(auto &c : activeBlock->getCells()){
                 updateDisplays(c.getContent(), c.getCoord());
         }
 }
@@ -197,13 +198,13 @@ void Board::down(){
 int Board::drop(){
 	bool dropInd = true;
 	Block* activeBlock = blocks.back();
-        for(auto c : activeBlock->getCells()){
+        for(auto &c : activeBlock->getCells()){
                 updateDisplays(' ', c.getCoord());
         }
 
 	while(dropInd){
-		for(auto c : activeBlock->getCells()){
-        		if((c.getCoord().y  == height-1) || 
+		for(auto &c : activeBlock->getCells()){
+        		if((c.getCoord().y == height-1) || 
 					grid[c.getCoord().y+1][c.getCoord().x]){
 				dropInd = false;
 				break;
@@ -214,11 +215,10 @@ int Board::drop(){
 		}
 	}
 
-	for(auto c : activeBlock->getCells()){
+	for(auto &c : activeBlock->getCells()){
                 grid[c.getCoord().y][c.getCoord().x] = 1;
 		updateDisplays(c.getContent(), c.getCoord());
         }	
-
 	int rowsCleared = 0;
 	for(int y = 0; y < height; y++){
 		bool clearRow = true;
@@ -235,8 +235,11 @@ int Board::drop(){
 		}
 	}
 
-	score += (rowsCleared + levelint) * (rowsCleared + levelint);
-	updateDisplaysScore(score);
+	if(rowsCleared > 0){
+		score += (rowsCleared + levelint)*
+			(rowsCleared + levelint);
+		updateDisplaysScore(score);
+	}
 
       	return rowsCleared;
 }
@@ -246,16 +249,17 @@ void Board::levelup(){
 		delete level;
 		
 		if(levelint == 0){
-			level = new Level1(seed);
+			level = new Level1();
 		}else if(levelint == 1){
-			level = new Level2(seed);
+			level = new Level2();
 		}else if(levelint == 2){
-			level = new Level3(seed);
+			level = new Level3();
                 }else{
-			level = new Level4(seed);
+			level = new Level4();
 
 		}
 		levelint++;
+		updateDisplaysLevel(levelint);
 	}
 }
 
@@ -265,16 +269,16 @@ void Board::leveldown(){
                 if(levelint == 1){
                         level = new Level0() ;
                 }else if(levelint == 2){
-                        level = new Level1(seed);
+                        level = new Level1();
                 }else if(levelint == 3){
-                        level = new Level2(seed);
+                        level = new Level2();
                 }else{
-                        level = new Level3(seed);
+                        level = new Level3();
                 }
 		levelint--;
-        }
+		updateDisplaysLevel(levelint);
+	}
 }
-
 void Board::random(){
 	//TODO
 }
@@ -287,11 +291,16 @@ void Board::restart(){
 	score = 0;
 	for(int x = 0; x < width; x++){
 		for(int y = 0; y < height; y++){
-			grid[x][y] = 0;
+			grid[y][x] = 0;
 		}
 	}
 
+	for(auto &b: blocks){
+		delete b;
+	}
 	blocks.clear();
+	lastPieceCleared = 1;
+	nextBlock();
 }
 
 void Board::dropRows(int row){
@@ -308,15 +317,15 @@ int Board::clearRow(int row){
 	for(auto b = blocks.begin(); b != blocks.end(); ++b){
 		vector<Cell> cells = (*b)->getCells();
 		for(auto c = cells.begin(); c != cells.end();  ++c ){
-			 
 			if((*c).getCoord().y == row){
-				if( (*b)->remove((int)distance(cells.begin(), c))){
-					blockscore += (*b)->getScore();
-					b = blocks.erase(b);
-					b = --b;
-				}
 				grid[(*c).getCoord().y][(*c).getCoord().x] = 0;
 				updateDisplays(' ', (*c).getCoord());	
+				if((*b)->remove((int)distance(cells.begin(), c))){
+					blockscore += (*b)->getScore();
+					delete *b;
+					b = blocks.erase(b);
+					--b;
+				}
 			}
 
 		}
@@ -329,8 +338,7 @@ int Board::getScore(){
 }
 
 void Board::updateDisplays(char content, Coord c){	
-	for (auto &ob : displays) ob->update(content, c);
-	
+	for (auto &ob : displays) ob->update(content, c);	
 }
 
 void Board::updateDisplaysSwap(int row1, int row2){
@@ -347,38 +355,49 @@ void Board::updateDisplaysScore(int score){
 
 void Board::attach(PlayerDisplay *p){
 	displays.emplace_back(p);
-	for(auto b: blocks){
+	for(auto &b: blocks){
 		vector<Cell> cells = b->getCells();
-		for(auto c : cells){
+		for(auto &c : cells){
 			p->update(c.getContent(), c.getCoord());
 		}
 	}
 }
 bool Board::nextBlock(){
-	
 	vector<Block*> newBlocks= level->createPiece(sequence,randomInd, 
 							lastPieceCleared);
-	for(auto b = newBlocks.begin(); b != newBlocks.end() -1; ++b){
-		blocks.insert(blocks.end(), b, b);
-		for(auto c : blocks.back()->getCells()){
+	lastPieceCleared++;
+	for(auto b = newBlocks.begin(); b != --newBlocks.end() ; ++b){
+		blocks.emplace_back(*b);
+		for(auto &c : (*b)->getCells()){
 			if(grid[c.getCoord().y][c.getCoord().x]){
 				return false;
 			}
 		}
-		for(auto c : blocks.back()->getCells()){
-			updateDisplays(c.getContent(), c.getCoord());
-		}
 		drop();
 	}
 	
-	blocks.insert(blocks.end(), newBlocks.end()-1, newBlocks.end());
-	for(auto c : blocks.back()->getCells()){
+	blocks.emplace_back(*--newBlocks.end());
+	
+	for(auto &c : blocks.back()->getCells()){
 		if(grid[c.getCoord().y][c.getCoord().x]){
 			return false;
 		}
 	}
-	for(auto c : blocks.back()->getCells()){
+	
+	for(auto &c : blocks.back()->getCells()){
 		updateDisplays(c.getContent(), c.getCoord());
 	}
+
 	return true;
+}
+
+Board::~Board(){
+	for(auto &b: blocks){
+		delete b;
+	}
+	for(auto &d : displays){
+		delete d;
+	}
+	delete level;
+
 }

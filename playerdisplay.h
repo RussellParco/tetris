@@ -6,7 +6,7 @@
 #include <iostream>
 class PlayerDisplay{
 	int width;
-	
+	int height;	
 	int level;
 	int score;
 	std::vector<char> theDisplay;
@@ -19,7 +19,8 @@ class PlayerDisplay{
 	int getLevel()const;
 	int getScore()const;
 	void swapRow(int row1, int row2);
-       	~PlayerDisplay();
+       	void restart();
+	~PlayerDisplay();
 };
 #endif
 

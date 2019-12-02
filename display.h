@@ -14,6 +14,7 @@ class Display{
 		public:
 		Display(int height, int width);
 		PlayerDisplay* addPlayer(int level);
+		void restart();
 		virtual void render() = 0;
 		virtual ~Display();
 
