@@ -181,33 +181,25 @@ void Board::left(){
 }
 
 bool Board::heavy(){
-	Block *currBlock = blocks.back();
-	
-	std::vector<Cell> testCells;
-	std::vector<Cell> currCells = currBlock->getCells(); 
-	int currWeight = currBlock->getWeight();	
-		for(int i =0; i <= 3; i++){
-		int x = currCells[i].getCoord().x;
-		int y = currCells[i].getCoord().y;
-		y += currWeight;
-		Coord newCoord {x,y}; 
-		testCells[i].setCoord(newCoord); 	
-		}
-	
-	int tempx;
-	int tempy;
-	for(int i =0; i <= 3; i ++){
-		int orgy = currCells[i].getCoord().y;
-		tempx = testCells[i].getCoord().x;
-		tempy = testCells[i].getCoord().y;
-		
-		for(int j= orgy ; j<= tempy; j++){	
-			if(grid[j][tempx]){
+	Block *activeBlock = blocks.back();
+	vector<Cell> cells = activeBlock->getCells();
+	int weight = activeBlock->getWeight();
+	for(int i = 0; i < weight; i++){
+		Block *activeBlock = blocks.back();
+		for(auto c : activeBlock->getCells()){
+			if(c.getCoord().y  == height - 1 || 
+					grid[c.getCoord().y+1][c.getCoord().x]){
 				return false;
 			}
-			down();
+		}
+		for(auto c : activeBlock->getCells()){
+			updateDisplays(' ', c.getCoord());
 		}
 
+		activeBlock->down();
+		for(auto c : activeBlock->getCells()){
+			updateDisplays(c.getContent(), c.getCoord());
+		}
 	}
 	return true;
 }
