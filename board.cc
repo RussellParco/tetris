@@ -352,7 +352,10 @@ int Board::clearRow(int row){
 					b = blocks.erase(b);
 					--b;
 				}
+				c = cells.erase(c);
+				--c;
 			}
+			
 
 		}
 	}
@@ -364,8 +367,7 @@ int Board::getScore(){
 }
 
 void Board::updateDisplays(char content, Coord c){
-		
-		for (auto &ob : displays) ob->update(content, c);
+	for (auto &ob : displays) ob->update(content, c);
 } 
 
 void Board::updateDisplaysSwap(int row1, int row2){
