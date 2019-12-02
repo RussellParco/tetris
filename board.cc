@@ -5,10 +5,10 @@
 #include "level3.h"
 #include "level4.h"
 using namespace std;
-
+ 
 Board::Board(int level, int width, int height, string seq):
 	levelint {level}, width{width}, height{height},
-	sequence{ifstream(seq)},lastPieceCleared{1}, 
+	sequence{ifstream(seq)},lastPieceCleared{1}, blindDisplay{0}, 
 	randomInd{false}
 { 
 	grid.resize(height);
@@ -197,10 +197,11 @@ bool Board::heavy(){
 		for(auto c : activeBlock->getCells()){
 			updateDisplays(c.getContent(), c.getCoord());
 		}
-	}
-	return true;
+	
+	
 }
-
+return true;
+}
 
 
 void Board::down(){
@@ -363,15 +364,8 @@ int Board::getScore(){
 }
 
 void Board::updateDisplays(char content, Coord c){
-	if(blindDisplay){
-		int cx= c.x;
-		int cy= c.y;
-		if((cx >= 2 && cx <= 8) && (cy >= 2 && cy <= 11)){
-			for(auto &ob : displays) ob->update('?', c);	
-		}
-	}else{		
+		
 		for (auto &ob : displays) ob->update(content, c);
-	}
 } 
 
 void Board::updateDisplaysSwap(int row1, int row2){
@@ -437,17 +431,88 @@ Board::~Board(){
 
 void Board::setBlind(bool isBlind){
         blindDisplay = isBlind;
+	for(auto &ob : displays) ob->setBlind(isBlind);
+
 }
+
 bool Board::isBlind(){
         return blindDisplay;
 }
-void Board::I(){return ;}
-void Board::J(){return ;}
-void Board::L(){return ;}
-void Board::O(){return ;}
-void Board::S(){return ;}
-void Board::Z(){return ;}
-void Board::T(){return ;}
+
 Block* Board::getActive(){
 	return blocks.back();
+}
+
+void Board::I(){
+	Block * currBlock = blocks.back();
+	blocks.pop_back();
+	int currWeight = currBlock->getWeight();
+	delete currBlock;
+	
+	Block * newBlock = new Iblock(currWeight,levelint);
+	blocks.push_back(newBlock);	
+} 
+
+void Board::J(){
+	Block * currBlock = blocks.back();
+	blocks.pop_back();
+	int currWeight = currBlock->getWeight();
+	delete currBlock;
+	
+	Block * newBlock = new Jblock(currWeight,levelint);
+	blocks.push_back(newBlock);	
+
+}
+void Board::L(){
+	Block * currBlock = blocks.back();
+	blocks.pop_back();
+	int currWeight = currBlock->getWeight();
+	delete currBlock;
+	
+	Block * newBlock = new Lblock(currWeight,levelint);
+	blocks.push_back(newBlock);	
+
+}
+void Board::O(){
+	Block * currBlock = blocks.back();
+	blocks.pop_back();
+	int currWeight = currBlock->getWeight();
+	delete currBlock;
+	
+	Block * newBlock = new Oblock(currWeight,levelint);
+	blocks.push_back(newBlock);	
+
+
+}
+void Board::S(){
+	Block * currBlock = blocks.back();
+	blocks.pop_back();
+	int currWeight = currBlock->getWeight();
+	delete currBlock;
+	
+	Block * newBlock = new Sblock(currWeight,levelint);
+	blocks.push_back(newBlock);	
+
+
+}
+void Board::Z(){
+	Block * currBlock = blocks.back();
+	blocks.pop_back();
+	int currWeight = currBlock->getWeight();
+	delete currBlock;
+	Block * newBlock = new Zblock(currWeight,levelint);
+	blocks.push_back(newBlock);	
+
+
+}
+void Board::T(){
+	Block * currBlock = blocks.back();
+	blocks.pop_back();
+	int currWeight = currBlock->getWeight();
+	delete currBlock;
+	
+	Block * newBlock = new Tblock(currWeight,levelint);
+	blocks.push_back(newBlock);	
+
+
 }

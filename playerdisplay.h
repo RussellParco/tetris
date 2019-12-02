@@ -9,6 +9,7 @@ class PlayerDisplay{
 	int height;	
 	int level;
 	int score;
+	bool blind;
 	std::vector<char> theDisplay;
 	public:
 	PlayerDisplay(int width, int height, int level);
@@ -21,6 +22,8 @@ class PlayerDisplay{
 	void swapRow(int row1, int row2);
        	void restart();
 	~PlayerDisplay();
+	void setBlind(bool flag);
+
 };
 #endif
 

@@ -35,7 +35,7 @@ void Game::play(){
 
 		currCommand = commands->getCommand(strCommand);
 		if(currCommand == nullptr){
-		continue;
+			continue;
 		}
 		currCommand->execute(*this);
 	}
@@ -44,17 +44,17 @@ void Game::play(){
 void Game::right(){
 	players[turn]->right();
 	textDisplay->render();
-	if(!(players[turn]->heavy())){
+/*	if(!(players[turn]->heavy())){
 		drop();	
- 	}
+ 	} */
 	textDisplay->render();	
 }
 
 void Game::left(){
 	players[turn]->left();
-	if(!(players[turn]->heavy())){
+/*	if(!(players[turn]->heavy())){
 		drop();	
- 	}
+ 	} */
 	textDisplay->render();
 }
 
@@ -62,6 +62,7 @@ void Game::down(){
 	players[turn]->down();
 	textDisplay->render();
 }
+
 void Game::drop(){
 	int cleared = players[turn]->drop();
 	
@@ -70,12 +71,12 @@ void Game::drop(){
 		return;
 	}
 
-	//Remove Current Effect	
+//	Remove Current Effect	
 	if(players[turn]->isBlind()){
 		players[turn]->setBlind(false);
 	} 
 	delete currEffect;
-	currEffect = new BasicEffect();
+	currEffect = new BasicEffect(); 
  
 	//Set Effect for next player
 	if(cleared >= 2){
@@ -86,6 +87,7 @@ void Game::drop(){
 
 		if(newEffect == "blind"){
  	               currEffect = new BlindEffect(currEffect);
+			players[turn + 1]->setBlind(true);
         	}
         	else if (newEffect == "heavy"){
                 	currEffect = new HeavyEffect(currEffect);
@@ -107,8 +109,9 @@ void Game::drop(){
 	}
 
 	textDisplay->render();
-	currEffect->applyEffect(*players[turn]);
+//	currEffect->applyEffect(*players[turn]);
 }
+
 void Game::clockwise(){
 	players[turn]->clockwise();
 	textDisplay->render();

@@ -6,7 +6,7 @@ ForceEffect::ForceEffect(Effect * component): EffectDecorator{component} {}
 void ForceEffect::applyEffect(Board & board){
 	char c; 
 	std::cin >> c;
-	if(c == 'I'){
+/*	if(c == 'I'){
 		board.I();
 	}
 	else if(c == 'J'){
@@ -32,5 +32,5 @@ void ForceEffect::applyEffect(Board & board){
 	}
 	else{
 		std::cout << "Invalid Block"<< std::endl;
-	}
+	} */
 }

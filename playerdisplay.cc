@@ -2,7 +2,7 @@
 #include "playerdisplay.h" 
 
 PlayerDisplay::PlayerDisplay(int width,int height, int level):
-width{width}, height{height}, level{level}, score{0}
+width{width}, height{height}, level{level}, score{0}, blind{false}
 {
 	theDisplay.resize(width*height);
 	for(int i = 0; i < width*height; i++){
@@ -16,9 +16,14 @@ void PlayerDisplay::updateLevel(int level){
 	this->level =level;
 }
 void PlayerDisplay::update(char content, Coord c){
+	
 	theDisplay[(c.y * width) + c.x ] = content;
 }
 char PlayerDisplay::getCell(int row, int col)const{
+	
+	if(blind && col >=2 && col <= 8 && row >= 2 && row <= 11){
+		return '?';
+	}
 	return theDisplay[row *width + col];
 }
 
@@ -40,4 +45,9 @@ void PlayerDisplay::restart(){
                 theDisplay[i] = (' ');
         }
 }
+	
+void PlayerDisplay::setBlind(bool flag){
+	blind = flag;	
+}
+
 PlayerDisplay::~PlayerDisplay(){}
