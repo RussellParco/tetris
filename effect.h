@@ -9,7 +9,7 @@ class Effect{
 	Block forceBlock{};
 
 	public:
-		virtual void applyEffect(&Board board) = 0;	
+		virtual void applyEffect(Board & board) = 0;	
 		virtual ~Effect;
 
 };
