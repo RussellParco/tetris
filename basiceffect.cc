@@ -1,7 +1,7 @@
 #include "basiceffect.h"
 
 
-BasicEffect::BasicEffect(std::string effectType): effectType{effectType} {}
+BasicEffect::BasicEffect(){}
 
 
 void BasicEffect::applyEffect(Board & board){}

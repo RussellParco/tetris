@@ -13,6 +13,7 @@ class Game{
 	int turn;
 	textCommands* commands;
 	int highScore;
+	Effect *currEffect;
 	public: 
 	Game(bool text, int seed, string scriptfile1, 
 		std::string scriptfile2, int startlevel);

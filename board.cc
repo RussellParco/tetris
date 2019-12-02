@@ -4,10 +4,6 @@
 #include "level2.h"
 #include "level3.h"
 #include "level4.h"
-#include "basiceffect.h"
-#include "forceeffect.h"
-#include "blindeffect.h"
-#include "heavyeffect.h"
 using namespace std;
 
 Board::Board(int level, int width, int height, string seq):
@@ -46,7 +42,6 @@ Board::Board(int level, int width, int height, string seq):
 }
 
 bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<vector <bool>> grid,int blockWidth, int blockHeight){
-//	std::cout << "inside cellsava" << std::endl;
 	vector<Cell> testCells(4);
 	for(int i =0; i <= 3; i++){
 		int x = exCells[i].getCoord().x;
@@ -72,29 +67,16 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
 
 	for(int i =0; i <=3 ; i++){
 	
-//		std::cout <<"initial coord"<< testCells[i].getCoord().x<< ","<< testCells[i].getCoord().y << std::endl;
 		int xnew = testCells[i].getCoord().x - left;
                 int ynew = testCells[i].getCoord().y - bottom;
  			
-//		std::cout<< "after translation" << xnew << ","<<ynew << std::endl;
 		if(type == "clockwise"){
-//			std::cout << "inside clockwise" <<std::endl;
-			
-//		std::cout <<"before" << xnew << ","<<ynew << std::endl;
 			int temp = xnew;
-			
-//		std::cout << "xnew" << xnew<<"ynew" <<ynew<< "temp"<< temp<< std::endl;
 			xnew = -1 * ynew;
 	
-//		std::cout << "xnew" << xnew<<"ynew" <<ynew<< "temp"<< temp<< std::endl;
 		ynew = temp;
-		
-//		std::cout << "xnew" << xnew<<"ynew" <<ynew<< "temp"<< temp<< std::endl;
 		xnew += (blockHeight - 1);	
-//		std::cout << "height" << height<< std::endl;			
-//		std::cout <<"last"<< xnew << ","<<ynew << std::endl;
 	
-
 		}
 		else{
 			int temp = xnew;
@@ -102,17 +84,12 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
 			ynew = -1 * temp;
 			ynew += (blockWidth - 1);
 		
-
-//		std::cout << xnew << ","<<ynew << std::endl;
-
-
 		}
 		xnew = xnew + left;
 		ynew = ynew + bottom;
 		Coord newCoord {xnew, ynew};
 	
 		testCells[i].setCoord(newCoord);
-//		std::cout << "over here" << std::endl;
 	}
 
 	
@@ -121,17 +98,14 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
 
 	for(int i = 0; i <= 3; i++ ){
 		
-//		std::cout << "inside for loop for bounds" << std::endl;
 		x = testCells[i].getCoord().x;
 		y = testCells[i].getCoord().y;	
 		if(x < 0 || x >= width || y < 0 || y >= height || grid[y][x]){
 		
-//			std::cout << "passed if statement" << std::endl;
 			return false;
 		}
 	}
 
-//		std::cout << "outside for loop for bounds" << std::endl;
 	return true;	
 }
 
@@ -434,38 +408,12 @@ void Board::pushRecent(Block * pushBlock){
 	blocks.push_back(pushBlock);
 }
 
-Effect * Board::getEffect(){
-	return currentEffect;	
-}
-
-void Board::deleteEffect(){
-	delete currentEffect;
-}
-
-void Board::addEffect(string newEffect){
-	if(newEffect == "blind"){	
-		currentEffect = new BlindEffect(currentEffect);
-		
-	}
-	else if (newEffect == "heavy"){
-		currentEffect = new HeavyEffect(currentEffect);
-	}
-	else if(newEffect == "force"){
-		currentEffect = new ForceEffect(currentEffect);
-	} 
-	else{
-		currentEffect = new BasicEffect("basic");
-	}
-}
-
-
-bool Board::isBlind(){
-	return blindDisplay;	
-}
 void Board::setBlind(bool isBlind){
-	blindDisplay = isBlind;		
+        blindDisplay = isBlind;
 }
-
+bool Board::isBlind(){
+        return blindDisplay;
+}
 void Board::I(){return ;}
 void Board::J(){return ;}
 void Board::L(){return ;}

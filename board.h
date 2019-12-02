@@ -20,9 +20,8 @@ struct Coord;
 class Board{
 	 vector<vector <bool>> grid;
 	 vector<Block*> blocks;
-	 Effect *currentEffect;
-	 Level *level;
 	 int levelint;
+	 Level * level;
 	 const int width;
 	 const int height;
 	 ifstream sequence;
@@ -40,9 +39,9 @@ class Board{
 	 void updateDisplaysLevel(int level);
 	public:
 	 bool isBlind();
-	void setBlind(bool isBlind);
+	 void setBlind(bool isBlind);
 	 void updateDisplays(char content, Coord c);
-	Board(int level, int width, int height, string seq);
+	 Board(int level, int width, int height, string seq);
 	 void counterclockwise();
 	 void clockwise();
 	 void right();
@@ -57,17 +56,14 @@ class Board{
 	 void attach(PlayerDisplay *p);
 	 int getScore();
 	 bool heavy();
-	Block *  popRecent();
-	void pushRecent(Block * pushBlock);
-	void I();
-	void J();
-	void L();
-	void O();
-	void S();
-	void Z();
-	void T();
-	void addEffect(string newEffect);
-	Effect * getEffect();
-	void deleteEffect();
+	 Block *  popRecent();
+	 void pushRecent(Block * pushBlock);
+	 void I();
+	 void J();
+	 void L();
+	 void O();
+	 void S();
+	 void Z();
+	 void T();
 };
 #endif

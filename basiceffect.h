@@ -6,7 +6,7 @@
 class BasicEffect: public Effect{
 	
 	public:
-	BasicEffect(std::string effectType); 
+	BasicEffect(); 
 	void applyEffect(Board &  board);
 
 
