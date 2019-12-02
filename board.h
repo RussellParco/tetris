@@ -3,9 +3,15 @@
 #include <vector>
 #include <fstream>
 #include <string>
-#include "block.h"
 #include "level.h"
 #include "playerdisplay.h"
+/*
+#include "forceeffect.h"
+#include "blindeffect.h"
+#include "heavyeffect.h"
+*/
+
+
 
 using namespace std;
 class Effect;
@@ -24,16 +30,19 @@ class Board{
 	 int clearRow(int row);
 	 void dropRows(int row);
 	 int score;
-	 bool randomInd;
+	 bool blindDisplay; 	
 	 vector<PlayerDisplay*> displays;
+	 bool randomInd;
  	 bool cellsAvailable(std::vector<Cell> exCells, string type,
 			 std::vector<vector <bool>> grid, int blockWidth, int blockHeight);	
-	 void updateDisplays(char content, Coord c);
 	 void updateDisplaysSwap(int row1, int row2);
 	 void updateDisplaysScore(int score);
 	 void updateDisplaysLevel(int level);
 	public:
-	 Board(int level, int width, int height, string seq);
+	 bool isBlind();
+	void setBlind(bool isBlind);
+	 void updateDisplays(char content, Coord c);
+	Board(int level, int width, int height, string seq);
 	 void counterclockwise();
 	 void clockwise();
 	 void right();
@@ -48,5 +57,17 @@ class Board{
 	 void attach(PlayerDisplay *p);
 	 int getScore();
 	 bool heavy();
+	Block *  popRecent();
+	void pushRecent(Block * pushBlock);
+	void I();
+	void J();
+	void L();
+	void O();
+	void S();
+	void Z();
+	void T();
+	void addEffect(string newEffect);
+	Effect * getEffect();
+	void deleteEffect();
 };
 #endif

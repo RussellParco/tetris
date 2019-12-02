@@ -3,8 +3,7 @@
 #include <string>
 #include <memory>
 #include "board.h"
-
-
+#include "effect.h"
 class Display;
 class textCommands;
 

@@ -1,17 +1,13 @@
 #ifndef EFFECT
 #define EFFECT
 #include "board.h"
-
+#include <string>
 class Effect{
-	int dropRate;
-	bool blind;
-	bool force;
-	Block forceBlock{};
-
+	std::string effectType;	
 	public:
 		virtual void applyEffect(Board & board) = 0;	
-		virtual ~Effect;
-
+		virtual ~Effect();
+		virtual std::string getType();
 };
 
 

@@ -4,6 +4,10 @@
 #include "level2.h"
 #include "level3.h"
 #include "level4.h"
+#include "basiceffect.h"
+#include "forceeffect.h"
+#include "blindeffect.h"
+#include "heavyeffect.h"
 using namespace std;
 
 Board::Board(int level, int width, int height, string seq):
@@ -227,11 +231,9 @@ bool Board::heavy(){
 			if(grid[j][tempx]){
 				return false;
 			}
+			down();
 		}
-	}
-	
-	for(int i =0; i<= currWeight; i++){
-		down();
+
 	}
 	return true;
 }
@@ -390,10 +392,19 @@ int Board::clearRow(int row){
 int Board::getScore(){
 	return score;
 }
-void Board::updateDisplays(char content, Coord c){	
+void Board::updateDisplays(char content, Coord c){
+	if(blindDisplay){
+		int cx= c.x;
+		int cy= c.y;
+		if((cx >= 2 && cx <= 8) && (cy >= 2 && cy <= 11)){
+			for(auto &ob : displays) ob->update('?', c);	
+			}
+		}
+	else{		
 	for (auto &ob : displays) ob->update(content, c);
-	
-}
+	}
+} 
+
 void Board::updateDisplaysSwap(int row1, int row2){
 	for (auto &ob : displays) ob->swapRow(row1, row2);
 }
@@ -413,3 +424,52 @@ void Board::attach(PlayerDisplay *p){
 	}
 }
 
+Block * Board::popRecent(){
+	Block *lastBlock = blocks.back();
+	blocks.pop_back();
+	return lastBlock;
+}
+
+void Board::pushRecent(Block * pushBlock){
+	blocks.push_back(pushBlock);
+}
+
+Effect * Board::getEffect(){
+	return currentEffect;	
+}
+
+void Board::deleteEffect(){
+	delete currentEffect;
+}
+
+void Board::addEffect(string newEffect){
+	if(newEffect == "blind"){	
+		currentEffect = new BlindEffect(currentEffect);
+		
+	}
+	else if (newEffect == "heavy"){
+		currentEffect = new HeavyEffect(currentEffect);
+	}
+	else if(newEffect == "force"){
+		currentEffect = new ForceEffect(currentEffect);
+	} 
+	else{
+		currentEffect = new BasicEffect("basic");
+	}
+}
+
+
+bool Board::isBlind(){
+	return blindDisplay;	
+}
+void Board::setBlind(bool isBlind){
+	blindDisplay = isBlind;		
+}
+
+void Board::I(){return ;}
+void Board::J(){return ;}
+void Board::L(){return ;}
+void Board::O(){return ;}
+void Board::S(){return ;}
+void Board::Z(){return ;}
+void Board::T(){return ;}

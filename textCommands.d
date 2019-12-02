@@ -1,6 +1,6 @@
 textCommands.o: textCommands.cc textCommands.h baseCommand.h Command.h \
-  game.h board.h block.h cell.h coord.h level.h iblock.h lblock.h \
-  jblock.h oblock.h sblock.h zblock.h tblock.h playerdisplay.h \
+  game.h board.h level.h iblock.h block.h cell.h coord.h lblock.h \
+  jblock.h oblock.h sblock.h zblock.h tblock.h playerdisplay.h effect.h \
   leftCommand.h commandDecorator.h rightCommand.h downCommand.h \
   clockwiseCommand.h counterclockCommand.h dropCommand.h \
   levelupCommand.h leveldownCommand.h norandomCommand.h randomCommand.h \

@@ -1,7 +1,12 @@
-	#include "game.h"
+#include "game.h"
 #include "textdisplay.h"
 #include "textCommands.h"
 #include "Command.h"
+#include "heavyeffect.cc"
+#include "forceeffect.cc"
+#include "blindeffect.cc"
+
+
 using namespace std;
 
 Game::Game(bool text, int seed, string scriptfile1, string scriptfile2, 
@@ -40,14 +45,14 @@ void Game::play(){
 void Game::right(){
 	players[turn]->right();
 	if(!(players[turn]->heavy())){
-		players[turn]->drop();	
+		drop();	
  	}
 	
 }
 void Game::left(){
 	players[turn]->left();
 	if(!(players[turn]->heavy())){
-		players[turn]->drop();	
+		drop();	
  	}
 
 }
@@ -56,21 +61,40 @@ void Game::down(){
 	players[turn]->down();
 }
 void Game::drop(){
+	//Remove Current Effect	
+	Effect *currEffect = players[turn]->getEffect();
+			
+	if(currEffect->getType() == "blind"){
+		players[turn]->setBlind(false);
+	} 
+
+	players[turn]->deleteEffect();
+	players[turn + 1]->addEffect("basic");
+ 
+	//Set Effect for next player
 	if(players[turn]->drop() >= 2){
 		cout << "Choose an Effect for your Opponent" << endl;
 		cout << "* Heavy" << endl << "* Blind" << endl << "* Force";
-	/*	string newEffect;
+		string newEffect;
 		cin >> newEffect;	
-		cin << players[turn + 1]->addEffect(newEffect);
-	*/}
+				
+		players[turn + 1]->addEffect(newEffect); 
+		applyEffects(players[turn + 1]);
+	}
+
+	 
+			
+	//set score
 	if(players[turn]->getScore() > highScore){
 		highScore = players[turn]->getScore();
 	}
+	
+	//change turn
 	turn++;
 	if(turn == 2){
 		turn = 0;
 	}
-
+ 
 }
 void Game::clockwise(){
 	players[turn]->clockwise();
@@ -94,6 +118,7 @@ void Game::restart(){
 	//}
 	turn = 0;
 }
+
 void Game::I(){
 	//players[turn]->I();
 }

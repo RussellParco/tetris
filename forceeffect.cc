@@ -1,33 +1,33 @@
 #include "forceeffect.h"
 	
 
-ForceEffect::ForceEffect(Effect * component): Decorator{component} {}
+ForceEffect::ForceEffect(Effect * component): EffectDecorator{component} {}
 
 void ForceEffect::applyEffect(Board & board){
-
+	char c; 
 	std::cin >> c;
-	if(c== 'I'){
-		board->I();
+	if(c == 'I'){
+		board.I();
 	}
 	else if(c == 'J'){
-		board->J();
+		board.J();
 	}
 	else if(c == 'L'){
-		board->L();
+		board.L();
 	}
 	else if(c == 'O'){
-		board->O();
+		board.O();
 	
 	}
 	else if(c == 'S'){
-		board->S();
+		board.S();
 	}
 	else if(c == 'Z'){
-		board->Z();
+		board.Z();
 
 	}
 	else if(c == 'T' ){
-		board->T();
+		board.T();
 	
 	}
 	else{

@@ -2,4 +2,6 @@
 
 Effect::~Effect(){}
 
-
+std::string Effect::getType(){
+	return effectType;
+}

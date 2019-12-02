@@ -1,7 +1,7 @@
 #ifndef HEAVYEFFECT
-#ifndef HEAVYEFFECT
-#include "effect.h"
-#include "basiceffect.h"
+#define HEAVYEFFECT
+#include "effectdecorator.h"
+
 
 class HeavyEffect:public EffectDecorator{
 	public:	
