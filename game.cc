@@ -37,11 +37,15 @@ void Game::play(){
 	}
 }
 
-void Game::right(){
-	players[turn]->right();
+void Game::right(int &prefix){
+	for (int i = 0; i < prefix; i++) {
+		players[turn]->right();
+	}
 }
-void Game::left(){
-	players[turn]->left();
+void Game::left(int &prefix){
+	for (int i = 0; i < prefix; i++) {
+		players[turn]->left();
+	}
 }
 void Game::down(){
 	players[turn]->down();

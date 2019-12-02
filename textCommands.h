@@ -26,6 +26,9 @@
 #include "ZCommand.h"
 #include "TCommand.h"
 #include "restartCommand.h"
+//#include "heavyCommand.h"
+//#include "blindCommand.h"
+//#include "forceCommand.h"
 #include <vector>
 #include <algorithm>
 
@@ -34,13 +37,17 @@ using namespace std;
 
 class textCommands {
     vector<string> names;
-    vector<Command*> commands;
+    //vector<string> specNames;
+    //vector<Command*> commands;
+    //vector<Command*> specCommands;
     int removePrefix(string &name);
+    Command* attachPrefix(const string &name, const int& prefix);
 public:
     textCommands();
     //void loadCommands (const string &filename);
     //void saveCommands (const string &filename);
     Command* getCommand (string &name);//returns a Command object given the name of the command
+    Command* getSpecialAction (string &name);
     //void addCommand (string name, Command *command);
 };
 
