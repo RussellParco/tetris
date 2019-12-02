@@ -351,7 +351,13 @@ int Board::clearRow(int row){
 					b = blocks.erase(b);
 					--b;
 				}
+<<<<<<< Updated upstream
+				c = cells.erase(c);
+=======
+>>>>>>> Stashed changes
+				--c;
 			}
+			
 
 		}
 	}
@@ -363,15 +369,7 @@ int Board::getScore(){
 }
 
 void Board::updateDisplays(char content, Coord c){
-	if(blindDisplay){
-		int cx= c.x;
-		int cy= c.y;
-		if((cx >= 2 && cx <= 8) && (cy >= 2 && cy <= 11)){
-			for(auto &ob : displays) ob->update('?', c);	
-		}
-	}else{		
-		for (auto &ob : displays) ob->update(content, c);
-	}
+	for (auto &ob : displays) ob->update(content, c);
 } 
 
 void Board::updateDisplaysSwap(int row1, int row2){
