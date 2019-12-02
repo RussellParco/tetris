@@ -19,8 +19,8 @@ class Game{
 		std::string scriptfile2, int startlevel);
 	~Game();
 	void play();
-	void left();
-	void right();
+	void left(int &prefix);
+	void right(int &prefix);
 	void down();
 	void clockwise();
 	void counterclockwise();

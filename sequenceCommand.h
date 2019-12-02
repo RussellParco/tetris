@@ -6,13 +6,13 @@
 #define COMMAND_SEQUENCECOMMAND_H
 
 #include "commandDecorator.h"
-#include <string>
 
 class sequenceCommand : public commandDecorator {
-    std::string file;
+    std::string filename;
 public:
-	sequenceCommand(Command * command);
-    void execute(Game & game) override;
+	explicit sequenceCommand(Command * command, istream &in = cin);
+	explicit sequenceCommand(Command * command, const string & name);
+    void execute(Game &game) override;
 };
 
 #endif //COMMAND_SEQUENCECOMMAND_H

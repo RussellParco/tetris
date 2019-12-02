@@ -38,23 +38,27 @@ void Game::play(){
 			continue;
 		}
 		currCommand->execute(*this);
+		delete currCommand;
 	}
 }
 
-void Game::right(){
-	players[turn]->right();
-	textDisplay->render();
-/*	if(!(players[turn]->heavy())){
+void Game::right(int &prefix){
+	for (int i = 0; i < prefix; i++) {
+		players[turn]->right();
+	}
+	if(!(players[turn]->heavy())){
 		drop();	
- 	} */
+ 	} 
 	textDisplay->render();	
 }
 
-void Game::left(){
-	players[turn]->left();
-/*	if(!(players[turn]->heavy())){
-		drop();	
- 	} */
+void Game::left(int &prefix){
+	for (int i = 0; i < prefix; i++) {
+		players[turn]->left();
+	}
+	if(!(players[turn]->heavy())){
+		drop();
+	}
 	textDisplay->render();
 }
 
@@ -109,7 +113,7 @@ void Game::drop(){
 	}
 
 	textDisplay->render();
-//	currEffect->applyEffect(*players[turn]);
+	currEffect->applyEffect(*players[turn]);
 }
 
 void Game::clockwise(){
@@ -145,32 +149,32 @@ void Game::restart(){
 }
 
 void Game::I(){
-	//players[turn]->I();
-	//textDisplay->render();
+	players[turn]->I();
+	textDisplay->render();
 }
 void Game::J(){
-        //players[turn]->J();
-	//textDisplay->render();
+        players[turn]->J();
+	textDisplay->render();
 }
 void Game::L(){
-        //players[turn]->L();
-	//textDisplay->render();
+        players[turn]->L();
+	textDisplay->render();
 }
 void Game::O(){
-        //players[turn]->O();
-	//textDisplay->render();
+        players[turn]->O();
+	textDisplay->render();
 }
 void Game::S(){
-        //players[turn]->S();
-	//textDisplay->render();
+        players[turn]->S();
+	textDisplay->render();
 }
 void Game::Z(){
-        //players[turn]->Z();
-	//textDisplay->render();
+        players[turn]->Z();
+	textDisplay->render();
 }
 void Game::T(){
-        //players[turn]->T();
-	//textDisplay->render();
+        players[turn]->T();
+	textDisplay->render();
 }
 
 void Game::random(){
@@ -182,7 +186,9 @@ void Game::noRandom(std::string file)
 //TODO
 }
 void Game::sequence(std::string file){
-//TODO
+	Command* seq = commands->createSequence(file, new baseCommand());
+	seq->execute(*this);
+	delete seq;
 }
 
 Game::~Game(){}

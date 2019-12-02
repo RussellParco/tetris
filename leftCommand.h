@@ -8,8 +8,9 @@
 #include "commandDecorator.h"
 
 class leftCommand : public commandDecorator {
+    int prefix;
 public:
-    leftCommand(Command *command);
+    leftCommand(Command *command, int prefix);
     void execute(Game & game) override;
 };
 
