@@ -5,13 +5,13 @@
 #ifndef TEXTCOMMANDS_H
 #define TEXTCOMMANDS_H
 
-//#include <fstream>
+#include <fstream>
+#include <iostream>
 #include "baseCommand.h"
 #include "leftCommand.h"
 #include "rightCommand.h"
 #include "downCommand.h"
 #include "clockwiseCommand.h"
-	std::vector<Cell> getCells();
 #include "counterclockCommand.h"
 #include "dropCommand.h"
 #include "levelupCommand.h"
@@ -27,19 +27,30 @@
 #include "ZCommand.h"
 #include "TCommand.h"
 #include "restartCommand.h"
+//#include "heavyCommand.h"
+//#include "blindCommand.h"
+//#include "forceCommand.h"
 #include <vector>
+#include <algorithm>
 
 
 using namespace std;
 
 class textCommands {
     vector<string> names;
-    vector<Command*> commands;
+    //vector<string> specNames;
+    //vector<Command*> commands;
+    //vector<Command*> specCommands;
+    int removePrefix(string &name);
+    int formatCommandName(string &name);
+    Command* addCommand(const string &name, const int& prefix, Command* command = new baseCommand(), istream &in = cin);
 public:
     textCommands();
     //void loadCommands (const string &filename);
     //void saveCommands (const string &filename);
-    Command* getCommand (const string &name);//returns a Command object given the name of the command
+    Command* getCommand (string &name);//returns a Command object given the name of the command
+    //Command* getSpecialAction (string &name);
+    Command* createSequence (const string &filename, Command *command);
     //void addCommand (string name, Command *command);
 };
 

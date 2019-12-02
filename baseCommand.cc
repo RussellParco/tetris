@@ -1,8 +1,5 @@
 #include "baseCommand.h"
 
-baseCommand::baseCommand(){
+void baseCommand::execute(Game &game) {
+    cout<<"";//TODO: something should be here
 }
-
-baseCommand::~baseCommand(){}
-
-void baseCommand::execute(Game &game) {}

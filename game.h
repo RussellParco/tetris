@@ -18,8 +18,8 @@ class Game{
 	Game(bool text, int seed, string scriptfile1, 
 		std::string scriptfile2, int startlevel);
 	void play();
-	void left();
-	void right();
+	void left(int &prefix);
+	void right(int &prefix);
 	void down();
 	void clockwise();
 	void counterclockwise();

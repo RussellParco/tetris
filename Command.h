@@ -7,12 +7,14 @@
 
 #include "game.h"
 #include <string>
+#include <stdio.h>
 
 
 class Command {
+protected:
+    //Game *game;
 public:
-
-    virtual ~Command()= default;
+    virtual ~Command(){};
     virtual void execute(Game &game) = 0;
 };
 
