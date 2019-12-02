@@ -6,6 +6,7 @@
 #define TEXTCOMMANDS_H
 
 #include <fstream>
+#include <iostream>
 #include "baseCommand.h"
 #include "leftCommand.h"
 #include "rightCommand.h"
@@ -41,13 +42,15 @@ class textCommands {
     //vector<Command*> commands;
     //vector<Command*> specCommands;
     int removePrefix(string &name);
-    Command* attachPrefix(const string &name, const int& prefix);
+    int formatCommandName(string &name);
+    Command* addCommand(const string &name, const int& prefix, Command* command = new baseCommand(), istream &in = cin);
 public:
     textCommands();
     //void loadCommands (const string &filename);
     //void saveCommands (const string &filename);
     Command* getCommand (string &name);//returns a Command object given the name of the command
-    Command* getSpecialAction (string &name);
+    //Command* getSpecialAction (string &name);
+    Command* createSequence (const string &filename, Command *command);
     //void addCommand (string name, Command *command);
 };
 

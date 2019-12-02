@@ -119,5 +119,5 @@ void Game::noRandom(std::string file)
 //TODO
 }
 void Game::sequence(std::string file){
-//TODO
+	(commands->createSequence(file, new baseCommand()))->execute(*this);
 }

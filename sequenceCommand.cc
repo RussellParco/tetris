@@ -1,6 +1,6 @@
 #include "sequenceCommand.h"
-sequenceCommand::sequenceCommand(Command *command): commandDecorator{command} {
-    std::cin >> filename;
+sequenceCommand::sequenceCommand(Command *command, istream &in): commandDecorator{command} {
+    in >> filename;
 }
 
 sequenceCommand::sequenceCommand(Command *command, const string &name): commandDecorator{command}, filename{name}{}

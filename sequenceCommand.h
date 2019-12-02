@@ -10,7 +10,7 @@
 class sequenceCommand : public commandDecorator {
     std::string filename;
 public:
-	explicit sequenceCommand(Command * command);
+	explicit sequenceCommand(Command * command, istream &in = cin);
 	explicit sequenceCommand(Command * command, const string & name);
     void execute(Game &game) override;
 };

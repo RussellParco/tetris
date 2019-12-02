@@ -10,7 +10,7 @@
 class norandomCommand : public commandDecorator {
     std::string filename;
 public:
-	explicit norandomCommand(Command * command);
+	explicit norandomCommand(Command * command, istream &in = cin);
 	explicit norandomCommand(Command * command, const string &name);
     void execute(Game &game) override;
 };
