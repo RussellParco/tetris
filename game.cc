@@ -63,6 +63,8 @@ void Game::down(){
 	textDisplay->render();
 }
 void Game::drop(){
+	int cleared = players[turn]->drop();
+	
 	if(!players[turn]->nextBlock()){
 		std::cout << "Player " << turn+1 << " Loses!";
 		return;
@@ -76,7 +78,7 @@ void Game::drop(){
 	currEffect = new BasicEffect();
  
 	//Set Effect for next player
-	if(players[turn]->drop() >= 2){
+	if(cleared >= 2){
 		cout << "Choose an Effect for your Opponent" << endl;
 		cout << "* heavy" << endl << "* blind" << endl << "* force";
 		string newEffect;
