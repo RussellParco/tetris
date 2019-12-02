@@ -8,9 +8,10 @@
 #include "commandDecorator.h"
 
 class norandomCommand : public commandDecorator {
-    std::string file;
+    std::string filename;
 public:
-	norandomCommand(Command * command);
+	explicit norandomCommand(Command * command);
+	explicit norandomCommand(Command * command, const string &name);
     void execute(Game &game) override;
 };
 

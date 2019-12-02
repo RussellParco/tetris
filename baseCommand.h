@@ -8,8 +8,6 @@
 
 class baseCommand : public Command {
 public:
-    baseCommand();
-    ~baseCommand() override;
     void execute(Game &game) override;
 };
 
