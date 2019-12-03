@@ -103,13 +103,21 @@ int Block::getScore(){
 }
 
 
-bool Block::remove(int cellIndex){
-	
-	cells.erase(cells.begin() + cellIndex);
-	if(cells.empty()){
-		return true;
-	}
-	return false;
+bool Block::removeRow(int row){
+	for(auto c = cells.begin(); c !=  cells.end();){
+      		int y = (*c).getCoord().y;
+		if(y == row){
+			c = cells.erase(c);
+		}else{
+			if(y > row){
+				(*c).setCoord({y, (*c).getCoord().x});
+			}
+			++c;
+		}
+        }
+
+
+	return cells.empty();
 }
 
 

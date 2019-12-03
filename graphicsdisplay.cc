@@ -50,8 +50,34 @@ void GraphicsDisplay::render(){
 				window.fillRectangle(x, y, cellWidth, cellHeight, colour);
 			}
 			window.drawBigString(10+250*i, 430, "Next: ");
+			int nextBlock = getColourSeq(theDisplay[i]->getNext());
+			for(int j = 0; j < 4; j++){
+				 window.fillRectangle(10+250*i + j*cellWidth, 440, 
+					cellWidth, cellHeight, 
+					GraphicsDisplay::blockColours[nextBlock][j]);
+				 window.fillRectangle(10+250*i +j*cellWidth, 440+cellHeight, 
+					cellWidth, cellHeight,  
+					GraphicsDisplay::blockColours[nextBlock][4 + j]);
+			}
 			
 		}	
 	}
+}
 
+int GraphicsDisplay::getColourSeq(char c){
+	if(c == 'I'){
+                return 0;
+        }else if(c == 'J'){
+                return 1;
+        }else if(c == 'L'){
+                return  2;
+        }else if(c == 'O'){
+                return  3;
+        }else if(c == 'S'){
+                return  4;
+        }else if(c == 'Z'){
+                return  5;
+        }else{
+                return  6;
+        }
 }

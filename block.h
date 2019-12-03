@@ -19,7 +19,7 @@ class Block {
 		virtual void right();
 		virtual void left();
 		virtual int getScore();	
-		virtual bool remove(int cellindex);
+		virtual bool removeRow(int row);
 		virtual std::vector<Cell> getCells();
 		virtual ~Block();
 		virtual int getWeight();

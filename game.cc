@@ -94,13 +94,12 @@ void Game::drop(){
 	//Set Effect for next player
 	if(cleared >= 2){
 		cout << "Choose an Effect for your Opponent" << endl;
-		cout << "* heavy" << endl << "* blind" << endl << "* force";
+		cout << "* heavy" << endl << "* blind" << endl << "* force"<< endl;
 		string newEffect;
 		cin >> newEffect;	
 
 		if(newEffect == "blind"){
  	               currEffect = new BlindEffect(currEffect);
-			players[turn + 1]->setBlind(true);
         	}
         	else if (newEffect == "heavy"){
                 	currEffect = new HeavyEffect(currEffect);

@@ -282,10 +282,10 @@ void Board::levelup(){
 			level = new Level2();
 		}else if(levelint == 2){
 			level = new Level3();
-			sequence = ifstream{defaultSeq};
+			sequence = ifstream{randSeq};
                 }else{
 			level = new Level4();
-			 sequence = ifstream{defaultSeq};
+			 sequence = ifstream{randSeq};
 		}
 		levelint++;
 		updateDisplaysLevel(levelint);
@@ -334,6 +334,11 @@ void Board::restart(){
 		delete b;
 	}
 	blocks.clear();
+	if(level == 0){
+		sequence = ifstream{defaultSeq};
+	}else{
+		sequence = ifstream{randSeq};
+	}
 	lastPieceCleared = 1;
 	nextBlock();
 }
@@ -342,6 +347,7 @@ void Board::dropRows(int row){
 	if(row == 0){
 		return;
 	}
+
 	std::swap(grid[row], grid[row - 1]);
 	updateDisplaysSwap(row, row-1);
 	dropRows(row-1);
@@ -349,25 +355,19 @@ void Board::dropRows(int row){
 
 int Board::clearRow(int row){
 	int blockscore = 0;
-	for(auto b = blocks.begin(); b != blocks.end(); ++b){
-		vector<Cell> cells = (*b)->getCells();
-		for(auto c = cells.begin(); c != cells.end();  ++c ){
-			if((*c).getCoord().y == row){
-				grid[(*c).getCoord().y][(*c).getCoord().x] = 0;
-				updateDisplays(' ', (*c).getCoord());	
-				if((*b)->remove((int)distance(cells.begin(), c))){
-					blockscore += (*b)->getScore();
-					delete *b;
-					b = blocks.erase(b);
-					--b;
-					lastPieceCleared = 1;
-				}
-				c = cells.erase(c);
-				--c;
-			}
-			
-
+	for(auto b = blocks.begin(); b != blocks.end();){
+		if((*b)->removeRow(row)){
+			blockscore += (*b)->getScore();
+			delete *b;
+			b = blocks.erase(b);
+			lastPieceCleared = 1;
+		}else{
+			++b;
 		}
+	}
+	for(int i = 0; i <width; i++){
+		updateDisplays(' ', {i, row});
+		grid[row][i] = 0;
 	}
 	return blockscore;
 }
