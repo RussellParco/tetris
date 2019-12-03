@@ -5,5 +5,4 @@ leftCommand::leftCommand(Command *command, int prefix): commandDecorator{command
 void leftCommand::execute(Game & game){
     command->execute(game);
     game.left(prefix);
-
 }

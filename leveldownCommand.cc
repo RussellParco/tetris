@@ -1,6 +1,6 @@
 #include "leveldownCommand.h"
-leveldownCommand::leveldownCommand(Command *command): commandDecorator{command} {}
 
+leveldownCommand::leveldownCommand(Command *command): commandDecorator{command} {}
 
 void leveldownCommand::execute(Game & game) {
     command->execute(game);

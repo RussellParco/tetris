@@ -1,6 +1,6 @@
 #include "SCommand.h"
-SCommand::SCommand(Command *command): commandDecorator{command} {}
 
+SCommand::SCommand(Command *command): commandDecorator{command} {}
 
 void SCommand::execute(Game &game) {
     command->execute(game);
