@@ -5,13 +5,6 @@
 #include <string>
 #include "level.h"
 #include "playerdisplay.h"
-/*
-#include "forceeffect.h"
-#include "blindeffect.h"
-#include "heavyeffect.h"
-*/
-
-
 
 using namespace std;
 class Effect;
@@ -32,6 +25,8 @@ class Board{
 	 bool blindDisplay; 	
 	 vector<PlayerDisplay*> displays;
 	 bool randomInd;
+	 string randSeq;
+	 string defaultSeq;
  	 bool cellsAvailable(std::vector<Cell> exCells, string type,
 			 std::vector<vector <bool>> grid, int blockWidth, int blockHeight);	
 	 void updateDisplaysSwap(int row1, int row2);
@@ -52,7 +47,7 @@ class Board{
 	 void levelup();
 	 void leveldown();
 	 void random();
-	 void unRandom(string file);
+	 void noRandom(string file);
 	 void restart();
 	 void attach(PlayerDisplay *p);
 	 int getScore();

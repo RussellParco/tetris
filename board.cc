@@ -9,7 +9,7 @@ using namespace std;
 Board::Board(int level, int width, int height, string seq):
 	levelint {level}, width{width}, height{height},
 	sequence{ifstream(seq)},lastPieceCleared{1}, blindDisplay{0}, 
-	randomInd{false}
+	randomInd{true}, randSeq{seq}, defaultSeq{seq}
 { 
 	grid.resize(height);
 	for (int i = 0; i < height; ++i){
@@ -279,9 +279,10 @@ void Board::levelup(){
 			level = new Level2();
 		}else if(levelint == 2){
 			level = new Level3();
+			sequence = ifstream{defaultSeq};
                 }else{
 			level = new Level4();
-
+			 sequence = ifstream{defaultSeq};
 		}
 		levelint++;
 		updateDisplaysLevel(levelint);
@@ -293,23 +294,29 @@ void Board::leveldown(){
                 delete level;
                 if(levelint == 1){
                         level = new Level0() ;
+			 sequence = ifstream{defaultSeq};
                 }else if(levelint == 2){
                         level = new Level1();
                 }else if(levelint == 3){
                         level = new Level2();
                 }else{
                         level = new Level3();
+			sequence = ifstream{randSeq};
                 }
 		levelint--;
 		updateDisplaysLevel(levelint);
 	}
 }
 void Board::random(){
-	//TODO
+	randomInd = true;
 }
 
-void Board::unRandom(string file){
-	//TODO
+void Board::noRandom(string file){
+	randomInd = false;
+	randSeq = file;
+	if(levelint >=3){
+		sequence = ifstream{randSeq};
+	}
 }
 
 void Board::restart(){
@@ -422,9 +429,6 @@ bool Board::nextBlock(){
 Board::~Board(){
 	for(auto &b: blocks){
 		delete b;
-	}
-	for(auto &d : displays){
-		delete d;
 	}
 	delete level;
 
