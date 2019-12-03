@@ -112,8 +112,8 @@ void Game::drop(){
 		turn = 0;
 	}
 
-	textDisplay->render();
 	currEffect->applyEffect(*players[turn]);
+	textDisplay->render();
 }
 
 void Game::clockwise(){

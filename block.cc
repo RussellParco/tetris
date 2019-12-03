@@ -15,7 +15,7 @@ int bottom = temp.y;
 int left = temp.x;
 
 	for(int i=0; i <= 3; i++){
-		if(cells[i].getCoord().y <= bottom){
+		if(cells[i].getCoord().y >= bottom){
 			bottom = cells[i].getCoord().y;
 		}
 	}
@@ -29,26 +29,22 @@ int left = temp.x;
 	int ynew=0;
         for(int i = 0; i<=3; i++){
 		xnew = cells[i].getCoord().x - left;
-		ynew = cells[i].getCoord().y - bottom;	
+		ynew = cells[i].getCoord().y - bottom ;	
 		
 		if(type == "clockwise"){
  	
 			int temp = xnew;
 			 xnew =  -1 * ynew;
 			 ynew = temp;
-			 xnew += (height - 1);
-	        
-		
-		  // translate point back:
+			 ynew = ynew - width + 1;
 
-		}
+		}   
 		else  {
          		int temp = xnew;
 			xnew = ynew;
          		ynew = -1 * temp;
-			ynew += (width - 1);
-	
-		}
+			xnew = xnew + height - 1; 
+		} 
 	  // translate point back:
 	
 
