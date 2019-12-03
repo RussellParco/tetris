@@ -57,7 +57,7 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
 
 		for(int i=0; i <= 3; i++){
 	
-			if(testCells[i].getCoord().y <= bottom){
+			if(testCells[i].getCoord().y >= bottom){
 				bottom = testCells[i].getCoord().y;
 			}
 		}
@@ -73,16 +73,15 @@ bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<v
  			
 		if(type == "clockwise"){
 			int temp = xnew;
-			xnew = -1 * ynew;
-		
-		ynew = temp;
-		xnew += (blockHeight - 1);	
+			xnew = -1 * ynew;	
+			ynew = temp;
+			ynew = ynew - blockWidth + 1;
 		}
 		else{
 			int temp = xnew;
 			xnew =  ynew;
 			ynew = -1 * temp;
-			ynew += (blockWidth - 1);
+			xnew = xnew + blockHeight - 1;
 		
 		}
 		xnew = xnew + left;
@@ -464,73 +463,117 @@ Block* Board::getActive(){
 void Board::I(){
 	Block * currBlock = blocks.back();
 	blocks.pop_back();
+	for(auto c : currBlock->getCells()){
+		updateDisplays(' ', c.getCoord());
+	}
 	int currWeight = currBlock->getWeight();
 	delete currBlock;
 	
 	Block * newBlock = new Iblock(currWeight,levelint);
-	blocks.push_back(newBlock);	
+	blocks.push_back(newBlock);
+	for(auto c : newBlock->getCells()){
+		updateDisplays(c.getContent(), c.getCoord());
+	}
 } 
 
 void Board::J(){
 	Block * currBlock = blocks.back();
 	blocks.pop_back();
+	for(auto c : currBlock->getCells()){
+		updateDisplays(' ', c.getCoord());
+	}
 	int currWeight = currBlock->getWeight();
 	delete currBlock;
 	
 	Block * newBlock = new Jblock(currWeight,levelint);
 	blocks.push_back(newBlock);	
-
+	for(auto c : newBlock->getCells()){
+		updateDisplays(c.getContent(), c.getCoord());
+	}
 }
 void Board::L(){
 	Block * currBlock = blocks.back();
 	blocks.pop_back();
+	for(auto c : currBlock->getCells()){
+		updateDisplays(' ', c.getCoord());
+	}
 	int currWeight = currBlock->getWeight();
 	delete currBlock;
 	
 	Block * newBlock = new Lblock(currWeight,levelint);
 	blocks.push_back(newBlock);	
+	for(auto c : newBlock->getCells()){
+		updateDisplays(c.getContent(), c.getCoord());
+	}
 
 }
 void Board::O(){
 	Block * currBlock = blocks.back();
 	blocks.pop_back();
+	for(auto c : currBlock->getCells()){
+		updateDisplays(' ', c.getCoord());
+	}
+
 	int currWeight = currBlock->getWeight();
 	delete currBlock;
 	
 	Block * newBlock = new Oblock(currWeight,levelint);
 	blocks.push_back(newBlock);	
+	for(auto c : newBlock->getCells()){
+		updateDisplays(c.getContent(), c.getCoord());
+	}
 
 
 }
 void Board::S(){
 	Block * currBlock = blocks.back();
 	blocks.pop_back();
+	for(auto c : currBlock->getCells()){
+		updateDisplays(' ', c.getCoord());
+	}
 	int currWeight = currBlock->getWeight();
 	delete currBlock;
 	
 	Block * newBlock = new Sblock(currWeight,levelint);
 	blocks.push_back(newBlock);	
+	for(auto c : newBlock->getCells()){
+		updateDisplays(c.getContent(), c.getCoord());
+	}
 
 
 }
 void Board::Z(){
 	Block * currBlock = blocks.back();
 	blocks.pop_back();
+	for(auto c : currBlock->getCells()){
+		updateDisplays(' ', c.getCoord());
+	}
 	int currWeight = currBlock->getWeight();
 	delete currBlock;
 	Block * newBlock = new Zblock(currWeight,levelint);
 	blocks.push_back(newBlock);	
+	for(auto c : newBlock->getCells()){
+		updateDisplays(c.getContent(), c.getCoord());
+	}
+
 
 
 }
 void Board::T(){
 	Block * currBlock = blocks.back();
 	blocks.pop_back();
+	for(auto c : currBlock->getCells()){
+		updateDisplays(' ', c.getCoord());
+	}
+
 	int currWeight = currBlock->getWeight();
 	delete currBlock;
 	
 	Block * newBlock = new Tblock(currWeight,levelint);
 	blocks.push_back(newBlock);	
+	for(auto c : newBlock->getCells()){
+		updateDisplays(c.getContent(), c.getCoord());
+	}
 
 
 }
