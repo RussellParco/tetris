@@ -1,30 +1,11 @@
 #include "textCommands.h"
-textCommands::textCommands() {//for now, default constructor
+textCommands::textCommands() {
     vector<string> nam{"left", "right", "down", "clockwise",
                     "counterclockwise", "drop", "levelup",
-                    "leveldown",
-                    "norandom",
-                    "random",
-                    "sequence",
-                    "I","J","L","O","S","Z","T",
-                    "restart"};
+                    "leveldown", "norandom", "random",
+                    "sequence", "I", "J", "L", "O", "S",
+                    "Z", "T", "restart"};
     names = nam;
-//    vector<Command*> com{new leftCommand(new baseCommand(), 1), new rightCommand(new baseCommand(), 1),
-//			new downCommand(new baseCommand()), new clockwiseCommand(new baseCommand()),
-//			new counterclockCommand(new baseCommand()), new dropCommand(new baseCommand()),
-//			new levelupCommand(new baseCommand()), new leveldownCommand(new baseCommand()),
-//                         new norandomCommand(new baseCommand(), "testfile"),
-//                         new randomCommand(new baseCommand()),
-//                         new sequenceCommand(new baseCommand(), "testfile"),
-//                         new ICommand(new baseCommand()), new JCommand(new baseCommand()),
-//			new LCommand(new baseCommand()), new OCommand(new baseCommand()),
-//			new SCommand(new baseCommand()), new ZCommand(new baseCommand()),
-//			new TCommand(new baseCommand()), new restartCommand(new baseCommand())};
-//    commands = com;
-//    vector<string> specNam{"heavy", "blind", "force"};
-//    specNames = specNam;
-//    vector<Command*> specCom{new heavyCommand(new baseCommand()), new blindCommand(new baseCommand()), new forceCommand(new baseCommand())};\
-//    specCommands = specCom;
 }
 
 int textCommands::removePrefix(string &name) {
@@ -102,7 +83,9 @@ Command* textCommands::addCommand(const string &name, const int &prefix, Command
     return command;
 }
 
-int textCommands::formatCommandName(string &name){//takes in a shorthand form of a command and returns the number of matches, also changes the name to the full name of the last matched command
+
+//takes in a shorthand form of a command and returns the number of matches, also changes the name to the full name of the last matched command
+int textCommands::formatCommandName(string &name){
     int matches = 0;
     long index = 0;
     auto nameIterator = names.begin();
@@ -127,16 +110,11 @@ Command* textCommands::getCommand (string &name){
     int matches = formatCommandName(name);
     if (matches == 1) { //name input was specific enough to return a specific command
         return addCommand(name, prefix);
-
-        //TODO
-        //what command to return in the case of bad input??
-        //should we make a new error command?
-        //i'll return nullptr for now
     } else if (matches == 0) { // no command found
-        cerr << "no command matches this name";
+        cerr << "no command matches this name\n";
         return nullptr;
     } else { // too many matches
-        cerr << "name is not specific enough";
+        cerr << "name is not specific enough\n";
         return nullptr;
     }
 }
@@ -158,28 +136,3 @@ Command* textCommands::createSequence(const string &filename, Command *command) 
     inFile.close();
     return command;
 }
-
-//Command* textCommands::getSpecialAction(string &name) {
-//    vector<string>::iterator nameIterator = specNames.begin();
-//    int matches = 0;
-//    long index = 0;
-//    while (nameIterator != specNames.end()) {
-//        if (*nameIterator == name){
-//            matches = 1;
-//            index = distance(specNames.begin(), nameIterator);
-//            break;
-//        }
-//        else
-//        if (nameIterator->find(name) != string::npos) {
-//            ++matches;
-//            index = distance(specNames.begin(), nameIterator);
-//        }
-//        ++nameIterator;
-//    }
-//    if (matches == 1) { //name input was specific enough to return a specific command
-//        return specCommands[index];
-//    }
-//    else { // no match or too many matches
-//        return nullptr;
-//    }
-//}
