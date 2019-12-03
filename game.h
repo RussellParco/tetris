@@ -8,7 +8,8 @@
 class textCommands;
 
 class Game{
-	std::unique_ptr<Display> textDisplay;
+	std::unique_ptr<GameDisplay> textDisplay;
+	std::unique_ptr<GameDisplay> graphics;
 	std::unique_ptr<Board> players[2];
 	int turn;
 	std::unique_ptr<textCommands> commands;

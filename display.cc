@@ -1,17 +1,17 @@
 #include "display.h"
 
-Display::Display(int width, int height):height{height},width{width} {};
+GameDisplay::GameDisplay(int width, int height):height{height},width{width} {};
 
-PlayerDisplay* Display::addPlayer(int level){
+PlayerDisplay* GameDisplay::addPlayer(int level){
 	theDisplay.emplace_back(new PlayerDisplay(width, height, level));
 	return theDisplay.back();
 }
-void Display::restart(){
+void GameDisplay::restart(){
 	for(auto &it: theDisplay){
 		it->restart();
 	}
 }
-Display::~Display(){
+GameDisplay::~GameDisplay(){
 	for(auto d: theDisplay){
 		delete d;
 	}

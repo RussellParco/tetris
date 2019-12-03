@@ -37,7 +37,10 @@ Board::Board(int level, int width, int height, string seq):
 	}
 	vector<Block*> newBlocks= this->level->createPiece(sequence, randomInd, 
 			lastPieceCleared);
-	blocks.insert(blocks.end(), newBlocks.begin(), newBlocks.end());	
+	blocks.insert(blocks.end(), newBlocks.begin(), newBlocks.end());
+	next = this->level->createPiece(sequence, randomInd,
+                        lastPieceCleared).back();
+
 }
 
 bool Board::cellsAvailable(std::vector<Cell> exCells, string type, std::vector<vector <bool>> grid,int blockWidth, int blockHeight){
@@ -358,6 +361,7 @@ int Board::clearRow(int row){
 					delete *b;
 					b = blocks.erase(b);
 					--b;
+					lastPieceCleared = 1;
 				}
 				c = cells.erase(c);
 				--c;
@@ -388,6 +392,9 @@ void Board::updateDisplaysLevel(int level){
 void Board::updateDisplaysScore(int score){
 	 for (auto &ob : displays) ob->updateScore(score);
 }
+void Board::updateDisplaysNext(char blockType){
+	for (auto &ob : displays) ob->updateNext(blockType);
+}
 
 void Board::attach(PlayerDisplay *p){
 	displays.emplace_back(p);
@@ -397,6 +404,7 @@ void Board::attach(PlayerDisplay *p){
 			p->update(c.getContent(), c.getCoord());
 		}
 	}
+	p->updateNext(next->getCells()[0].getContent());
 }
 bool Board::nextBlock(){
 	vector<Block*> newBlocks= level->createPiece(sequence,randomInd, 
@@ -412,8 +420,11 @@ bool Board::nextBlock(){
 		drop();
 	}
 	
-	blocks.emplace_back(*--newBlocks.end());
+	blocks.emplace_back(next);
 	
+	next = *--newBlocks.end();
+ 	updateDisplaysNext(next->getCells()[0].getContent());
+
 	for(auto &c : blocks.back()->getCells()){
 		if(grid[c.getCoord().y][c.getCoord().x]){
 			return false;
@@ -432,6 +443,7 @@ Board::~Board(){
 		delete b;
 	}
 	delete level;
+	delete next;
 
 }
 

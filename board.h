@@ -13,6 +13,7 @@ struct Coord;
 class Board{
 	 vector<vector <bool>> grid;
 	 vector<Block*> blocks;
+	 Block* next;
 	 Level *level;
 	 int levelint;
 	 const int width;
@@ -32,6 +33,7 @@ class Board{
 	 void updateDisplaysSwap(int row1, int row2);
 	 void updateDisplaysScore(int score);
 	 void updateDisplaysLevel(int level);
+	 void updateDisplaysNext(char blockType); 
 	public:
 	 bool isBlind();
 	 void setBlind(bool isBlind);

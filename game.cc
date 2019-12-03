@@ -5,7 +5,7 @@
 #include "heavyeffect.h"
 #include "forceeffect.h"
 #include "blindeffect.h"
-
+#include "graphicsdisplay.h"
 
 using namespace std;
 
@@ -15,17 +15,23 @@ Game::Game(bool text, string scriptfile1, string scriptfile2,
 	commands = make_unique<textCommands>();
 
 	textDisplay = make_unique<TextDisplay>(11, 18);
-	if(!text){
-		//graphics = unique_ptr<GraphicsDisplay>();
-	}else{
-		//graphics = nullptr;
-	}
 
 	players[0] = make_unique<Board>(startlevel, 11, 18, scriptfile1);
 	players[0]->attach(textDisplay->addPlayer(startlevel));
 	players[1] = make_unique<Board>(startlevel, 11, 18, scriptfile2);
 	players[1]->attach(textDisplay->addPlayer(startlevel));
-	textDisplay -> render();
+
+	textDisplay -> render();	
+	if(!text){
+		graphics = make_unique<GraphicsDisplay>(11, 18);
+		players[0]->attach(graphics->addPlayer(startlevel)); 
+		players[1]->attach(graphics->addPlayer(startlevel)); 
+	}else{
+		graphics = nullptr;
+	}
+	if(graphics) graphics->render();
+
+
 }
 
 void Game::play(){
@@ -49,7 +55,8 @@ void Game::right(int &prefix){
 	if(!(players[turn]->heavy())){
 		drop();	
  	} 
-	textDisplay->render();	
+	textDisplay->render();
+	if(graphics) graphics->render();	
 }
 
 void Game::left(int &prefix){
@@ -60,11 +67,13 @@ void Game::left(int &prefix){
 		drop();
 	}
 	textDisplay->render();
+	if(graphics) graphics->render();
 }
 
 void Game::down(){
 	players[turn]->down();
 	textDisplay->render();
+	if(graphics) graphics->render();
 }
 
 void Game::drop(){
@@ -112,69 +121,82 @@ void Game::drop(){
 		turn = 0;
 	}
 
-	textDisplay->render();
 	currEffect->applyEffect(*players[turn]);
+	textDisplay->render();
+	if(graphics) graphics->render();
 }
 
 void Game::clockwise(){
 	players[turn]->clockwise();
 	textDisplay->render();
+	if(graphics) graphics->render();
 }
 
 void Game::counterclockwise(){
 	players[turn]->counterclockwise();
 	textDisplay->render();
+	if(graphics) graphics->render();
 }
 void Game::leveldown(){
 	players[turn]->leveldown();
 	textDisplay->render();
+	if(graphics) graphics->render();
 }
 void Game::levelup(){
 	players[turn]->levelup();
 	textDisplay->render();
+	if(graphics) graphics->render();
 }
 void Game::restart(){
 
         textDisplay->restart();
-        //if(graphics){
-        //      graphics->restart();
-        //}
+        if(graphics){
+              graphics->restart();
+        }
         turn = 0; 
 	
  	players[0]->restart();
 	players[1]->restart();
 	textDisplay->render();
+	if(graphics) graphics->render();
+	 
 
-	
 }
 
 void Game::I(){
 	players[turn]->I();
 	textDisplay->render();
+	if(graphics) graphics->render();
 }
 void Game::J(){
         players[turn]->J();
 	textDisplay->render();
+	if(graphics) graphics->render();
 }
 void Game::L(){
         players[turn]->L();
 	textDisplay->render();
+	if(graphics) graphics->render();
 }
 void Game::O(){
         players[turn]->O();
 	textDisplay->render();
+	if(graphics) graphics->render();
 }
 void Game::S(){
         players[turn]->S();
 	textDisplay->render();
+	if(graphics) graphics->render();
 }
 void Game::Z(){
         players[turn]->Z();
 	textDisplay->render();
+	if(graphics) graphics->render();
 }
 void Game::T(){
         players[turn]->T();
 	textDisplay->render();
+	if(graphics) graphics->render();
 }
 
 void Game::random(){
@@ -191,5 +213,7 @@ void Game::sequence(std::string file){
 	delete seq;
 }
 
-Game::~Game(){}
+Game::~Game(){
+	delete currEffect;
+}
 

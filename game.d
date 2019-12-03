@@ -6,4 +6,5 @@ game.o: game.cc game.h board.h level.h forceblock.h block.h cell.h \
  leveldownCommand.h norandomCommand.h randomCommand.h sequenceCommand.h \
  ICommand.h JCommand.h LCommand.h OCommand.h SCommand.h ZCommand.h \
  TCommand.h restartCommand.h heavyeffect.h effectdecorator.h \
- basiceffect.h effect.h forceeffect.h blindeffect.h
+ basiceffect.h effect.h forceeffect.h blindeffect.h graphicsdisplay.h \
+ window.h

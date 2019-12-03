@@ -5,18 +5,18 @@
 #include <vector>
 #include "playerdisplay.h"
 
-class Display{
+class GameDisplay{
 
 	protected:
 		std::vector<PlayerDisplay*> theDisplay;
 		int height;
 		int width;	
 		public:
-		Display(int height, int width);
+		GameDisplay(int height, int width);
 		PlayerDisplay* addPlayer(int level);
 		void restart();
 		virtual void render() = 0;
-		virtual ~Display();
+		virtual ~GameDisplay();
 
 };
 

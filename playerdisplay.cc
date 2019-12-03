@@ -1,6 +1,6 @@
 
 #include "playerdisplay.h" 
-
+#include  <iomanip>
 PlayerDisplay::PlayerDisplay(int width,int height, int level):
 width{width}, height{height}, level{level}, score{0}, blind{false}
 {
@@ -49,5 +49,10 @@ void PlayerDisplay::restart(){
 void PlayerDisplay::setBlind(bool flag){
 	blind = flag;	
 }
-
+void PlayerDisplay::updateNext(char blockType){
+	next = blockType;
+}
+char PlayerDisplay::getNext(){
+	return next;
+}
 PlayerDisplay::~PlayerDisplay(){}

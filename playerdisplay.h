@@ -10,6 +10,7 @@ class PlayerDisplay{
 	int level;
 	int score;
 	bool blind;
+	char next;
 	std::vector<char> theDisplay;
 	public:
 	PlayerDisplay(int width, int height, int level);
@@ -23,7 +24,8 @@ class PlayerDisplay{
        	void restart();
 	~PlayerDisplay();
 	void setBlind(bool flag);
-
+	void updateNext(char blockType);
+	char getNext();
 };
 #endif
 
